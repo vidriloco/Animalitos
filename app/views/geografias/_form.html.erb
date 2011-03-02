@@ -1,0 +1,62 @@
+<div class="field">
+    <%= label_tag :geografia %><br /><br/>
+    <div class="geografia-contenido round-with-5">
+        <span id="geografia_direccion"></span>
+    </div>
+    
+    <% if geografia.nil? %>
+        <% geografia = Geografia.new %>
+    <% end %>
+    
+    <%= hidden_field_tag 'geografia[lat]', geografia.coordenada.nil? ? "19.4" : geografia.coordenada.lat %>
+    <%= hidden_field_tag 'geografia[lon]', geografia.coordenada.nil? ? "-99.15" : geografia.coordenada.lon %>
+    
+</div>
+
+<div id="map_canvas" class="centrado" style="width:70%; height:250px;"></div>
+  
+<script type="text/javascript">
+    var marker;
+    var map;
+    function initialize() {  
+        var lat = $('#geografia_lat').val() ;
+        var lon = $('#geografia_lon').val() ;
+        
+        if(lat == null) {
+            lat = 19.4;
+        }
+        
+        if(lon == null) {
+            lon = -99.15;
+        }
+        
+        var latlng = new google.maps.LatLng(parseFloat(lat), parseFloat(lon));
+        
+        var myOptions = {
+            zoom: 10,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            streetViewControl: true,
+            mapTypeControl: false
+        };
+        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        
+        positionOn(latlng, 10);
+        $('#geografia_lat').val(lat);
+        $('#geografia_lon').val(lon);
+        setAddressFromOn(latlng, "geografia_direccion");
+        
+        google.maps.event.addListener(map, "click", function(event) {
+            positionOn(event.latLng, 15);
+            $('#geografia_lat').val(event.latLng.lat());
+            $('#geografia_lon').val(event.latLng.lng());
+            setAddressFromOn(event.latLng, "geografia_direccion");
+        });
+    }
+
+    $(document).ready(function() {
+        initialize();        
+    });
+
+    
+</script>
