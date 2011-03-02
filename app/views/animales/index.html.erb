@@ -1,0 +1,15 @@
+<div class="encabezado">
+    <h1>Animalitos</h1>
+</div>
+
+<div id="index-animales">
+    <%= render 'animales' %>
+</div>
+
+<% if can? :manage, Animal %>
+    <div id="acciones">
+        <%= link_to 'Nuevo Animal', new_animal_path, :class => 'redondo-5 sombra-5' %>
+    </div>
+<% end %>
+
+<br />

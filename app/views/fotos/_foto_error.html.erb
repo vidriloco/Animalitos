@@ -1,0 +1,9 @@
+<div id="error_explanation">
+    <h2><%= pluralize(@foto.errors.count, "error") %> necesitan revisión:</h2>
+
+    <ul>
+    <% @foto.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+    <% end %>
+    </ul>
+</div>

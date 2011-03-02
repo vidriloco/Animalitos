@@ -1,0 +1,3 @@
+<% if @usuario.destroyed? %>
+	$('.admin #<%= @usuario_id %>').fadeOut('slow');
+<% end %>

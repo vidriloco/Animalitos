@@ -1,0 +1,26 @@
+<%= form_for(@raza) do |f| %>
+  <% if @raza.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@raza.errors.count, "error") %> prohibited this raza from being saved:</h2>
+
+      <ul>
+      <% @raza.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :tipo, 'Tipo de animalito' %><br />
+    <%= f.select :tipo,  options_for_select(Animal.todos.invert, @raza.tipo), {:include_blank => ''} %>
+  </div>
+  <div id="acciones">
+      <%= f.submit :class => 'submit redondo-3' %>   
+  </div>
+<% end %>
+<br />

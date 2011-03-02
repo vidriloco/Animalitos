@@ -1,0 +1,7 @@
+<% if  foto.nil? %>
+    <%= link_to image_tag("default/#{animal.tipo_de_mascota}.frente.jpg",
+                  :class => 'frente sombra-5 redondo-3'), animal %>
+<% else %>
+    <%= link_to image_tag(foto.carrierwave.frente.url,
+                  :class => 'frente sombra-5 redondo-3'), animal %>
+<% end %>

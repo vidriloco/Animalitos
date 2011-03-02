@@ -1,0 +1,16 @@
+<div id="foto_<%= foto.id %>" class="marco redondo-10 sombra-5" style="width: 130px; height: 130px">
+    <%= render :partial => 'fotos/tamanos/thumbje', :locals => {:foto => foto} %>
+    <% if can? :manage, @animal %>
+        <div class="controles-foto" style="opacity: 0">
+            <%= render :partial => 'fotos/animales_foto_controles', :locals => {:foto => foto} %>
+        </div>
+    <% end %>
+</div>
+
+<script>
+    $(".animales #foto_<%= foto.id %>").hover(function() {
+       $(".animales #foto_<%= foto.id %> .controles-foto").css({opacity: 100});
+    }, function() {
+       $(".animales #foto_<%= foto.id %> .controles-foto").css({opacity: 0});
+    });
+</script>

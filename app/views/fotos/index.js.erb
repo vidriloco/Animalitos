@@ -1,0 +1,12 @@
+$('#fotos-espacio').html("<%= escape_javascript render 'animales_fotos' %>")
+
+<% if @animal.fotos.empty? %>
+	$('#oculta-vacio').bind('click', function() {
+		$('#vacio').fadeOut();
+	});
+<% end %>
+
+$('.nueva').bind('click', function() {
+	$('#formulario-foto').fadeIn();
+	$('#vacio').fadeOut();
+});

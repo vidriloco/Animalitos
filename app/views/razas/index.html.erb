@@ -1,0 +1,25 @@
+<div class="encabezado">
+    <h1>Razas de animalitos</h1>
+</div>
+
+<div class="unit on-2 columns razas centrado">
+    <div class="column fixed perros">
+        <h1>Perros</h1>
+    </div>
+    <div class="column fixed gatos">
+        <h1>Gatos</h1>
+    </div>
+</div>
+
+<% @razas.each do |raza| %>
+    <script>
+        $(".razas .<%= Animal.todos[raza.tipo].pluralize.downcase %>").append("<%= escape_javascript render(:partial => 'raza', :locals => {:raza => raza}) %>")    
+    </script>
+<% end %>
+
+<br />
+
+<div id="acciones">
+    <%= link_to 'Nueva Raza', new_raza_path, :class => 'sombra-5 redondo 3' %>
+</div>
+<br />

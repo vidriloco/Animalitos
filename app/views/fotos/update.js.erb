@@ -1,0 +1,9 @@
+<% if @actualizado %>
+	$('.animales #foto_<%= @foto_id_previa %>').removeClass('foto-principal');
+	$('.animales #foto_<%= @foto.id %>').addClass('foto-principal');
+	
+	$('.animales #foto_<%= @foto.id %> .controles-foto .switch').css({opacity: 0});
+	$('.animales #foto_<%= @foto_id_previa %> .controles-foto .switch').css({opacity: 100});
+	
+	$('.foto-principal .thumb').replaceWith("<%= escape_javascript render('fotos/tamanos/thumb') %>");
+<% end %>

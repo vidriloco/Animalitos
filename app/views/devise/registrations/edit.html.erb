@@ -1,0 +1,41 @@
+<h2>Modificar aspectos de mí cuenta</h2>
+
+<%= form_for(resource, :as => resource_name, 
+                       :url => registration_path(resource_name), 
+                       :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+  
+  <p><%= f.label :nombre %><br />
+    <%= f.text_field :nombre %></p>
+
+  <p><%= f.label :email %><br />
+  <%= f.text_field :email %></p>
+  
+  <p><%= f.label :telefono_movil, 'Teléfono Móvil' %><br />
+    <%= f.text_field :telefono_movil %></p>
+    
+  <% if 1 == 2 %>
+  <p><%= f.label :descripcion, 'Descripción' %><br />
+     <%= f.text_area :descripcion, :cols => 40, :rows => 3 %></p>
+  <% end %>
+  <p><%= f.label :password, 'Contraseña' %> <br/><i>(dejar en blanco si no deseas cambiarla)</i><br />
+  <%= f.password_field :password %></p>
+
+  <p><%= f.label :password_confirmation, 'Confirmación de Contraseña' %> <br/><i>(dejar en blanco si no deseas cambiarla)</i><br />
+  <%= f.password_field :password_confirmation %></p>
+
+  <p>
+    <%= f.label :current_password, 'Contraseña Actual' %> <br/>
+    <i>(requerida para confirmar y guardar los cambios)</i><br />
+    <%= f.password_field :current_password %>
+  </p>
+
+  <%= f.submit "Actualizar", :class => 'submit redondo-3' %>&nbsp;
+
+<% end %>
+<br/><br/>
+
+<div id="acciones">
+    <%= link_to "Atrás", :back, :class => 'sombra-3 redondo-3' %>
+</div>
+<br/>

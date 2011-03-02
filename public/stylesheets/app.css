@@ -1,0 +1,286 @@
+p.centrado { text-align: center }
+div.centrado { margin-left: auto; margin-right: auto }
+
+#navigation .selector { color: white; text-align: right }
+
+#navigation .selector select { background-color: #B2DED9 }
+
+#header .controles {
+	position: relative;
+	top: 30px;
+	background-color: rgba(0,0,0,0.6);
+	width: 30%;
+	float:right;
+	border: 0.5px solid #4D7485;
+} 
+
+#header .controles ul { float: right; padding-bottom: 1px; }
+
+#header .controles li a {
+	font-weight: bold;
+	font-size: 12px;
+	text-decoration: none;
+	color: white
+}
+
+#header .controles li a.cerrar { color: #F0796F }
+#header .controles li a.iniciar { color: #DEA140 }
+#header .controles li a.perfil { color: #7ADDFF }
+
+#header .controles li a:hover { font-style: italic }
+
+#acciones a {
+	background-color:black;
+	color: white;
+	margin-left: 10px;
+	padding: 8px;
+	font-size: 10px;
+	font-weight: bold;
+	border: 1px solid white;
+}
+
+.principal .bloque-bio {
+	margin-top: 20px;
+}
+
+p.bio {
+	font-style: italic;
+	margin-top: -20px;
+}
+
+p.estado { font-size: 12px; font-weight: bold }
+
+p.nombre {
+	font-size: 50px;
+}
+
+.bloque {
+	text-align: left;
+	margin: 10px 0 30px 90px;
+}
+
+.bloque p { 
+	color: #999999;  
+	text-align: left;
+	font-size: 15px
+}
+
+.bloque div {
+	margin-left: 15px;
+	padding: 10px;
+	width: 85%;
+}
+
+.bloque-bio { width: 300px }
+
+.bloque-bio .izq { text-align: left }
+
+.bloque-bio .bio {
+	margin-top: 10px;
+	font-size: 20px;
+}
+
+.bloque-bio .estado {
+	font-size: 15px;
+}
+
+#formulario-foto {
+	display:none;
+}
+
+#formulario-foto h2 {
+	margin-left: 30px;
+}
+
+.principal .control {
+	float: right;
+	margin-right: 14px;
+}
+
+.oculto {
+	display:none;
+}
+
+.marco {
+	display: inline-block;
+	margin: 10px 15px 10px 0;
+}
+
+.foto-principal { background-color: black }
+
+.marco img.thumb {
+	margin-top: 12px;
+}
+
+.marco img.thumbje {
+	margin-top: 0px;
+}
+
+.controles-foto .del {
+	bottom: 55px;
+	background: black;
+	background: rgba(0,0,0, 0.7);
+	padding: 5px 42px 5px 42px;
+}
+
+.controles-foto .switch {
+	bottom: 142px;
+	background: black;
+	background: rgba(0,0,0, 0.5);
+	padding: 5px 40px 5px 41px;
+}
+
+.controles-foto a {
+	position: relative;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	font-size: 10px;
+	left: -25px;
+}
+
+.animales { width: 85% }
+
+.animal {
+	display: inline-block;
+	padding: 10px;
+	max-width: 220px;
+}
+
+.animal img {
+	border: 10px solid white;
+}
+
+.animal div {
+	border: 1px solid white;
+	max-width: 220px;
+	width: 220px;
+	margin: 5px 0 0 0;
+	background-color:#FFFA9E;
+}
+
+.animal p {
+	color:black;
+}
+
+.animal .nombre {
+	font-weight: bold;
+	font-size: 22px;
+	margin: 2px 0px 5px 5px;
+}
+
+.animal .estado {
+	font-weight: normal;
+	font-style: italic;
+	font-size: 12px;
+	text-align: right;
+	margin-bottom: 0px;
+}
+
+.sesion {
+	margin: 20px 10px 20px 10px;
+}
+
+.todos-usuarios {
+	height: auto;
+	background-color: white;
+	margin-top: 30px;
+}
+
+.todos-usuarios #acciones {
+	margin-top: 20px;
+	padding: 20px;
+}
+
+.admin .usuario .info {
+	width: 200px;
+	min-width: 150px;
+	margin: 0 10px 0 10px;
+	padding: 20px;
+}
+
+.admin #acciones a { vertical-align: -110% }
+
+.admin .non { background-color: #C6C6C6 }
+
+#acciones .activar:hover { background-color: #4CB012 }
+
+#acciones .desactivar:hover { background-color: #B04033 }
+
+.admin { margin-top: 30px; background-color:#B7B7B7 }
+.usuarios-encabezado { background-color: black; color: white; padding: 5px }
+
+.razas { width: 80% }
+
+.razas .column { 
+	width: 45%;
+	padding: 15px;
+}
+
+.razas .column .info { width: 30% } 
+
+.razas .perros { background-color: rgba(89,61,40,0.3) }
+.razas .perros .non { background-color: rgba(89,61,40,0.4) }
+.razas .gatos { background-color: rgba(147,222,219, 0.3) }
+.razas .gatos .non { background-color: rgba(147,222,219, 0.4) }
+
+
+.razas .perros h1 { color: #422C21 }
+.razas .gatos h1 { color: #2B4141 }
+
+.centrado {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@font-face {
+    font-family: 'SnigletRegular';
+    src: url('../fonts/sniglet/sniglet-webfont.eot');
+    src: url('../fonts/sniglet/sniglet-webfont.eot?iefix') format('eot'),
+         url('../fonts/sniglet/sniglet-webfont.woff') format('woff'),
+         url('../fonts/sniglet/sniglet-webfont.ttf') format('truetype'),
+         url('../fonts/sniglet/sniglet-webfont.svg#webfontcrcjm38W') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'UbuntuTitle';
+    src: url('../fonts/ubuntu/ubuntu-title-webfont.eot');
+    src: url('../fonts/ubuntu/ubuntu-title-webfont.eot?iefix') format('eot'),
+         url('../fonts/ubuntu/ubuntu-title-webfont.woff') format('woff'),
+         url('../fonts/ubuntu/ubuntu-title-webfont.ttf') format('truetype'),
+         url('../fonts/ubuntu/ubuntu-title-webfont.svg#webfontCMRfh6Is') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+h1.bienvenida {
+	font-family: "UbuntuTitle";
+	font-size: 30px;
+	color: #FFECAF;
+	margin-top: 20%;
+}
+
+h1.bienvenida-complemento {
+	font-family: "UbuntuTitle";
+	font-size: 30px;
+	color: #FFC17E;
+	margin-top: 1%;
+}
+
+.comenzar {
+	width: auto;   
+	font-size: 25px;  
+	border: none;
+	background-color: #6BC0FF;
+  box-shadow: inset 0 1px 3px #42549A, inset 0 -5px 15px #126282, 0 2px 1px black;
+  -o-box-shadow: inset 0 1px 3px #42549A, inset 0 -5px 15px #126282, 0 2px 1px black;
+  -webkit-box-shadow: inset 0 1px 3px #42549A, inset 0 -5px 15px #126282, 0 2px 1px black;
+  -moz-box-shadow: inset 0 1px 3px #42549A, inset 0 -5px 15px #126282, 0 2px 1px black;
+  color: black;
+  padding: 15px 30px;
+	font-weight: bold;
+}

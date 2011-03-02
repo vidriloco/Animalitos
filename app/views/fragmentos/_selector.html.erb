@@ -1,0 +1,27 @@
+<% if controller.action_name == "index" && controller.controller_name == "animales" %>
+    <p>
+        <b>Mostrar casos </b> 
+        <%= select_tag 'en_casa', options_for_select({"resueltos" => 1, "no resueltos" => 2}, 2), 
+                        {:class => 'mostrar redondo-3'} %>
+        <b> de </b>
+        <%= select_tag 'raza', grouped_options_for_select(Raza.agrupadas), 
+                        {:include_blank => 'Todos', :class => 'mostrar redondo-3'} %>
+    
+    </p>
+
+    <script>
+
+        $('.mostrar').change(function() {
+            var raza = $("#raza").val();
+            var en_casa = $("#en_casa").val();
+        
+    	    $.ajax({
+                url: "<%= animales_url %>",
+    	        type: "GET",
+    	        data: "en_casa="+en_casa+"&raza="+(raza || 0),
+    	        dataType: "script"
+    	    });
+        });
+    
+    </script>
+<% end %>

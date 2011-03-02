@@ -1,0 +1,19 @@
+<span id="fotos" class="oculto">
+    <%= render 'fotos/animales_fotos' %>
+</span>
+
+<p>
+  <b>Descripción</b>
+</p>
+<div class="sombra-5"><%= @animal.descripcion %></div>
+
+<br/ >
+<p>
+  <b><%= Animal.situaciones[@animal.situacion] %> hace <i><%= time_ago_in_words @animal.fecha %></i> en</b>
+</p>
+<script>
+      setAddressFromOn(new google.maps.LatLng(<%= @animal.geografia.coordenada.lat %>, 
+                                              <%= @animal.geografia.coordenada.lon %>),
+                                              "direccion");
+</script>
+<div id="direccion" class="sombra-5"></div>

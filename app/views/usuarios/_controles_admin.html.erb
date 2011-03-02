@@ -1,0 +1,16 @@
+<% if true == false %>   
+    <% if usuario.active? %>
+        <%= link_to 'Desactivar', desactivar_path(current_usuario), 
+                        :method => :post,
+                        :remote => true, 
+                        :class => 'desactivar redondo-3 sombra-5' %>
+    <% else %>
+        <%= link_to 'Activar', activar_path(current_usuario), 
+                        :method => :post,
+                        :remote => true, 
+                        :class => 'activar redondo-3 sombra-5' %>
+    <% end %>
+<% end %>
+<%= link_to 'Eliminar', usuario, :method => :delete, :remote => true,
+    :confirm => '¿Eliminar usuario? Todos sus registros serán borrados permanentemente', 
+    :class => 'redondo-3 sombra-5' %>

@@ -1,0 +1,9 @@
+<ul>
+    <li><%= link_to 'Inicio', root_url, :class => 'redondo-5 inicio' %></li>
+    <% if usuario_signed_in? %>
+        <li><%= link_to 'Perfil', '/perfil', :class => 'redondo-5 perfil' %></li>
+        <li><%= link_to 'Cerrar Sesión', destroy_usuario_session_url, :class => 'redondo-5 cerrar' %></li>
+    <% else %>
+        <li><%= link_to 'Iniciar Sesión', new_usuario_session_url, :class => 'redondo-5 iniciar' %></li>
+    <% end %>
+</ul>

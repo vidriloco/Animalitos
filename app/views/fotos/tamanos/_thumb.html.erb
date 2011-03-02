@@ -1,0 +1,7 @@
+<% if  @animal.foto_principal.nil? %>
+    <%= image_tag "default/#{@animal.tipo_de_mascota}.thumb.jpg",
+                  :class => 'thumb', :id => "foto_no_id" %>
+<% else %>
+    <%= image_tag @animal.foto_principal.carrierwave.thumb.url,
+                  :class => 'thumb',:id => "foto_#{@animal.foto_principal.id}" %>
+<% end %>

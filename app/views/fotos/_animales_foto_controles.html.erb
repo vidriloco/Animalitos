@@ -1,0 +1,7 @@
+<%= link_to 'Principal', foto_url(foto), 
+                        :method => :put,
+                        :remote => true, 
+                        :confirm => "¿Establecer como foto principal?", :class => 'switch' %>
+<%= link_to 'Eliminar', foto_url(foto), 
+                        :method => :delete, 
+                        :remote => true, :confirm => "¿Eliminar foto?", :class => 'del' %>

@@ -1,0 +1,57 @@
+<%= form_for(@animal) do |f| %>
+  <% if @animal.errors.any? %>
+    <div id="error_explanation">
+        <h2><%= pluralize(@animal.errors.count, "error") %> necesitan revisión:</h2>
+
+        <ul>
+        <% @animal.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+        </ul>
+    </div>
+  <% end %>
+
+  <div class="unit on-2 columns two-fields">
+      <div class="field column fixed" style="width:55%">
+        <%= f.label :nombre %><br/><br/>
+        <%= f.text_field :nombre, :class => 'campo grande sombra-interna-5' %>
+      </div>
+      <div class="field column fixed" style="width:40%">
+        <%= f.label :raza_id %> <br/><br/>
+        <%= f.select :raza_id, grouped_options_for_select(Raza.agrupadas, @animal.raza_id), {:include_blank => ''},
+                    :class => 'campo' -%>
+      </div>
+  </div>
+  <div class="field">
+    <%= f.label :descripcion %><br /><br/>
+    <%= f.text_area :descripcion, :cols => 120, :rows => 4, :class => 'campo' %>
+  </div>
+  
+  <div class="unit on-2 columns two-fields">
+      <div class="column fixed" style="width:40%">
+          <%= f.label :en_casa, '¿Ya está en casa?' %><br /><br/>
+          <%= f.select :en_casa, options_for_select({"Si" => true, "No" => false}, @animal.en_casa),
+                                {:include_blank => ''} %>
+      </div>
+  
+      <div class="column fixed" style="width:55%">
+          <%= f.label :situacion , 'Situación del animalito' %><br/><br/>
+          <%= f.select :situacion, options_for_select(Animal.situaciones.invert, @animal.situacion), 
+                          {:include_blank => ''} %>
+      </div>
+  </div>
+  <div class="field">
+      <%= f.label :fecha %><br/><br/>
+      <%= f.date_select :fecha %>
+  </div>
+
+  <%= f.hidden_field :usuario_id, :value => current_usuario.id %>
+  
+  <%= render :partial => 'geografias/form', :locals => { :geografia => @animal.geografia} %>
+  <br/>
+  <div id="acciones">
+    <%= f.submit :class => 'submit redondo-3' %>   
+    <%= link_to 'Cancelar', animales_path , :class => 'cancelar redondo-5 sombra-5' %>
+  </div>
+  <br/>
+<% end %>

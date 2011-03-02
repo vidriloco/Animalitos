@@ -1,0 +1,16 @@
+<h2>Cambia tú contraseña</h2>
+
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+  <%= f.hidden_field :reset_password_token %>
+
+  <p><%= f.label :password, 'Contraseña' %><br />
+  <%= f.password_field :password %></p>
+
+  <p><%= f.label :password_confirmation, 'Confirmación de contraseña' %><br />
+  <%= f.password_field :password_confirmation %></p>
+  <br/>
+  <p><%= f.submit "Cambiar mí contraseña", :class => 'submit redondo-3' %></p>
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>

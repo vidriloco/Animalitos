@@ -1,0 +1,8 @@
+<%= render foto %>
+
+<% if @animal && es_foto_principal_de?(@animal, foto) %>
+    <script>
+        $('.animales #foto_<%= foto.id %>').addClass('foto-principal');
+        $('.animales #foto_<%= foto.id %> .controles-foto .switch').css({opacity: 0});
+    </script>
+<% end %>

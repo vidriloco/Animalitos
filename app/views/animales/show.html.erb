@@ -1,0 +1,51 @@
+<div class="unit on-2 columns two-fields centrado" style="width: 80%">
+    <%= render 'encabezado_show' %>
+</div>
+
+<div class="bloque">
+    <%= render 'informacion_show' %>
+</div>
+
+<div id="map_canvas" class="centrado" style="width:80%; height:250px;"></div>
+
+<script type="text/javascript">
+  var marker;
+  var map;
+  function initialize() {  
+      var lat = <%= @animal.geografia.coordenada.lat %> ;
+      var lon = <%= @animal.geografia.coordenada.lon %> ;
+
+      if(lat == null) {
+          lat = 19.4;
+      }
+
+      if(lon == null) {
+          lon = -99.15;
+      }
+
+      var latlng = new google.maps.LatLng(parseFloat(lat), parseFloat(lon));
+
+      var myOptions = {
+          zoom: 15,
+          center: latlng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          streetViewControl: true,
+          mapTypeControl: false
+      };
+      map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+      positionOn(latlng, 15);
+      
+  }
+
+  $(document).ready(function() {
+      initialize();   
+  });
+
+
+</script>
+  
+  
+
+
+

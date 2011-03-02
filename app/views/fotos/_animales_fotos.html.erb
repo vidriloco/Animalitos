@@ -1,0 +1,40 @@
+<% if can? :manage, @animal %>
+    <div id="formulario-foto">
+        <%= render 'fotos/form' %>
+    </div>
+<% end %>
+
+<div id="acciones" class="unit on-2 columns sombra-5">
+    <div class="column fixed mensaje" style="width: 50%;">
+        <% if @animal.fotos.empty? %>
+            No hay fotos registradas por el momento
+        <% end %>
+    </div>
+    <div class="column fixed" id="acciones" style=" width: 40%; text-align: right;">
+        <% if can?  :manage, @animal %>
+            <%= link_to 'Nueva', '#', :class => 'redondo-3 sombra-5 nueva' %>
+        <% end %>
+        <%= link_to 'Ocultar', '#', :id => 'foto-esconde', :class => 'redondo-3 sombra-5' %>
+    </div>
+</div>
+<br/>
+
+<div class="centrado animales">
+    <% unless @animal.fotos.empty? %>
+            <% @animal.fotos.each do |foto| %>
+                <%= render :partial => 'fotos/animal_foto', :locals => {:foto => foto} %>
+            <% end %>
+    <% end %>
+</div>
+
+
+<script>
+    $('#foto-esconde').bind('click', function() {
+		$('#fotos').hide();
+	});
+
+    $('.nueva').bind('click', function() {
+	    $('#formulario-foto').fadeIn();
+    });
+</script>
+

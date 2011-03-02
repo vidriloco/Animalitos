@@ -1,0 +1,23 @@
+<div class="principal column content on-2 columns">
+    <div class="column fixed">
+        <%= render 'fotos/animales_foto_principal' %>
+    </div>
+    <div class="column elastic">
+        <%= render 'bio_encabezado' %>
+    </div>
+</div>
+<div class="usuario column">
+    <div id="acciones" style="text-align:right">
+        <% if can? :manage, @animal %>
+            <%= link_to 'Modificar', edit_animal_path(@animal), :class => 'redondo-3 sombra-5' %>
+        <% else %>
+            <p><b>Datos de usuario contacto</b></p>
+            <p><i><%= @animal.usuario.nombre || "No tiene nombre registrado" %></i></p>
+            <p><i><%= @animal.usuario.email %></i></p>
+            <p><i><%= @animal.usuario.nombre || "No ha registrado algún teléfono móvil" %></i></p>
+            <br/>
+        <% end %>
+        <%= link_to 'Atrás', animales_path, :class => 'redondo-3 sombra-5' %>
+    </div>
+    
+</div>

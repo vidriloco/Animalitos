@@ -1,0 +1,9 @@
+<div id='<%= raza.id %>' class="<%= raza.id.odd? ? 'non' : 'par' %> raza unit on-2 columns">
+    <div class='info column fixed'><%= raza.nombre %></div>
+    <div id='acciones' class='column fixed'>
+        <%= link_to 'Modificar', edit_raza_path(raza), :class => 'redondo-3 sombra-5' %>
+        <%= link_to 'Eliminar', raza, :confirm => '¿Eliminar raza? Serán eliminados todos los animalitos de esa raza', 
+                                                       :method => :delete,
+                                                       :class => 'desactivar redondo-3 sombra-5' %>
+    </div>
+</div>

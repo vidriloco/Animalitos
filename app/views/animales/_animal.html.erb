@@ -1,0 +1,15 @@
+<% if can? :manage, animal %>
+    <span id="acciones">
+        <%= link_to 'Eliminar', animal, 
+                            :confirm => '¿Eliminar animalito? Sus datos y fotos serán eliminados',
+                            :method => :delete, 
+                            :class => 'desactivar redondo-3 sombra-5' %>
+    </span>
+<% end %>
+
+<%= render :partial => 'fotos/tamanos/frente', :locals => {:foto => animal.foto_principal, :animal => animal} %>
+
+<div class="sombra-5 redondo-3">
+    <p class="nombre"><%= animal.nombre %></p>
+    <p class="estado"><%= animal.en_casa_humanize %></p>
+</div>

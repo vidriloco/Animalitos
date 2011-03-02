@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Froyito</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+     <div id="cargando" class="oculto sombra-5">
+         <%= image_tag 'spinner.gif' %>
+         <p>Espere</p>
+      </div>
+      
+     <!-- Begin Header -->
+     <div id="header" class="centrado-global unit on-2 columns">
+        <%= render 'fragmentos/header' %>
+		 </div>
+		 <!-- End Header -->
+		 <br/>
+		 
+
+		 <%= yield %>
+   
+</body>
+</html>

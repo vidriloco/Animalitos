@@ -1,0 +1,41 @@
+<div class="content on-2 columns" style="width: 100%">
+    <div class="column fixed" style="width: 70%; text-align: left;">
+        <h2>Nueva Foto</h2>
+    </div>
+</div>
+
+<%= form_for([@animal, Foto.new], :html => {:multipart => true}, :remote => true)  do |f| %>
+
+    <div class="errors"></div>
+
+        
+    <div class="field">
+        <%= f.label :descripcion, 'Descripción' -%><br/ ><br />
+        <%= f.text_field 'descripcion', :size => 100 -%>
+    </div>
+    
+    <div class="unit on-2 columns">
+        <div class="field column fixed" style="width: 60%">
+            <%= f.label :archivo, 'Archivo' -%><br/ ><br/ >
+            <%= f.file_field :archivo -%>
+        </div>
+        <div class="field column fixed">
+            <label>¿Foto principal?</label><br/><br/>
+            <%= select_tag 'principal', options_for_select({"Si" => true, "No" => false}, false) -%>
+        </div>
+    </div>
+    
+    <div id="acciones">
+        <%= f.submit 'Subir', :class => "submit redondo-3" -%>
+        <%= link_to 'Cancelar', '#', :class => "cancelar redondo-3 sombra-5" -%>
+    </div>
+<% end %>
+
+<script>
+    $('.cancelar').bind('click', function() {
+       $('#formulario-foto').fadeOut();
+       $('#vacio').fadeIn();
+       $('#formulario-foto .errors').empty();
+	   $('#new_foto').resetForm();
+    });
+</script>

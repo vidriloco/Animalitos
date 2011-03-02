@@ -1,0 +1,12 @@
+<div class="marco redondo-10 sombra-5 foto-principal" style="width: 175px; height: 175px">
+    <%= render 'fotos/tamanos/thumb' %>
+</div>
+<br/>
+<div id="acciones">
+    <%= link_to 'Ver más fotos', '#', :class => 'redondo-3 sombra-5 foto-muestra control' %> 
+    <script>
+        $('.foto-muestra').bind('click', function() {
+    	    $('#fotos').fadeIn();
+        });
+    </script>               
+</div>

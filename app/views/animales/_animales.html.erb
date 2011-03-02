@@ -1,0 +1,24 @@
+<div class="centrado bloque animales">
+    <% @animales.each do |animal| %>
+        <div class="animal <%= animal.en_casa_semantico %>">
+            <%= render animal %>
+        </div>
+    <% end %>
+</div>
+
+<% if @animales.size > 0 %>
+    <div class="paginacion unit on-2 columns">
+        <div class="column fixed" style="width: 50%">
+            <%= will_paginate @animales, :prev_label => "Anterior", :next_label => "Siguiente" %>&nbsp;
+        </div>
+        <div class="column fixed der" style="font-style: italic; width: 50%">
+            <%= raw page_entries_info(@animales, :entry_name => 'animalito') %> 
+        </div>
+    </div>
+<% else %>
+    <div class="centrado">
+        <p>No fueron encontrados animalitos registrados que satisfagan la selección de muestra</p>
+        <p>Intenta con otros criterios de selección</p>
+    </div>
+    <br/>
+<% end %>

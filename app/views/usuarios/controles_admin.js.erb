@@ -1,0 +1,1 @@
+$('.admin #<%= @usuario.id %> #acciones').html("<%= escape_javascript render(:partial => 'controles_admin', :locals => {:usuario => @usuario}) %>")

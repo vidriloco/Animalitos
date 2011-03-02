@@ -1,0 +1,74 @@
+
+<div class="todos-usuarios centrado-global sombra-25" style="width: 76.6em">
+    
+    <div class='usuarios-encabezado'>
+        <h2>Hola <%= current_usuario.nombre %>!</h2>
+    </div>
+    
+    <p id="notice" class="flash centrado"><%= notice %></p>
+    <p id="alert" class="flash centrado"><%= alert %></p>
+    
+    <script>
+        $('#notice').delay(3500).fadeOut('slow');
+        $('#alert').delay(3500).fadeOut('slow');
+    </script>
+                        
+        <div id="acciones">
+            
+            <% if !current_usuario.nombre.blank? || current_usuario.telefono_movil.blank? %>
+                <script>
+                    $('#alert').html('<p>No has registrado aún algunos datos de contacto que pueden ayudar a un animalito a encontrar casa</p>');
+                </script>
+            <% end %>
+            
+            <p>Actualiza ó modifica datos de tú perfil
+                <span id="acciones">
+                    <%= link_to 'Ir', edit_usuario_registration_url, :class => 'redondo-3 sombra-5 ' %>
+                </span>
+                &nbsp;&nbsp;&nbsp;
+              ¿No estás satisfecho con éste sitio?
+                <span><%= link_to "Cancelar cuenta", registration_path(current_usuario), 
+                                              :confirm => "¿Estás seguro?", 
+                                              :method => :delete,
+                                              :class => 'redondo-3 sombra-5 desactivar' %>
+                </span>
+            </p>
+        </div>
+ 
+</div>
+
+<% if can? :manage, :all %>
+    <div class="todos-usuarios centrado-global sombra-25" style="width: 76.6em">
+        <div class='usuarios-encabezado'>
+            <h2>Otras acciones ...</h2>
+        </div>
+        <div id="acciones">
+        
+        <p>Administra las razas registradas en el sitio. Tanto para perros como para gatos
+            <span id="acciones">
+                <%= link_to 'Ir', razas_url, :class => 'redondo-3 sombra-5 ' %>
+            </span>
+        </p>
+        </div>
+    </div>
+
+    <div class="admin centrado-global sombra-25" style="width: 76.6em">
+        <div class='usuarios-encabezado'>
+            <h2>Lista de usuarios</h2>
+        </div>
+        
+        <% @usuarios.each do |usuario| %>
+            <div id='<%= usuario.id %>' class="<%= usuario.id.odd? ? 'non' : 'par' %> usuario unit on-4 columns">
+                <div class='info column fixed'><%= "#{usuario.nombre}" || "Sin nombre registrado" %></div>
+                <div class='info column fixed'><%= usuario.email %></div>
+                <div class='info column fixed'><%= usuario.telefono_movil %></div>
+                <div id='acciones' class='column fixed'>
+                    <% if usuario != current_usuario %>
+                        <%= render :partial => 'controles_admin', :locals => {:usuario => usuario} %>
+                    <% end %>
+                </div>
+            
+            </div>
+        <% end %>
+    </div>
+<% end %>
