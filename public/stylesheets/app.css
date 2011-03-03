@@ -9,7 +9,7 @@ div.centrado { margin-left: auto; margin-right: auto }
 	position: relative;
 	top: 30px;
 	background-color: rgba(0,0,0,0.6);
-	width: 30%;
+	width: 200px;
 	float:right;
 	border: 0.5px solid #4D7485;
 } 
@@ -78,6 +78,11 @@ p.nombre {
 .bloque-bio .bio {
 	margin-top: 10px;
 	font-size: 20px;
+}
+
+.bloque-bio .nombre {
+	font-size: 32px;
+	font-weight: bold;
 }
 
 .bloque-bio .estado {
@@ -165,7 +170,7 @@ p.nombre {
 
 .animal .nombre {
 	font-weight: bold;
-	font-size: 22px;
+	font-size: 25px;
 	margin: 2px 0px 5px 5px;
 }
 
