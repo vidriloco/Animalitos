@@ -4,19 +4,7 @@ class AnimalesController < ApplicationController
   # GET /animales
   # GET /animales.xml
   def index
-    conds = {:en_casa => false}
-    included = {}
-    
-    if params.key?(:en_casa)
-      conds[:en_casa] = params[:en_casa] == "1" ? true : false
-    end
-    
-    if params.key?(:raza) && params[:raza] != "0"
-      conds[:raza_id] = params[:raza] 
-      included = {:include => :raza, :joins => :raza}
-    end
-    
-    @animales = Animal.paginate(:all, {:conditions => conds, :page => params[:page]}.merge(included))
+    @animales = Animal.pagina_y_encuentra(params)
     
     respond_to do |format|
       format.html # index.html.erb

@@ -8,7 +8,6 @@ class RazasController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @razas }
     end
   end
 
@@ -19,7 +18,6 @@ class RazasController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @raza }
     end
   end
 
@@ -36,10 +34,8 @@ class RazasController < ApplicationController
     respond_to do |format|
       if @raza.save
         format.html { redirect_to(@raza, :notice => 'Raza was successfully created.') }
-        format.xml  { render :xml => @raza, :status => :created, :location => @raza }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @raza.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -52,10 +48,8 @@ class RazasController < ApplicationController
     respond_to do |format|
       if @raza.update_attributes(params[:raza])
         format.html { redirect_to(@raza, :notice => 'Raza was successfully updated.') }
-        format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @raza.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -68,7 +62,6 @@ class RazasController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(razas_url) }
-      format.xml  { head :ok }
     end
   end
 end
