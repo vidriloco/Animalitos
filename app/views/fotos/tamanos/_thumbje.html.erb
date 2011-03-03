@@ -1,2 +1,6 @@
 <%= link_to image_tag(foto.carrierwave.thumbje.url, :class => 'thumbje'), foto.carrierwave.url, 
-            :rel => 'lightbox', :title => foto.descripcion %>
+            :title => foto.descripcion, :id => "#{foto.id}" %>
+            
+<script>        
+    $("#<%= foto.id %>").slimbox();
+</script>

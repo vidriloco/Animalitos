@@ -19,7 +19,7 @@
 </div>
 <br/>
 
-<div class="centrado animales">
+<div id="galeria" class="centrado animales">
     <% unless @animal.fotos.empty? %>
             <% @animal.fotos.each do |foto| %>
                 <%= render :partial => 'fotos/animal_foto', :locals => {:foto => foto} %>
