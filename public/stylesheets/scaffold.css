@@ -113,42 +113,50 @@ div.field, div.actions {
 	-moz-box-shadow:0 0 25px black;
 	box-shadow:0 0 25px black;
 	-webkit-box-shadow:0 0 25px black;
+	filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='1', MakeShadow='true', ShadowOpacity='0.30');
 }
 
 .sombra-5 {
 	-moz-box-shadow:0 0 3px black;
 	box-shadow:0 0 3px black;
 	-webkit-box-shadow:0 0 3px black;
+	filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='1', MakeShadow='true', ShadowOpacity='0.30');
 }
 
 .sombra-25-no-top {
 	-moz-box-shadow:0 5px 25px black;
 	box-shadow:0 5px 25px black;
 	-webkit-box-shadow:0 5px 25px black;
+	filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='1', MakeShadow='true', ShadowOpacity='0.30');
 }
 
 .redondo-15 {
 	border-radius: 15px;
 	-moz-border-radius:15px;
 	-webkit-border-radius:15px;
+	-khtml-border-radius: 15px;
+  
 }
 
 .redondo-10 {
 	border-radius: 10px;
 	-moz-border-radius:10px;
 	-webkit-border-radius:10px;
+	-khtml-border-radius: 10px;
 }
 
 .redondo-5 {
 	border-radius: 5px;
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
+	-khtml-border-radius: 5px;
 }
 
 .redondo-3 {
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;  
 }
 
 li {
@@ -181,6 +189,7 @@ input, textarea, select {
 	box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
 	-moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
 	-webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='1', MakeShadow='true', ShadowOpacity='0.30');
 }  
 textarea {  
 	width: 650px;  
@@ -251,6 +260,7 @@ label {
   margin-left: -200px;
 	width: 400px;
 	height: 200px;
+	background-color: black;
 	background-color: rgba(0,0,0,0.9);
 }
 
