@@ -127,6 +127,12 @@ div.field, div.actions {
 	-webkit-box-shadow:0 5px 25px black;
 }
 
+.redondo-20 {
+	border-radius: 20px;
+	-moz-border-radius:20px;
+	-webkit-border-radius:20px;
+}
+
 .redondo-15 {
 	border-radius: 15px;
 	-moz-border-radius:15px;

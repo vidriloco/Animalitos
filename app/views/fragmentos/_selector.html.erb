@@ -1,7 +1,7 @@
 <% if controller.action_name == "index" && controller.controller_name == "animales" %>
     <p>
-        <b>Mostrar casos </b> 
-        <%= select_tag 'en_casa', options_for_select({"resueltos" => 1, "no resueltos" => 2}, 2), 
+        <b>Mostrar amigos </b> 
+        <%= select_tag 'en_casa', options_for_select({"Ya en casa" => 1, "Buscando Casa" => 2}, 2), 
                         {:class => 'mostrar redondo-3'} %>
         <b> de </b>
         <%= select_tag 'raza', grouped_options_for_select(Raza.agrupadas), 

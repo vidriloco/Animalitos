@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Animal < ActiveRecord::Base
   has_many :fotos, :dependent => :destroy
   belongs_to :usuario
@@ -32,7 +33,7 @@ class Animal < ActiveRecord::Base
   end
   
   def self.situaciones
-    { 1 => "Encontrado", 2 => "Desaparecido" }
+    { 1 => "Buscando a su familia", 2 => "Su familia lo está buscando" }
   end
   
   def tipo_de_mascota
@@ -46,7 +47,7 @@ class Animal < ActiveRecord::Base
   
   def en_casa_humanize
     return "En casa" if en_casa
-    "Buscando casa"
+    "En albergue temporal"
   end
   
   def foto_principal

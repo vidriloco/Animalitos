@@ -276,16 +276,13 @@ h1.bienvenida-complemento {
 	margin-top: 1%;
 }
 
-.comenzar {
-	width: auto;   
-	font-size: 25px;  
-	border: none;
-	background-color: #6BC0FF;
-  box-shadow: inset 0 1px 3px #42549A, inset 0 -5px 15px #126282, 0 2px 1px black;
-  -o-box-shadow: inset 0 1px 3px #42549A, inset 0 -5px 15px #126282, 0 2px 1px black;
-  -webkit-box-shadow: inset 0 1px 3px #42549A, inset 0 -5px 15px #126282, 0 2px 1px black;
-  -moz-box-shadow: inset 0 1px 3px #42549A, inset 0 -5px 15px #126282, 0 2px 1px black;
-  color: black;
-  padding: 15px 30px;
-	font-weight: bold;
+.texto-blanco .submit { 
+	color: white;
+	font-size: 20px;  
+	border: solid 1px #DCFFFC;
+	padding: 15px 20px;
+}
+
+.texto-blanco .submit:hover {
+	font-weight: normal;
 }

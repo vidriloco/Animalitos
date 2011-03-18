@@ -3,7 +3,7 @@ class FrenteController < ApplicationController
   before_filter :admin_contenidos
   
   def index
-
+    @desplegando_frente = true
   end
   
   def admin_contenidos
