@@ -8,6 +8,8 @@ class Animal < ActiveRecord::Base
   validates_presence_of :nombre, :raza_id, :descripcion, :geografia, :situacion
   validates_inclusion_of :en_casa, :in => [true, false]
   
+  after_save :avisa_registrado
+  
   cattr_reader :per_page
   @@per_page = 9
   
@@ -36,8 +38,16 @@ class Animal < ActiveRecord::Base
     { 1 => "Buscando a su familia", 2 => "Su familia lo está buscando" }
   end
   
+  def self.situaciones_twitter
+    { 1 => "encontrado", 2 => "extraviado" }
+  end
+  
   def tipo_de_mascota
     Animal.todos[raza.tipo]
+  end
+  
+  def tipo_de_mascota_diminutivo
+    tipo_de_mascota == "Perro" ? "Perrito" : "Gatito"
   end
   
   def en_casa_semantico
@@ -64,5 +74,13 @@ class Animal < ActiveRecord::Base
   
   def solo_hay_una_foto_y_es_principal?
     fotos.length == 1 && foto_id == fotos[0].id
+  end
+  
+  def mensaje_tweet
+    "#{self.tipo_de_mascota_diminutivo} #{self.raza.nombre.downcase} #{Animal.situaciones_twitter[self.situacion]}. Ayudalo en http://www.amigosenapuros/ayudame/#{self.id}"
+  end
+  
+  def avisa_registrado
+    Twitter.update(mensaje_tweet)
   end
 end

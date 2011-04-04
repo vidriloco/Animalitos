@@ -1,5 +1,18 @@
 require 'spec_helper'
 
 describe Animal do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+  before(:each) do
+    @animal = Factory.build(:animal, :raza => Factory.build(:raza, :nombre => "Labrador", :tipo => 1))
+  end
+  
+  it "debe generar el mensaje para twitter correcto" do
+    @animal.mensaje_tweet.should == "Perrito labrador encontrado. Ayudalo en http://www.amigosenapuros/ayudame/#{@animal.id}"
+  end
+  
+  it "debe avisar en twitter" do
+    @animal.should_receive(:avisa_registrado)
+    @animal.run_callbacks(:save)
+  end
+  
 end
