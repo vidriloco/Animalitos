@@ -3,6 +3,10 @@ require "spec_helper"
 describe AnimalesController do
   describe "routing" do
 
+    it "redirecciona #ayudame a #show" do
+      { :get => "/ayudame/1" }.should route_to(:controller => "animales", :action => "show", :id => "1")
+    end
+
     it "recognizes and generates #index" do
       { :get => "/animales" }.should route_to(:controller => "animales", :action => "index")
     end

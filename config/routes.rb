@@ -13,6 +13,9 @@ Froyito::Application.routes.draw do
   
   resources :frente, :only => [:index]
 
+  match '/ayudame/:id' => "animales#show"
+
+
   match '/perfil' => 'usuarios#perfil'
   match '/activar/:id', :to => 'usuarios#activar', :as => 'activar', :via => "post"
   match '/desactivar/:id', :to => 'usuarios#desactivar', :as => 'desactivar', :via => "post"
