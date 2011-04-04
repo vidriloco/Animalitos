@@ -43,7 +43,7 @@ rescue
   p "Hubo errores en el proceso de inserción de datos de Raza (gatos)"
 end
 
-u=Usuario.create!(:nombre => "Administrador", :es_admin => true, :password => "katwijk", :password => "katwijk", :email => "vidriloco@gmail.com")
+u=Usuario.create!(:nombre => "Administrador", :es_admin => true, :password => "katwijk", :password_confirmation => "katwijk", :email => "vidriloco@gmail.com")
 u.confirm!
 
 
