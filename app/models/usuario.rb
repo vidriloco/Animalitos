@@ -7,6 +7,9 @@ class Usuario < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :nombre, :telefono_movil, :es_admin
   
+  validates_presence_of :email, :nombre, :password, :password_confirmation
+  validates_uniqueness_of :email
+  
   has_many :animales, :dependent => :destroy
   
   def es_admin?

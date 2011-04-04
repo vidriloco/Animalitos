@@ -1,0 +1,10 @@
+<% if resource.errors.any? %>
+    <div id="error_explanation">
+    <h2><%= pluralize(resource.errors.count, "error") %> <%= resource.errors.count > 1 ? "necesitan" : "necesita" %> revisión:</h2>
+    <ul>
+        <% resource.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+    </div>
+<% end %>

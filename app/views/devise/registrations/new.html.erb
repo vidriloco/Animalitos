@@ -1,8 +1,9 @@
 <h2>Registro</h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-  
+
+  <%= render :partial => 'devise/shared/errores', :locals => {:resource => resource} %>
+    
   <p><%= f.label :nombre %><br />
     <%= f.text_field :nombre %></p>
 
@@ -15,7 +16,14 @@
   <p><%= f.label :password_confirmation, 'Confirmación de la Contraseña' %><br />
   <%= f.password_field :password_confirmation %></p>
   <br/>
-  <p><%= f.submit "Guardar", :class => 'submit redondo-3' %></p>
+  <p><%= f.submit "Guardar", :class => 'submit redondo-3', :id => 'mensaje' %></p>
+  
 <% end %>
+
+<script>
+    $('#mensaje').bind('click', function() {
+        alert('Un link para confirmar tu cuenta será enviado a tú dirección de correo');
+    })
+</script>
 
 <%= render :partial => "devise/shared/links" %>

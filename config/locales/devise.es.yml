@@ -8,7 +8,7 @@ es:
   devise:
     failure:
       unauthenticated: 'Necesitas iniciar sesion antes de poder continuar.'
-      unconfirmed: 'Tu cuenta necesita ser confirmada por el administrador del sitio antes de continuar.'
+      unconfirmed: 'Necesitas confirmar tu cuenta antes de poder continuar.'
       locked: 'Tu cuenta no está bloqueada.'
       invalid: 'Contraseña ó email no válido.'
       invalid_token: 'Token de autenticación no válido.'
