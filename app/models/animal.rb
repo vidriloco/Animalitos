@@ -85,6 +85,10 @@ class Animal < ActiveRecord::Base
   end
   
   def avisa_registrado
-    Twitter.update(mensaje_tweet + " Ayudalo en #{tiny_urled}")
+    begin
+      Twitter.update(mensaje_tweet + " Ayudalo en #{tiny_urled}")
+    rescue
+      # doble tweet 
+    end
   end
 end
