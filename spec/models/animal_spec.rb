@@ -7,7 +7,7 @@ describe Animal do
   end
   
   it "debe generar el mensaje para twitter correcto" do
-    @animal.mensaje_tweet.should == "Perrito labrador encontrado. Ayudalo en http://www.amigosenapuros/ayudame/#{@animal.id}"
+    @animal.mensaje_tweet.should == "Perrito labrador encontrado."
   end
   
   it "debe avisar en twitter" do

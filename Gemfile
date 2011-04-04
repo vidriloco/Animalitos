@@ -14,6 +14,8 @@ gem "cancan"
 gem 'devise'
 gem "tlsmail"
 
+gem "twitter"
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -44,6 +46,7 @@ gem "tlsmail"
 
 group :test do
   gem 'rspec-rails', '>= 2.0.0.beta.10'
+  gem 'factory_girl_rails'
 end
 
 group :cucumber do

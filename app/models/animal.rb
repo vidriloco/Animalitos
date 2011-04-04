@@ -1,5 +1,7 @@
 # encoding: utf-8
 class Animal < ActiveRecord::Base
+  include ActsAsTinyURL
+  
   has_many :fotos, :dependent => :destroy
   belongs_to :usuario
   belongs_to :geografia
@@ -77,10 +79,14 @@ class Animal < ActiveRecord::Base
   end
   
   def mensaje_tweet
-    "#{self.tipo_de_mascota_diminutivo} #{self.raza.nombre.downcase} #{Animal.situaciones_twitter[self.situacion]}. Ayudalo en http://www.amigosenapuros/ayudame/#{self.id}"
+    "#{self.tipo_de_mascota_diminutivo} #{self.raza.nombre.downcase} #{Animal.situaciones_twitter[self.situacion]}."
+  end
+  
+  def tiny_urled
+    Net::HTTP.get_response(URI.parse("http://tinyurl.com/api-create.php?url=http://www.amigosenapuros/ayudame/#{self.id}")).body
   end
   
   def avisa_registrado
-    Twitter.update(mensaje_tweet)
+    Twitter.update(mensaje_tweet + " Ayudalo en #{tiny_urled}")
   end
 end
