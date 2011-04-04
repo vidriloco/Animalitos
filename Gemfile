@@ -8,7 +8,7 @@ gem 'spatial_adapter'
 gem 'remotipart'
 gem 'carrierwave'
 gem 'rmagick'
-gem 'will_paginate'
+gem "will_paginate", "3.0.pre"
 gem 'jquery-rails'
 gem "cancan"
 gem 'devise'

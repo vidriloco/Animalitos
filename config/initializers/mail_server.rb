@@ -6,11 +6,11 @@ ActionMailer::Base.perform_deliveries = true
 ActionMailer::Base.raise_delivery_errors = true
 ActionMailer::Base.smtp_settings = {
   :enable_starttls_auto => true,  
-  :address            => 'smtp.gmail.com',
+  :address            => 'smtp.mail.com',
   :port               => 587,
   :tls                  => true,
-  :domain             => 'gmail.com', #you can also use google.com
+  :domain             => 'mail.com', #you can also use google.com
   :authentication     => :plain,
-  :user_name          => 'clusterciudadano@gmail.com',
-  :password           => 'virusdisk'
+  :user_name          => 'amigosenapuros@mail.com',
+  :password           => '@amigoskatwijk'
 }
