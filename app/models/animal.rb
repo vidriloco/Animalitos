@@ -1,7 +1,5 @@
 # encoding: utf-8
-class Animal < ActiveRecord::Base
-  include ActsAsTinyURL
-  
+class Animal < ActiveRecord::Base  
   has_many :fotos, :dependent => :destroy
   belongs_to :usuario
   belongs_to :geografia
