@@ -44,17 +44,32 @@ gem "twitter"
 #   gem 'webrat'
 # end
 
-group :test do
-  gem 'rspec-rails', '>= 2.0.0.beta.10'
+group :development, :test do
   gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'steak'
+  gem 'capybara'
+  gem 'delorean'
+  gem 'database_cleaner'
+  #gem 'autotest'
+  gem 'watchr'
+  gem 'rb-fsevent'
+  gem 'guard'
+  gem 'growl'
+  gem 'guard-rspec'
+  #gem 'guard-spork'
+  # Otros:
+  
+  #gem 'spork'
 end
 
-group :cucumber do
-  gem 'capybara'
-  gem 'database_cleaner'
-  gem 'cucumber-rails'
-  gem 'cucumber', '>= 0.9.3'
-  gem 'rspec-rails', '>= 2.0.0.beta.10'
-  gem 'spork'
-  gem 'launchy'    # So you can do Then show me the page
-end
+
+#group :cucumber do
+#  gem 'capybara'
+#  gem 'database_cleaner'
+#  gem 'cucumber-rails'
+#  gem 'cucumber', '>= 0.9.3'
+#  gem 'rspec-rails', '>= 2.0.0.beta.10'
+#  gem 'spork'
+#  gem 'launchy'    # So you can do Then show me the page
+#end
