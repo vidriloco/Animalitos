@@ -1,8 +1,13 @@
-<h1 class="bienvenida">Este es un directorio gratuito de perros y gatos perdidos y/o sin casa</h1>
-<h1 class="bienvenida-complemento">encuentra el tuyo o ayuda a alguno a encontrar casa</h1>
+
+<%= form_tag animales_url do %>
+    <%= search_field_tag 'Nombre' %>
+    <span><%= label_tag 'Perro' %><%= check_box_tag 'perro' %></span>
+    <span><%= label_tag 'Gato' %><%= check_box_tag 'gato' %></span>    
+<% end %>
+
 
 <br /><br />
 <div class='texto-blanco'>
     <%= link_to 'Consultar directorio', animales_url, :class => 'submit redondo-10' %>&nbsp;&nbsp;&nbsp;
-    <%= link_to 'Registrar en directorio', new_animal_url, :class => 'submit redondo-10' %>
+    <%= link_to 'Reporta', new_animal_url, :class => 'submit redondo-10' %>
 </div>

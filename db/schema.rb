@@ -17,13 +17,15 @@ ActiveRecord::Schema.define(:version => 20110224005133) do
     t.integer  "raza_id"
     t.text     "descripcion"
     t.integer  "usuario_id"
-    t.integer  "geografia_id"
-    t.boolean  "en_casa"
+    t.integer  "estancia_temporal"
+    t.boolean  "en_casa",                          :default => false
     t.datetime "fecha"
     t.integer  "foto_id"
     t.integer  "situacion"
+    t.boolean  "tiene_placa",                      :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.point    "coordenadas",       :limit => nil,                    :srid => 4326
   end
 
   create_table "fotos", :force => true do |t|
@@ -33,12 +35,6 @@ ActiveRecord::Schema.define(:version => 20110224005133) do
     t.string   "carrierwave"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "geografias", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.point    "coordenada", :limit => nil, :srid => 4326
   end
 
   create_table "razas", :force => true do |t|

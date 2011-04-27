@@ -11,43 +11,57 @@
     </div>
   <% end %>
 
-  <div class="unit on-2 columns two-fields">
-      <div class="field column fixed" style="width:55%">
+  <div class="field uso">
+      <%= f.select :situacion, options_for_select(Animal.situaciones.invert, @animal.situacion), {:include_blank => ''} %>
+  </div>
+
+  <div class="unit on-3 columns three-fields centrado field" style="width: 80%;">
+    <div class="fixed column" style="width:25%">
+        <%= f.label :tiene_placa %><br/><br/>
+        <%= f.check_box :tiene_placa, :class => 'campo sombra-interna-5' %>
+    </div>
+    <div class="fixed column" style="width:35%">
         <%= f.label :nombre %><br/><br/>
         <%= f.text_field :nombre, :class => 'campo grande sombra-interna-5' %>
-      </div>
-      <div class="field column fixed" style="width:40%">
-        <%= f.label :raza_id %> <br/><br/>
-        <%= f.select :raza_id, grouped_options_for_select(Raza.agrupadas, @animal.raza_id), {:include_blank => ''},
-                    :class => 'campo' -%>
-      </div>
+    </div>
+    <div class="fixed column" style="width:40%">
+        <%= f.label :raza_id, 'Raza' %> <br/><br/>
+        <%= f.select :raza_id, grouped_options_for_select(Raza.agrupadas, @animal.raza_id), 
+                    {:include_blank => ''}, :class => 'campo' %>
+    </div>
   </div>
+
   <div class="field">
-    <%= f.label :descripcion %><br /><br/>
+    <%= f.label :descripcion, 'Descripción' %><br /><br/>
     <%= f.text_area :descripcion, :cols => 120, :rows => 4, :class => 'campo' %>
   </div>
   
-  <div class="unit on-2 columns two-fields">
-      <div class="column fixed" style="width:40%">
-          <%= f.label :en_casa, '¿Ya está en casa?' %><br /><br/>
-          <%= f.select :en_casa, options_for_select({"Si" => true, "No" => false}, @animal.en_casa),
-                                {:include_blank => ''} %>
+  <div class="field unit on-2 columns two-fields">
+      <div class="fixed column" style="width:60%">
+        <%= f.label :fecha %><br/><br/>
+        <%= f.date_select :fecha %>
       </div>
-  
-      <div class="column fixed" style="width:55%">
-          <%= f.label :situacion , 'Situación del animalito' %><br/><br/>
-          <%= f.select :situacion, options_for_select(Animal.situaciones.invert, @animal.situacion), 
-                          {:include_blank => ''} %>
+      <div class="fixed column" style="width:40%">
+          <%= f.label :estancia_temporal, 'Estancia temporal' %><br/><br/>
+          <%= f.select :estancia_temporal, options_for_select(Animal.estancias.invert, @animal.estancia_temporal), 
+                      {:include_blank => ''}, :class => 'campo' %>
       </div>
   </div>
+
   <div class="field">
-      <%= f.label :fecha %><br/><br/>
-      <%= f.date_select :fecha %>
+      <%= f.label :coordenadas %><br /><br/>
+      <div class="geografia-contenido round-with-5">
+          <span id="geografia_direccion"></span>
+      </div>
+
+      <%= hidden_field_tag 'coordenadas[lat]', @animal.coordenadas.nil? ? "19.4" : @animal.coordenadas.lat %>
+      <%= hidden_field_tag 'coordenadas[lon]', @animal.coordenadas.nil? ? "-99.15" : @animal.coordenadas.lon %>
   </div>
+
+  <div id="map_canvas" class="centrado" style="width:70%; height:250px;"></div>
 
   <%= f.hidden_field :usuario_id, :value => current_usuario.id %>
   
-  <%= render :partial => 'geografias/form', :locals => { :geografia => @animal.geografia} %>
   <br/>
   <div id="acciones">
     <%= f.submit msj_submit, :class => 'submit redondo-3' %>   

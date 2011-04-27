@@ -12,8 +12,8 @@
   var marker;
   var map;
   function initialize() {  
-      var lat = <%= @animal.geografia.coordenada.lat %> ;
-      var lon = <%= @animal.geografia.coordenada.lon %> ;
+      var lat = <%= @animal.coordenadas.lat %> ;
+      var lon = <%= @animal.coordenadas.lon %> ;
 
       if(lat == null) {
           lat = 19.4;

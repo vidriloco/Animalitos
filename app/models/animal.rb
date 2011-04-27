@@ -2,11 +2,9 @@
 class Animal < ActiveRecord::Base  
   has_many :fotos, :dependent => :destroy
   belongs_to :usuario
-  belongs_to :geografia
   belongs_to :raza
   
-  validates_presence_of :nombre, :raza_id, :descripcion, :geografia, :situacion
-  validates_inclusion_of :en_casa, :in => [true, false]
+  validates_presence_of :nombre, :raza_id, :descripcion, :situacion
   
   after_save :avisa_registrado
   
@@ -30,20 +28,40 @@ class Animal < ActiveRecord::Base
     Animal.paginate(:all, {:conditions => conds, :page => params[:page]}.merge(included))
   end
   
+  def aplica_geo(hash)
+    self.coordenadas = Point.from_lon_lat(hash["lon"].to_f, hash["lat"].to_f, 4326)
+    self
+  end
+  
   def self.todos
     { 1 => "Perro", 2 => "Gato" }
   end
   
   def self.situaciones
-    { 1 => "Buscando a su familia", 2 => "Su familia lo está buscando" }
+    { 1 => "Encontré a un animalito en la calle", 2 => "Mi mascota está perdida" }
   end
   
-  def self.situaciones_twitter
-    { 1 => "encontrado", 2 => "extraviado" }
+  def situacion_humanize
+    case self.situacion
+      when 1 then "Encontrado"
+      when 2 then "Extraviado"
+    end
+  end
+  
+  def self.estancias
+    { 0 => 'No aplica', 1 => 'Albergue', 2 => 'Mí casa' }
+  end
+  
+  def estancia_humanize
+    case self.estancia_temporal
+      when 0 then "Está extraviado"
+      when 1 then "En albergue"
+      when 2 then "En casa temporal"
+    end
   end
   
   def tipo_de_mascota
-    Animal.todos[raza.tipo]
+    Animal.todos[self.raza.tipo]
   end
   
   def tipo_de_mascota_diminutivo
@@ -77,7 +95,7 @@ class Animal < ActiveRecord::Base
   end
   
   def mensaje_tweet
-    "#{self.tipo_de_mascota_diminutivo} #{self.raza.nombre.downcase} #{Animal.situaciones_twitter[self.situacion]}."
+    "#{self.tipo_de_mascota_diminutivo} #{self.raza.nombre.downcase} #{self.situacion_humanize.downcase}."
   end
   
   def tiny_urled
@@ -86,7 +104,7 @@ class Animal < ActiveRecord::Base
   
   def avisa_registrado
     begin
-      Twitter.update(mensaje_tweet + " Ayudalo en #{tiny_urled}")
+      Twitter.update(mensaje_tweet + " Ayudalo en #{tiny_urled}") if Rails.env!="test"
     rescue
       # doble tweet 
     end

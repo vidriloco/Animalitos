@@ -11,5 +11,13 @@ require 'spec_helper'
 #   end
 # end
 describe AnimalesHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "debe desplegar un mensaje sobre un animalito encontrado y su geografia" do
+    @ani = Factory.build(:animal, :situacion => 1, :fecha => Time.now.months_ago(1) )
+    ubicacion_y_fecha_animalito(@ani).should == "Encontrado hace cerca de 1 mes"
+  end
+  
+  it "debe desplegar un mensaje para un animalito extraviado y su geografia" do
+    @ani = Factory.build(:animal, :situacion => 2, :fecha => Time.now.months_ago(1) )
+    ubicacion_y_fecha_animalito(@ani).should == "Extraviado hace cerca de 1 mes"
+  end
 end

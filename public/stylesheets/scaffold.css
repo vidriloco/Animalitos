@@ -20,7 +20,8 @@ a:visited { color: #666; }
 a:hover { color: #000; background-color:none; font-weight: bold }
 
 div.field, div.actions {
-  margin-bottom: 10px;
+  margin-bottom: 30px;
+	margin-top: 20px;
 }
 
 #notice {

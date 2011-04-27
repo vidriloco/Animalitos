@@ -1,3 +1,4 @@
+# encoding: utf-8
 class AnimalesController < ApplicationController
   
   before_filter :authenticate_usuario!, :except => [:index, :show]
@@ -44,15 +45,13 @@ class AnimalesController < ApplicationController
   # POST /animales.xml
   def create
     @animal = Animal.new(params[:animal])
-    @animal.geografia = Geografia.build_from(params["geografia"])
+    @animal.aplica_geo(params[:coordenadas])
 
     respond_to do |format|
       if @animal.save
-        format.html { redirect_to(@animal, :notice => 'Animalito registrado exitosamente') }
-        format.xml  { render :xml => @animal, :status => :created, :location => @animal }
+        format.html { redirect_to(animal_url(@animal), :notice => '¡El animalito fue registrado correctamente!') }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @animal.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -61,7 +60,7 @@ class AnimalesController < ApplicationController
   # PUT /animales/1.xml
   def update
     @animal = Animal.find(params[:id])
-    @animal.geografia.update_from(params["geografia"])
+    @animal.aplica_geo(params[:coordenadas])
 
     respond_to do |format|
       if @animal.update_attributes(params[:animal])

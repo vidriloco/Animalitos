@@ -238,30 +238,6 @@ p.nombre {
 	margin-right: auto;
 }
 
-@font-face {
-    font-family: 'SnigletRegular';
-    src: url('../fonts/sniglet/sniglet-webfont.eot');
-    src: url('../fonts/sniglet/sniglet-webfont.eot?iefix') format('eot'),
-         url('../fonts/sniglet/sniglet-webfont.woff') format('woff'),
-         url('../fonts/sniglet/sniglet-webfont.ttf') format('truetype'),
-         url('../fonts/sniglet/sniglet-webfont.svg#webfontcrcjm38W') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'UbuntuTitle';
-    src: url('../fonts/ubuntu/ubuntu-title-webfont.eot');
-    src: url('../fonts/ubuntu/ubuntu-title-webfont.eot?iefix') format('eot'),
-         url('../fonts/ubuntu/ubuntu-title-webfont.woff') format('woff'),
-         url('../fonts/ubuntu/ubuntu-title-webfont.ttf') format('truetype'),
-         url('../fonts/ubuntu/ubuntu-title-webfont.svg#webfontCMRfh6Is') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
 h1.bienvenida {
 	font-family: "UbuntuTitle";
 	font-size: 30px;
@@ -286,3 +262,14 @@ h1.bienvenida-complemento {
 .texto-blanco .submit:hover {
 	font-weight: normal;
 }
+
+.uso { 
+	padding: 15px;
+	margin-bottom: 45px
+}
+
+.uso select {
+	font-size: 20px;
+	font-weight: bold;
+	background-color: #E7FFFC;
+} 

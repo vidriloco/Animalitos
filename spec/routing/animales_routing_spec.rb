@@ -34,6 +34,6 @@ describe AnimalesController do
     it "recognizes and generates #destroy" do
       { :delete => "/animales/1" }.should route_to(:controller => "animales", :action => "destroy", :id => "1")
     end
-
+  
   end
 end

@@ -5,11 +5,13 @@ class CreateAnimales < ActiveRecord::Migration
       t.integer :raza_id
       t.text :descripcion
       t.integer :usuario_id
-      t.integer :geografia_id
-      t.boolean :en_casa
+      t.point :coordenadas, :srid => 4326, :with_z => false      
+      t.integer :estancia_temporal
+      t.boolean :en_casa, :default => :false
       t.datetime :fecha
       t.integer :foto_id
       t.integer :situacion
+      t.boolean :tiene_placa, :default => :false
       t.timestamps
     end
   end

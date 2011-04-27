@@ -5,7 +5,7 @@ Froyito::Application.routes.draw do
   
   resources :fotos, :only => [:index, :destroy, :update]
 
-  devise_for :usuarios
+  devise_for :usuarios, :path_names => { :sign_in => 'iniciar_sesion' }
 
   resources :razas, :except => [:show]
    

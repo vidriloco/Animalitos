@@ -9,11 +9,11 @@
 
 <br/ >
 <p>
-  <b><%= Animal.situaciones[@animal.situacion] %> hace <i><%= time_ago_in_words @animal.fecha %></i> en</b>
+  <b><%= ubicacion_y_fecha_animalito(@animal) %></i> en</b>
 </p>
 <script>
-      setAddressFromOn(new google.maps.LatLng(<%= @animal.geografia.coordenada.lat %>, 
-                                              <%= @animal.geografia.coordenada.lon %>),
+      setAddressFromOn(new google.maps.LatLng(<%= @animal.coordenadas.lat %>, 
+                                              <%= @animal.coordenadas.lon %>),
                                               "direccion");
 </script>
 <div id="direccion" class="sombra-5"></div>
