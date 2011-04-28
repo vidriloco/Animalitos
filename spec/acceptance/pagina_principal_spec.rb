@@ -10,6 +10,7 @@ feature "Pagina Principal" do
     Factory(:beagle)
   end
 
+
   describe "Encontré a una mascota", :js => true do
     
     scenario "me manda a iniciar sesión si no estoy logeado antes de poder registrarla" do
@@ -55,16 +56,29 @@ feature "Pagina Principal" do
       
       background do
         @perrito = Factory(:animal)
+        @perrito_dos = Factory(:animal, :raza_id => @perrito.raza.id)
       end
       
       scenario "debo verla listada en los resultados de búsqueda al buscarla desde la página principal" do
-        fill_in("busqueda", :with => "Capitán")
-        check("Perro")
+        #PAGINACION A 1
+        
+        class Animal
+          class << self
+           cattr_writer :per_page
+           @@per_page = 1
+          end
+        end
+        
+        fill_in("busqueda_nombre", :with => "Capitán")
+        check("busqueda_perro")
         
         click_on("Buscar")
         
-        current_path.should == animales_url 
-        page.should have_content('Resultados de perritos con nombre: Capitán')
+        current_path.should == '/busqueda'
+        page.should have_content('Resultados de perritos extraviados con nombre Capitán')
+        page.should have_content('Capitán')
+        page.should have_content('Siendo buscado')
+        click_link('Siguiente')
         page.should have_content('Capitán')
       end
     end
@@ -73,15 +87,15 @@ feature "Pagina Principal" do
       scenario "puedo buscarla desde la página principal y posteriormente registrarla si estoy logeado" do
         login_as @usuario
                 
-        fill_in("busqueda", :with => "Capitán")
-        check("Perro")
+        fill_in("busqueda_nombre", :with => "Capitán")
+        check("busqueda_perro")
         
         click_on('Buscar')
         
-        current_path.should == animales_url
+        current_path.should == '/busqueda'
         
-        page.should have_content('Resultados de perritos con nombre: Capitán')
-        page.should have_content('Por ahora no existe ningún registro de algún perrito con ese nombre')
+        page.should have_content('Resultados de perritos extraviados con nombre Capitán')
+        page.should have_content('Por ahora no hay registrado ningún perrito con ese nombre')
         page.should have_content('Te invitamos a registrar tú mascota como extraviada')
         
         click_on('Registrar')
@@ -90,12 +104,13 @@ feature "Pagina Principal" do
       end
       
       scenario "me manda a iniciar sesión si no estoy logeado antes de poder registrarla después de haberla buscado y no encontrado" do
-        fill_in("busqueda", :with => "Capitán")
-        check("Perro")
+        fill_in("busqueda_nombre", :with => "Capitán")
+        check("busqueda_perro")
         
         click_on('Buscar')
         
-        current_path.should == animales_url
+        current_path.should == '/busqueda'
+        page.should_not have_content('Nuevo Animal')
         click_on('Registrar')
         
         current_path.should == new_usuario_session_path
@@ -108,14 +123,14 @@ feature "Pagina Principal" do
     
     background do
       @escogido=Factory(:animal, :nombre => "Lanudo", :situacion => 1, :fecha => Time.now.months_ago(1))
-      Factory(:animal, :nombre => "Froyo", :situacion => 2, :fecha => Time.now.months_ago(2))
-      Factory(:animal, :nombre => "Blacky", :situacion => 2)
+      Factory(:animal, :raza => Factory(:raza, :nombre => 'Golden Retriever'), :nombre => "Froyo", :situacion => 2, :fecha => Time.now.months_ago(2))
+      Factory(:animal, :raza => Factory(:raza, :nombre => 'Pastor Alemán'),:nombre => "Blacky", :situacion => 2)
     end
     
     scenario "debo ver en ella diversos contenidos" do
-      page.should have_content('Registrarse')
-      page.should have_content('Login')
-      page.should have_content('Ayuda')
+      find_link('Registro')
+      find_link('Login')
+      find_link('Ayuda')
     
       page.should have_content('¿Tú mascota se extravió?')
       page.should have_content('¿Quieres adoptar una mascota?')

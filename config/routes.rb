@@ -1,4 +1,7 @@
+# encoding: utf-8
 Froyito::Application.routes.draw do
+  resources :frente, :only => [:index]
+  
   resources :animales do
     resources :fotos, :only => [:index, :create]
   end
@@ -11,11 +14,12 @@ Froyito::Application.routes.draw do
    
   resources :usuarios, :only => [:destroy, :perfil]
   
-  resources :frente, :only => [:index]
 
   match '/ayudame/:id' => "animales#show"
-
-
+  match '/busqueda', :to => 'animales#busqueda', :via => "post"
+  match '/busqueda', :to => 'animales#busqueda', :via => "get"
+  
+  
   match '/perfil' => 'usuarios#perfil'
   match '/activar/:id', :to => 'usuarios#activar', :as => 'activar', :via => "post"
   match '/desactivar/:id', :to => 'usuarios#desactivar', :as => 'desactivar', :via => "post"

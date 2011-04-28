@@ -1,8 +1,19 @@
 
-<%= form_tag animales_url do %>
-    <%= search_field_tag 'Nombre' %>
-    <span><%= label_tag 'Perro' %><%= check_box_tag 'perro' %></span>
-    <span><%= label_tag 'Gato' %><%= check_box_tag 'gato' %></span>    
+<div class="barra-superior">
+    <div class="menu">
+        <%= link_to 'Registro', '#' %>
+        <%= link_to 'Login', '#' %>
+        <%= link_to 'Ayuda', '#' %>
+    </div>
+</div>
+
+<%= form_tag busqueda_url do %>
+    <%= label_tag 'Nombre de tú mascota (Si tiene placa)'%>
+    <%= search_field_tag 'busqueda[nombre]' %>
+    <%= hidden_field_tag 'busqueda[situacion]', 2 %>
+    <span><%= label_tag 'Perro' %><%= check_box_tag 'busqueda[perro]' %></span>
+    <span><%= label_tag 'Gato' %><%= check_box_tag 'busqueda[gato]' %></span> 
+    <%= submit_tag 'Buscar' %>   
 <% end %>
 
 

@@ -1,0 +1,8 @@
+<% e = {:prev_label => "Anterior", :next_label => "Siguiente"} %>
+<% if @parametros %>
+    <%= will_paginate @animales, e.merge(:params => {:url => url_for(busqueda_url), :busqueda => @parametros}) %>
+    &nbsp;
+<% else %>
+    <%= will_paginate @animales, e %>
+    &nbsp;
+<% end %>

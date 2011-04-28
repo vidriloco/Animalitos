@@ -1,15 +1,15 @@
-<div class="centrado bloque animales">
-    <% @animales.each do |animal| %>
-        <div class="animal <%= animal.en_casa_semantico %>">
-            <%= render animal %>
-        </div>
-    <% end %>
-</div>
-
 <% if @animales.size > 0 %>
+    <div class="centrado bloque animales">
+        <% @animales.each do |animal| %>
+            <div class="animal">
+                <%= render animal %>
+            </div>
+        <% end %>
+    </div>
+    
     <div class="paginacion unit on-2 columns">
         <div class="column fixed" style="width: 50%">
-            <%= will_paginate @animales, :prev_label => "Anterior", :next_label => "Siguiente" %>&nbsp;
+            <%= render 'animales_paginacion' %>
         </div>
         <div class="column fixed der" style="font-style: italic; width: 50%">
             <%= raw page_entries_info(@animales, :entry_name => 'animalito') %> 
@@ -17,7 +17,19 @@
     </div>
 <% else %>
     <div class="centrado">
-        <p>No hay amigos en apuros que mostrar</p>
+        <% if @parametros %>
+            <p>Por ahora no hay registrado ningún <%= mascota_tipo(@parametros, :s) %> con ese nombre</p>
+            <% if @parametros["situacion"] == "2" %>
+                <p>Te invitamos a registrar tú mascota como extraviada</p>
+                <br/>
+                <div id="acciones">
+                    <%= link_to 'Registrar', new_animal_url, :class => 'redondo-5 sombra-5' %>
+                </div>
+            <% end %>
+        <% else %>
+            <p>No hay amigos en apuros que mostrar</p>
+        <% end %>
     </div>
+    
     <br/>
 <% end %>

@@ -7,6 +7,40 @@ require 'spec_helper'
 
 describe AnimalesController do    
 
+  describe "GET busqueda" do
+    
+    before(:each) do
+      @animal = Factory.stub(:animal, :nombre => 'Lanudo', :situacion => 2)
+    end
+    
+    it "busca perros y los asigna a @animales con paginacion" do
+      Animal.should_receive(:busqueda_paginada).with({"nombre" => 'Lanudo', "perro" => 1, "situacion" => 2}, 1) { [@animal] }
+      
+      post :busqueda, :busqueda => {:nombre => 'Lanudo', :perro => 1, :situacion => 2}, :page => 1
+      assigns(:animales).should == [@animal]
+    end
+    
+    it "busca perros y los asigna a @animales desde busqueda" do
+      Animal.should_receive(:busqueda_paginada).with({"nombre" => 'Lanudo', "perro" => 1, "situacion" => 2}, nil) { [@animal] }
+      
+      post :busqueda, :busqueda => {:nombre => 'Lanudo', :perro => 1, :situacion => 2}
+      assigns(:animales).should == [@animal]
+    end
+    
+    it "asigna los parametros de busqueda a @parametros" do
+      post :busqueda, :busqueda => {:nombre => 'Lanudo', :perro => 1, :situacion => 2}
+      assigns(:parametros).should == {"nombre" => 'Lanudo', "perro" => 1, "situacion" => 2}
+    end
+    
+    it "busca perros y los asigna a @animales" do
+      Animal.stub(:busqueda_paginada) { [@animal] }
+      
+      post :busqueda, :busqueda => {}
+      response.should render_template("index")
+    end
+  end
+  
+
   describe "GET show" do
     
     before(:each) do

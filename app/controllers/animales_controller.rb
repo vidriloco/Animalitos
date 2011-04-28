@@ -1,17 +1,22 @@
 # encoding: utf-8
 class AnimalesController < ApplicationController
   
-  before_filter :authenticate_usuario!, :except => [:index, :show]
+  before_filter :authenticate_usuario!, :except => [:index, :show, :busqueda]
   # GET /animales
   # GET /animales.xml
-  def index
+  def index    
     @animales = Animal.pagina_y_encuentra(params)
-    
     respond_to do |format|
-      format.html # index.html.erb
-      
+      format.html
       format.js # index.js.erb   
     end
+  end
+  
+  def busqueda
+    @animales = Animal.busqueda_paginada(params[:busqueda], params[:page])
+    @parametros = params[:busqueda]
+    
+    render(:action => 'index')
   end
 
   # GET /animales/1

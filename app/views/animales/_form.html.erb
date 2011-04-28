@@ -12,7 +12,8 @@
   <% end %>
 
   <div class="field uso">
-      <%= f.select :situacion, options_for_select(Animal.situaciones.invert, @animal.situacion), {:include_blank => ''} %>
+      <%= f.select :situacion, options_for_select(Animal.situaciones.invert, @animal.situacion), 
+                    {:include_blank => ''} %>
   </div>
 
   <div class="unit on-3 columns three-fields centrado field" style="width: 80%;">

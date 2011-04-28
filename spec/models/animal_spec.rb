@@ -4,10 +4,13 @@ require 'spec_helper'
 describe Animal do
   
   before(:each) do
-    @animal = Factory.build(:animal, :raza => Factory.build(:raza, :nombre => "Labrador", :tipo => 1))
+    @animal = Factory(:animal)
   end
   
   it "debe generar el mensaje para twitter correcto" do
+    @animal.situacion=2
+    @animal.mensaje_tweet.should == "Perrito labrador extraviado."
+    @animal.situacion=1
     @animal.mensaje_tweet.should == "Perrito labrador encontrado."
   end
   
@@ -17,23 +20,40 @@ describe Animal do
   end
   
   it "debe desplegar Está extraviado según el valor de su estancia temporal" do
-    perdido=Factory.build(:animal, :estancia_temporal => 0)
-    perdido.estancia_humanize.should == "Está extraviado"
+    @animal.estancia_temporal = 0
+    @animal.estancia_humanize.should == "Siendo buscado"
   end
   
   it "debe desplegar En albergue según el valor de su estancia temporal" do
-    perdido=Factory.build(:animal, :estancia_temporal => 1)
-    perdido.estancia_humanize.should == "En albergue"
+    @animal.estancia_temporal = 1
+    @animal.situacion=1
+    @animal.estancia_humanize.should == "En albergue"
   end
   
   it "debe desplegar En casa temporal según el valor de su estancia temporal" do
-    perdido=Factory.build(:animal, :estancia_temporal => 2)
-    perdido.estancia_humanize.should == "En casa temporal"
+    @animal.estancia_temporal = 2
+    @animal.situacion=1
+    @animal.estancia_humanize.should == "En casa temporal"
   end
   
   it "debo poder cambiar las coordenadas de un animal" do
     @animal.aplica_geo({"lat" => "19.4", "lon" => "-99.15"})
     @animal.coordenadas.lat.should == 19.4
     @animal.coordenadas.lon.should == -99.15
+  end
+  
+  it "devuelve las mascotas que cumplen con los parametros de busqueda" do
+    Animal.busqueda_paginada({:nombre => "Capitán", :situacion => 2, :perro => 1}).should == [@animal]
+  end
+  
+  it "devuelve las mascotas que cumplen con los parametros de busqueda" do
+    Animal.busqueda_paginada({:nombre => "Capitán", :situacion => 2, :perro => 1}, 1).should == [@animal]
+  end
+  
+  it "guarda un nuevo animal con estancia temporal cero si su situacion es extraviado" do
+    @animal.situacion = 2
+    @animal.estancia_temporal = 1
+    @animal.save
+    @animal.estancia_temporal.should == 0
   end
 end

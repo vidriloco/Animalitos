@@ -4,9 +4,10 @@ class Animal < ActiveRecord::Base
   belongs_to :usuario
   belongs_to :raza
   
-  validates_presence_of :nombre, :raza_id, :descripcion, :situacion
+  validates_presence_of :nombre, :raza, :descripcion, :situacion
   
   after_save :avisa_registrado
+  before_save :verifica_consistencia_extraviado
   
   cattr_reader :per_page
   @@per_page = 9
@@ -26,6 +27,15 @@ class Animal < ActiveRecord::Base
     end
     
     Animal.paginate(:all, {:conditions => conds, :page => params[:page]}.merge(included))
+  end
+  
+  def self.busqueda_paginada(params, pagina=1)
+    condiciones= {:nombre => params[:nombre], :situacion => params[:situacion]}
+    
+    condiciones[:razas] = { :tipo => 1 } if params[:perro] 
+    condiciones[:razas] = { :tipo => 2 } if params[:gato] 
+    
+    Animal.paginate(:page => pagina, :conditions => condiciones, :include => :raza, :joins => :raza)
   end
   
   def aplica_geo(hash)
@@ -53,8 +63,8 @@ class Animal < ActiveRecord::Base
   end
   
   def estancia_humanize
+    return "Siendo buscado" if self.situacion == 2
     case self.estancia_temporal
-      when 0 then "Está extraviado"
       when 1 then "En albergue"
       when 2 then "En casa temporal"
     end
@@ -62,20 +72,6 @@ class Animal < ActiveRecord::Base
   
   def tipo_de_mascota
     Animal.todos[self.raza.tipo]
-  end
-  
-  def tipo_de_mascota_diminutivo
-    tipo_de_mascota == "Perro" ? "Perrito" : "Gatito"
-  end
-  
-  def en_casa_semantico
-    return "casa" if en_casa
-    "no_casa"
-  end
-  
-  def en_casa_humanize
-    return "En casa" if en_casa
-    "En albergue temporal"
   end
   
   def foto_principal
@@ -95,11 +91,16 @@ class Animal < ActiveRecord::Base
   end
   
   def mensaje_tweet
-    "#{self.tipo_de_mascota_diminutivo} #{self.raza.nombre.downcase} #{self.situacion_humanize.downcase}."
+    mascota = (tipo_de_mascota == "Perro") ? "Perrito" : "Gatito"
+    "#{mascota} #{self.raza.nombre.downcase} #{self.situacion_humanize.downcase}."
   end
   
   def tiny_urled
     Net::HTTP.get_response(URI.parse("http://tinyurl.com/api-create.php?url=http://www.amigosenapuros/ayudame/#{self.id}")).body
+  end
+  
+  def verifica_consistencia_extraviado
+    self.estancia_temporal = 0 if self.situacion == 2
   end
   
   def avisa_registrado

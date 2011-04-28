@@ -6,6 +6,10 @@ describe AnimalesController do
     it "redirecciona #ayudame a #show" do
       { :get => "/ayudame/1" }.should route_to(:controller => "animales", :action => "show", :id => "1")
     end
+    
+    it "reconoce y genera #busqueda" do
+      { :get => "/busqueda" }.should route_to(:controller => "animales", :action => "busqueda")
+    end
 
     it "recognizes and generates #index" do
       { :get => "/animales" }.should route_to(:controller => "animales", :action => "index")

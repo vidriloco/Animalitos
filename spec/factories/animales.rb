@@ -1,6 +1,6 @@
 # encoding: utf-8
 Factory.define :animal do |t|
-  t.nombre "Capitan"
+  t.nombre "Capitán"
   t.raza { |raza| raza.association(:perro) }
   t.descripcion "Perrito blanco eléctrico"
   t.estancia_temporal 2
