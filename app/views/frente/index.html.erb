@@ -4,7 +4,7 @@
     <%= render :partial => 'mascota', :collection => @mascotas %>
 </div>
 
-<% unless @mascotas.empty? %>
+<% if !@mascotas.empty? && @mascotas.length > 1 %>
     <div id="sig" class="control-slider"></div>
     <div id="ant" class="control-slider"></div>
 <% end %>

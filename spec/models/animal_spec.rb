@@ -4,7 +4,7 @@ require 'spec_helper'
 describe Animal do
   
   before(:each) do
-    @animal = Factory(:animal)
+    @animal = Factory(:animal, :sexo => "M")
   end
   
   it "debe generar el mensaje para twitter correcto" do
@@ -61,6 +61,9 @@ describe Animal do
     Animal.busqueda_valida?({:nombre => '', :situacion => Animal.extraviado}).should be_false
     Animal.busqueda_valida?({:nombre => 'Alguien', :perro => 1, :gato => 1, :situacion => Animal.extraviado}).should be_false
     Animal.busqueda_valida?({:nombre => 'Alguien', :perro => 1, :situacion => Animal.extraviado}).should be_true
-    
+  end
+  
+  it "devuelve los atributos básicos en un hash" do
+    @animal.atributos_basicos.should == {"sexo" => "M", "perro" => "1"}
   end
 end

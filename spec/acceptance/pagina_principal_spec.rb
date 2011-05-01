@@ -29,11 +29,13 @@ feature "Pagina Principal" do
       
       select('Encontré a un animalito en la calle', :from => 'animal_situacion')
       
-      check('Tiene placa')
+      check('animal_tiene_placa')
       fill_in('Nombre', :with => 'Capitán')
       select('Beagle', :from => 'Raza')
       fill_in('Descripción', :with => 'Es un perro muy amable y dócil. Debe tener poco tiempo de haberse extraviado')
       select('Mí casa', :from => 'Estancia temporal')
+      select('Macho', :from => 'Sexo')
+      check('animal_cruza')
       click_on('Guardar')
       
       current_path.should == animal_path(Animal.first)
@@ -41,7 +43,8 @@ feature "Pagina Principal" do
       
       page.should have_content('Capitán')
       page.should have_content('En casa temporal')
-      page.should have_content('Beagle')
+      page.should have_content('Perrito Beagle')
+      page.should have_content('Cruza')
       page.should have_content('Encontrado')
       sleep 5
       page.should have_content('San Antonio 1725, Narvarte, Benito Juárez, Mexico City, Distrito Federal, Mexico')
@@ -156,12 +159,12 @@ feature "Pagina Principal" do
       
       page.should have_content('Dulcinea')
       page.should have_content('Extraviado hace menos de 1 minuto')
-
+      sleep 15
       page.should have_content('Mokita')
-      page.should have_content('Extraviado hace cerca de 1 mes')
-
+      page.should have_content('Extraviado hace 30 días')
+      sleep 15
       page.should have_content('Laika')
-      page.should have_content('Encontrado hace cerca de 1 mes')
+      page.should have_content('Encontrado hace 30 días')
       
     end  
  

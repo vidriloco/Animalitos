@@ -15,6 +15,8 @@ module AnimalesHelper
   
   def mascota_tipo(hash, card=:p) 
     tipo=hash["perro"] ? "perrito" : "gatito"
+    tipo.gsub!("o", "a") if hash["sexo"] == "H"
+    
     return tipo.pluralize if (card == :p)
     tipo
   end

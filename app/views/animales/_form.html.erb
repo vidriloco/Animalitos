@@ -16,22 +16,34 @@
                     {:include_blank => ''} %>
   </div>
 
-  <div class="unit on-3 columns three-fields centrado field" style="width: 80%;">
-    <div class="fixed column" style="width:25%">
-        <%= f.label :tiene_placa %><br/><br/>
+  <div class="unit on-3 columns three-fields centrado field" style="width: 90%;">
+    <div class="fixed column" style="width:30%">
+        <%= f.label :tiene_placa, '¿Tiene Placa?' %><br/><br/>
         <%= f.check_box :tiene_placa, :class => 'campo sombra-interna-5' %>
     </div>
-    <div class="fixed column" style="width:35%">
+    <div class="fixed column" style="width:30%">
         <%= f.label :nombre %><br/><br/>
         <%= f.text_field :nombre, :class => 'campo grande sombra-interna-5' %>
     </div>
     <div class="fixed column" style="width:40%">
-        <%= f.label :raza_id, 'Raza' %> <br/><br/>
-        <%= f.select :raza_id, grouped_options_for_select(Raza.agrupadas, @animal.raza_id), 
+        <%= f.label :sexo %><br/><br/>
+        <%= f.select :sexo, options_for_select(Animal.sexos.invert, @animal.sexo), 
                     {:include_blank => ''}, :class => 'campo' %>
     </div>
   </div>
-
+  
+  <div class="unit on-2 columns three-fields centrado field" style="width: 80%;">
+      <div class="fixed column" style="width:45%">
+              <%= f.label :es_cruza, '¿Es cruza?' %><br/><br/>
+              <%= f.check_box :cruza, :class => 'campo sombra-interna-5' %>
+      </div>
+      <div class="fixed column" style="width:45%">
+            <%= f.label :raza_id, 'Raza' %> <br/><br/>
+            <%= f.select :raza_id, grouped_options_for_select(Raza.agrupadas, @animal.raza_id), 
+                        {:include_blank => ''}, :class => 'campo' %>
+      </div>
+  </div>
+  
   <div class="field">
     <%= f.label :descripcion, 'Descripción' %><br /><br/>
     <%= f.text_area :descripcion, :cols => 120, :rows => 4, :class => 'campo' %>

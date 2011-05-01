@@ -36,6 +36,10 @@ describe AnimalesHelper do
     mascota_tipo({"perro" => 1, "nombre" => "Lencho"}, :p).should == "perritos"
     mascota_tipo({"gato" => 1, "nombre" => "Lencho"}, :s).should == "gatito"
     mascota_tipo({"perro" => 1, "nombre" => "Lencho"}, :s).should == "perrito"
+    mascota_tipo({"gato" => 1, "nombre" => "Lencho", "sexo" => "M"}, :s).should == "gatito"
+    mascota_tipo({"perro" => 1, "nombre" => "Dulce Poli", "sexo" => "H"}, :s).should == "perrita"
+    mascota_tipo({"gato" => 1, "nombre" => "Lencho", "sexo" => "M"}, :p).should == "gatitos"
+    mascota_tipo({"perro" => 1, "nombre" => "Dulce Poli", "sexo" => "H"}, :p).should == "perritas"
   end
   
   it "devuelve el numero de mascotas encontradas" do

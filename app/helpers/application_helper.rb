@@ -27,6 +27,9 @@ module ApplicationHelper
   end
   
   def ubicacion_y_fecha_animalito(animal)
-    "#{animal.situacion_humanize} hace #{ time_ago_in_words(animal.fecha) }"
+    if !animal.sexo.nil? && animal.es_hembra?
+       situacion_h =animal.situacion_humanize.chop+"a"
+    end
+    "#{situacion_h || animal.situacion_humanize} hace #{ time_ago_in_words(animal.fecha) }"
   end
 end

@@ -45,6 +45,10 @@ class Animal < ActiveRecord::Base
     { 1 => "Perro", 2 => "Gato" }
   end
   
+  def self.sexos 
+    { "H" => "Hembra", "M" => "Macho" }
+  end
+  
   def self.situaciones
     { Animal.encontrado => "Encontré a un animalito en la calle", Animal.extraviado => "Mi mascota está perdida" }
   end
@@ -53,6 +57,12 @@ class Animal < ActiveRecord::Base
     !((hash.has_key?(:perro) && hash.has_key?(:gato) ) ||
       (!hash.has_key?(:perro) && !hash.has_key?(:gato)) || 
       hash[:nombre].empty?)
+  end
+  
+  def atributos_basicos
+    res = {self.tipo_de_mascota.downcase => "1"}
+    
+    {"sexo" => self.sexo}.merge(res)
   end
   
   def aplica_geo(hash)
@@ -71,8 +81,14 @@ class Animal < ActiveRecord::Base
     { 0 => 'No aplica', 1 => 'Albergue', 2 => 'Mí casa' }
   end
   
+  def es_hembra?
+    self.sexo == "H"
+  end
+  
   def estancia_humanize
-    return "Siendo buscado" if self.situacion == Animal.extraviado
+    if self.situacion == Animal.extraviado
+      return "Siendo #{self.es_hembra? ? "buscada" : "buscado"}" 
+    end  
     case self.estancia_temporal
       when 1 then "En albergue"
       when 2 then "En casa temporal"

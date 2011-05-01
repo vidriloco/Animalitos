@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(:version => 20110224005133) do
   create_table "animales", :force => true do |t|
     t.string   "nombre"
     t.integer  "raza_id"
+    t.boolean  "cruza",                            :default => false
     t.text     "descripcion"
     t.integer  "usuario_id"
     t.integer  "estancia_temporal"
@@ -23,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20110224005133) do
     t.integer  "foto_id"
     t.integer  "situacion"
     t.boolean  "tiene_placa",                      :default => false
+    t.binary   "sexo"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.point    "coordenadas",       :limit => nil,                    :srid => 4326
@@ -51,7 +53,6 @@ ActiveRecord::Schema.define(:version => 20110224005133) do
     t.integer  "telefono_movil",       :limit => 8
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"

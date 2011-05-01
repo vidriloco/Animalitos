@@ -89,6 +89,13 @@ p.nombre {
 	font-size: 15px;
 }
 
+.bloque-bio .cruza {
+	font-size: 12px;
+	text-transform: uppercase;
+	padding: 0px;
+	font-style:italic;
+}
+
 #formulario-foto {
 	display:none;
 }

@@ -1,5 +1,8 @@
 <div class="bloque-bio">
     <p class="nombre izq"><%= @animal.nombre %></p>
-    <p class="bio izq"><%= @animal.tipo_de_mascota %> <%= @animal.raza.nombre %></p>
+    <div class="bio izq"><%= mascota_tipo(@animal.atributos_basicos, :s).capitalize %> <%= @animal.raza.nombre %></div>
+    <% if @animal.cruza %>
+        <p class="cruza izq">Cruza</p>
+    <% end %>
     <p class="estado izq"><%= @animal.estancia_humanize %></p>
 </div>

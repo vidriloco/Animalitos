@@ -3,6 +3,7 @@ class CreateAnimales < ActiveRecord::Migration
     create_table :animales do |t|
       t.string :nombre
       t.integer :raza_id
+      t.boolean :cruza, :default => :false
       t.text :descripcion
       t.integer :usuario_id
       t.point :coordenadas, :srid => 4326, :with_z => false      
@@ -12,6 +13,7 @@ class CreateAnimales < ActiveRecord::Migration
       t.integer :foto_id
       t.integer :situacion
       t.boolean :tiene_placa, :default => :false
+      t.binary :sexo
       t.timestamps
     end
   end
