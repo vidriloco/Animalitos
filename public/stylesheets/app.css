@@ -273,3 +273,17 @@ h1.bienvenida-complemento {
 	font-weight: bold;
 	background-color: #E7FFFC;
 } 
+
+.barra-aux {
+	height: 50px;
+	background-color: #454545;
+}
+
+.barra-aux #acciones  {
+	position: relative;
+	top: 13px;
+	right: 30px;
+	float: right;
+}
+
+.barra-aux #acciones a:hover { background-color:#5782AE }

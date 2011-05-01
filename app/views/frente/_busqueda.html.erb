@@ -1,0 +1,12 @@
+<div class="formulario redondo-10">
+    <%= form_tag busqueda_url do %>
+        <%= label_tag 'Nombre de tú mascota (Si tiene placa)'%>
+        <%= text_field_tag 'busqueda[nombre]', '', :size => 35, :class => 'redondo-5' %>
+        <%= hidden_field_tag 'busqueda[situacion]', 2 %>
+        <div>
+            <%= label_tag 'Perro' %>&nbsp;<%= check_box_tag 'busqueda[perro]' %>
+            <%= label_tag 'Gato' %>&nbsp;<%= check_box_tag 'busqueda[gato]' %>
+        </div> 
+        <%= submit_tag 'Buscar', :id => 'busqueda_submit', :class => 'sombreado redondo-5' %>   
+    <% end %>
+</div>

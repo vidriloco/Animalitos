@@ -9,7 +9,7 @@ feature "Pagina Principal" do
     @usuario.confirm!
     Factory(:beagle)
   end
-
+  
 
   describe "Encontré a una mascota", :js => true do
     
@@ -118,42 +118,64 @@ feature "Pagina Principal" do
     end
     
   end
-  
-  describe "habiendo algunas mascotas registradas" do
+
+  describe "habiendo algunas mascotas registradas", :js => true do
     
     background do
-      @escogido=Factory(:animal, :nombre => "Lanudo", :situacion => 1, :fecha => Time.now.months_ago(1))
-      Factory(:animal, :raza => Factory(:raza, :nombre => 'Golden Retriever'), :nombre => "Froyo", :situacion => 2, :fecha => Time.now.months_ago(2))
-      Factory(:animal, :raza => Factory(:raza, :nombre => 'Pastor Alemán'),:nombre => "Blacky", :situacion => 2)
+      ahora = Time.now
+      Factory(:pastor_con_foto, :fecha => ahora.months_ago(1))
+      Factory(:akita_con_foto, :fecha => ahora.months_ago(1))
+      @dulcinea=Factory(:cooker_con_foto, :fecha => ahora)
     end
-    
+   
     scenario "debo ver en ella diversos contenidos" do
+      visit '/'
       find_link('Registro')
-      find_link('Login')
-      find_link('Ayuda')
+      find_link('Iniciar Sesión')
+      find_link('Acerca de')
     
       page.should have_content('¿Tú mascota se extravió?')
-      page.should have_content('¿Quieres adoptar una mascota?')
+      page.should have_content('¿Buscas una mascota?')
       page.should have_content('¿Encontraste un animalito en la calle?')
-    
-      page.should have_content('Busca')
-      page.should have_content('Encuentra')
-      page.should have_content('Reporta')
+      find_field('busqueda_nombre')
+      find_field('busqueda_perro')
+      find_field('busqueda_gato')
+      find_button('Buscar')
       
-      page.should have content('Lanudo')
-      page.should have content('Extraviado hace cerca de 1 mes')
-      sleep 10
-      page.should have content('Froyo')
-      page.should have content('Encontrado hace cerca de 2 meses')
-      sleep 10
-      page.should have content('Blacky')
-      page.should have content('Encontrado hace cerca de ')
+      find_link('Encuentra')
+      page.should have_content('1 en adopción o encontrada')
+      
+      find_link('Reporta')      
+      page.should have_content('2 reportadas como extraviadas')
+      
+      page.should have_content('Dulcinea')
+      page.should have_content('Extraviado hace menos de 1 minuto')
+
+      page.should have_content('Mokita')
+      page.should have_content('Extraviado hace cerca de 1 mes')
+
+      page.should have_content('Laika')
+      page.should have_content('Encontrado hace cerca de 1 mes')
+      
     end  
+ 
+
+    scenario "al dar click en registro debe mandarme a la pagina de registro" do
+      visit '/'
+      click_link('Registro')
+      current_path.should == new_usuario_registration_path
+    end
     
-    scenario "al dar click en alguna de las mascotas que van cambiando puedo ver su perfil" do
-      click_on('Lanudo')
-      
-      current_path.should ==  animal_url(@escogido)
+    scenario "al dar click en login debe mandarme a la pagina de inicio de sesión" do
+      visit '/'
+      click_link('Iniciar Sesión')
+      current_path.should == new_usuario_session_path
+    end
+    
+    scenario "al dar click en acerca de debe mandarme a la pagina de detalles del sitio" do
+      visit '/'
+      click_link('Acerca de')
+      current_path.should == acerca_de_path
     end
   end
   
@@ -161,7 +183,7 @@ feature "Pagina Principal" do
     scenario "al dar click en el botón para encontrar mascotas puedo seleccionar una mascota de acuerdo a diferentes parámetros" do
       click_on('Encuentra')
       
-      current_path.should == animales_url
+      current_path.should == '/animales'
     end
   end
   

@@ -1,24 +1,34 @@
+<div id="map_canvas" class="column fixed" style="width:100%; height:400px;"></div>
 
-<div class="barra-superior">
-    <div class="menu">
-        <%= link_to 'Registro', '#' %>
-        <%= link_to 'Login', '#' %>
-        <%= link_to 'Ayuda', '#' %>
+<div id="area-slider">
+    <%= render :partial => 'mascota', :collection => @mascotas %>
+</div>
+
+<% unless @mascotas.empty? %>
+    <div id="sig" class="control-slider"></div>
+    <div id="ant" class="control-slider"></div>
+<% end %>
+
+<div class="externa redondo-10-d" style="width: 33%">
+    <div class="extraviada redondo-10-d">
+        <p>¿Tú mascota se extravió?</p>
+    
+        <%= render 'busqueda' %>
+        
+        <p class="cifras"><%= situacion_numeros(@extraviados, Animal.extraviado) %></p>     
     </div>
 </div>
 
-<%= form_tag busqueda_url do %>
-    <%= label_tag 'Nombre de tú mascota (Si tiene placa)'%>
-    <%= search_field_tag 'busqueda[nombre]' %>
-    <%= hidden_field_tag 'busqueda[situacion]', 2 %>
-    <span><%= label_tag 'Perro' %><%= check_box_tag 'busqueda[perro]' %></span>
-    <span><%= label_tag 'Gato' %><%= check_box_tag 'busqueda[gato]' %></span> 
-    <%= submit_tag 'Buscar' %>   
-<% end %>
+<div class="encontrada-adopcion">
+    <div class="adopcion column fixed" style="width: 50%">
+        <p>¿Buscas una mascota?</p>
+        
+        <p class="caccion"><%= link_to 'Encuentra', animales_url, :class => "accion sombreado redondo-10" %></p>
+    </div>
+    <div class="encontrada column fixed" style="width: 50%">
+        <p>¿Encontraste un animalito en la calle?</p>
 
-
-<br /><br />
-<div class='texto-blanco'>
-    <%= link_to 'Consultar directorio', animales_url, :class => 'submit redondo-10' %>&nbsp;&nbsp;&nbsp;
-    <%= link_to 'Reporta', new_animal_url, :class => 'submit redondo-10' %>
+        <p class="caccion"><%= link_to 'Reporta', new_animal_url, :class => "accion sombreado redondo-10" %></p>
+    </div>
+    <p class="cifras"><%= situacion_numeros(@encontrados, Animal.encontrado) %></p>
 </div>

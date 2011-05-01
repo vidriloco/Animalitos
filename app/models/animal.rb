@@ -12,6 +12,11 @@ class Animal < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 9
   
+  cattr_reader :encontrado
+  @@encontrado = 1
+  cattr_reader :extraviado
+  @@extraviado = 2
+  
   
   def self.pagina_y_encuentra(params)
     conds = {:en_casa => false}
@@ -48,13 +53,13 @@ class Animal < ActiveRecord::Base
   end
   
   def self.situaciones
-    { 1 => "Encontré a un animalito en la calle", 2 => "Mi mascota está perdida" }
+    { Animal.encontrado => "Encontré a un animalito en la calle", Animal.extraviado => "Mi mascota está perdida" }
   end
   
   def situacion_humanize
     case self.situacion
-      when 1 then "Encontrado"
-      when 2 then "Extraviado"
+      when Animal.encontrado then "Encontrado"
+      when Animal.extraviado then "Extraviado"
     end
   end
   
@@ -63,7 +68,7 @@ class Animal < ActiveRecord::Base
   end
   
   def estancia_humanize
-    return "Siendo buscado" if self.situacion == 2
+    return "Siendo buscado" if self.situacion == Animal.extraviado
     case self.estancia_temporal
       when 1 then "En albergue"
       when 2 then "En casa temporal"
@@ -100,7 +105,7 @@ class Animal < ActiveRecord::Base
   end
   
   def verifica_consistencia_extraviado
-    self.estancia_temporal = 0 if self.situacion == 2
+    self.estancia_temporal = 0 if self.situacion == Animal.extraviado
   end
   
   def avisa_registrado

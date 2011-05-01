@@ -18,7 +18,7 @@ Froyito::Application.routes.draw do
   match '/ayudame/:id' => "animales#show"
   match '/busqueda', :to => 'animales#busqueda', :via => "post"
   match '/busqueda', :to => 'animales#busqueda', :via => "get"
-  
+  match '/acerca_de', :to => 'frente#acerca_de', :as => 'acerca_de'
   
   match '/perfil' => 'usuarios#perfil'
   match '/activar/:id', :to => 'usuarios#activar', :as => 'activar', :via => "post"

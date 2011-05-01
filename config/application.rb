@@ -34,7 +34,7 @@ module Froyito
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :es
 
-    config.action_view.javascript_expansions[:defaults] = %w(jquery.min rails application)
+    config.action_view.javascript_expansions[:defaults] = %w(jquery.min jquery.cycle.all.min rails application)
     config.action_view.javascript_expansions[:jquery_exts] = %w(jquery.form jquery.remotipart)
     config.action_view.javascript_expansions[:others] = %w(slimbox2)
 

@@ -1,0 +1,9 @@
+<div class="mascota" id="<%= mascota.id %>">
+    <span class="nombre redondo-5"><%= mascota.nombre %></span>
+    <%= render :partial => 'fotos/tamanos/frente', 
+               :locals => {:foto => mascota.foto_principal, :animal => mascota} %>
+    <span class="redondo-5"><i><%= ubicacion_y_fecha_animalito(mascota) %></i></span>
+    
+    <%= hidden_field_tag 'coordenadas[lat]', mascota.coordenadas.lat %>
+    <%= hidden_field_tag 'coordenadas[lon]', mascota.coordenadas.lon %>
+</div>

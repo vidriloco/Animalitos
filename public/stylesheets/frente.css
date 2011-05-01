@@ -1,0 +1,269 @@
+html { 
+	background-color: black; 
+	overflow-x: hidden; 
+}
+
+.frente-header { 
+	width: 100%; 
+	background-color: black;
+	height: 100px;
+} 
+
+.frente-header, #area-slider .pager { position: relative }
+#area-pager, .frente-header .menu { position: absolute }
+
+.frente-header .menu {
+	top: 35px;
+	right: 30px;
+	width: 250px;
+	padding: 10px;
+	background-color: #1B1B1B;
+	font-size: 11px;
+}
+
+.frente-header .menu a {
+	margin-right: 8px;
+	color: white;
+	font-weight: bold;
+}
+
+.frente-header .menu a:hover {
+	color:#DFB07D;
+}
+
+.redondo-5 {
+	border-radius: 5px;
+	-webkit-border-radius: 5px; 
+	-moz-border-radius: 5px;
+}
+
+.redondo-10 {
+	border-radius: 10px;
+	-webkit-border-radius: 10px; 
+	-moz-border-radius: 10px;
+}
+
+.redondo-10-d {
+	border-radius: 0 10px 0 0;
+	-webkit-border-radius: 0 10px 0 0; 
+	-moz-border-radius: 0 10px 0 0;
+}
+
+#area-pager {
+	left: 10px;
+	top: -40px;
+	z-index: 1;
+}
+
+#area-slider {
+	position: absolute;
+	right: 20px;
+	top: 140px;
+	width: 300px;
+}
+#area-slider img {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#area-slider .mascota { 
+	margin-left: 0;
+	height: 100%;
+	width: 100%;
+}
+
+#area-slider .mascota span.nombre {
+	background-color: rgba(1,1,1,0.8);
+}
+
+#area-slider .mascota span, .control-slider {
+	background-color: rgba(1,1,1,0.6);
+}
+#area-slider .mascota span.nombre, #area-slider .mascota span { 
+	display: block;
+	font-family: Georgia;
+	padding: 15px 0;
+	text-shadow:0 0 1px white;
+	color: white;
+	width: 75%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#area-slider .mascota span { margin-top: 3px }
+
+#area-slider .mascota span.nombre {
+	font-size: 16px;
+	text-align: center;
+	font-weight: bold;
+	font-style: italic;
+	margin-bottom: 10px;
+}
+
+.control-slider {
+	cursor: pointer;
+	position: absolute;
+	top: 437px;
+	height: 30px;
+	width: 30px;
+}
+
+#ant {
+	right: 290px;
+	background: url('../images/prev.gif');
+	
+}
+
+#sig {
+	right: 20px;
+	background: url('../images/sig.gif');
+}
+
+.extraviada p.cifras, .encontrada-adopcion p.cifras {
+	margin-top: 16px;
+	font-size: 13px;
+}
+
+.extraviada, .opciones .encontrada-adopcion { min-height: 100% }
+
+.externa {
+	background-color: rgba(1,1,1, 0.6);
+	position: absolute;
+	top: 390px;
+	left: 0;
+	width: 370px;
+	max-width: 370px;
+	padding: 10px 10px 0 0;
+}
+
+.extraviada {
+	background-color: #422C21;
+	width: 98%;
+	padding: 3px;
+}
+
+.extraviada .formulario label {
+	font-size: 12px;
+	font-weight: bold;
+	color: #BDDBE5;
+}
+
+.extraviada .formulario input#busqueda_submit {
+	margin-left: 200px;
+	padding: 5px;
+	background: rgba(255,255,255,0.3);
+	border: 1px solid #8DBEDC;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.extraviada .formulario input#busqueda_nombre {
+	background: rgba(255,255,255,0.1);
+	border: none;
+}
+
+.extraviada .formulario input#busqueda_nombre:hover {
+	-moz-box-shadow: inset 0 0 5px 5px #AFADB1;
+	-webkit-box-shadow: inset 0 0 5px 5px #AFADB1;
+	box-shadow: inset 0 0 5px 5px #AFADB1;
+}
+
+.extraviada .formulario div,
+.extraviada .formulario input#busqueda_nombre,
+.extraviada .formulario input#busqueda_submit {
+	margin-top: 10px;
+}
+.extraviada .formulario input#busqueda_submit:hover {
+	-moz-box-shadow: 0 0 5px white;
+	-webkit-box-shadow: 0 0 5px white;
+	box-shadow: 0 0 5px white;
+}
+
+.extraviada .formulario {
+	margin-left: auto;
+	margin-right: auto;
+	padding: 20px 20px 10px 20px;
+	width: 270px;
+	background: rgba(255,255,255,0.05);
+	text-align:left;
+}
+
+.extraviada p, .encontrada-adopcion p { 
+	margin-top: 20px; 
+	font-family: Helvetica;
+	font-size: 20px;
+	font-weight: bold;
+	color: #BDE8EE
+}
+
+.encontrada-adopcion {
+	background-color:  none;
+	position: absolute;
+	top: 513px;
+	left: 30%;
+	width: 900px;
+	max-width: 900px;
+	overflow: none;
+}
+
+.encontrada-adopcion div .accion:hover { 
+	background: rgba(35, 83, 153, 0.9);
+	-moz-box-shadow: 0 0 10px white;
+	-webkit-box-shadow: 0 0 10px white;
+	box-shadow: 0 0 10px white;
+}
+
+.encontrada-adopcion div p.caccion { margin-top: 37px }
+.encontrada-adopcion div .accion {
+	font-size: 24px;
+	border: 2px solid #E2E2E2;
+	padding: 10px 20px;
+	background: rgba(35, 83, 153, 0.5);
+	font-weight: bold;
+	color: white;
+}
+
+.encontrada-adopcion div {
+	margin-bottom: 15px;
+}
+
+.encontrada-adopcion div p {
+	font-size: 20px;
+	color: #4A78B5;	
+}
+
+.sombreado {
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px#888;
+	box-shadow: 0 0 5px #888;
+}
+
+.logo {
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+
+.acerca_de {
+	background-color: #CBC5C8;
+	padding: 14px;
+}
+
+.acerca_de h1 { font-family: Palatino }
+
+.acerca_de .parrafo {
+	text-align:left;
+	margin-left: 20px;
+	background-color: #ADA7AB;
+	padding: 20px;
+}
+
+.acerca_de .parrafo p { 
+	font-family: Georgia, Serif;
+	font-size: 14px;
+}
+
+.acerca_de .parrafo p.indentar { 
+	margin-left: 15px;
+}
+
