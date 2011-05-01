@@ -267,3 +267,8 @@ html {
 	margin-left: 15px;
 }
 
+.acerca_de .parrafo p a{
+	font-weight: bold;
+	text-decoration: underline;
+	color:#3B65D0; 
+}
