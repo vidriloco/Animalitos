@@ -32,10 +32,15 @@ describe AnimalesController do
       assigns(:parametros).should == {"nombre" => 'Lanudo', "perro" => 1, "situacion" => Animal.extraviado}
     end
     
+    it "vuelve a desplegar pagina principal si parametros de busqueda están vacíos" do
+      post :busqueda, :busqueda => {:nombre => '', :situacion => Animal.extraviado}
+      response.should redirect_to(root_path)
+    end
+    
     it "despliega el template index" do
       Animal.stub(:busqueda_paginada) { [@animal] }
       
-      post :busqueda, :busqueda => {}
+      post :busqueda, :busqueda => {:nombre => 'Lanudo', :perro => 1, :situacion => Animal.extraviado}
       response.should render_template("index")
     end
   end

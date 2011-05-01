@@ -2,6 +2,7 @@
 class AnimalesController < ApplicationController
   
   before_filter :authenticate_usuario!, :except => [:index, :show, :busqueda]
+  
   # GET /animales
   # GET /animales.xml
   def index    
@@ -13,10 +14,14 @@ class AnimalesController < ApplicationController
   end
   
   def busqueda
-    @animales = Animal.busqueda_paginada(params[:busqueda], params[:page])
-    @parametros = params[:busqueda]
-    
-    render(:action => 'index')
+    unless Animal.busqueda_valida?(params[:busqueda])
+      redirect_to(root_url)
+    else
+      @animales = Animal.busqueda_paginada(params[:busqueda], params[:page])
+      @parametros = params[:busqueda]
+      
+      render(:action => 'index')
+    end
   end
 
   # GET /animales/1

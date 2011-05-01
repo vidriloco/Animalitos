@@ -43,17 +43,23 @@ class Animal < ActiveRecord::Base
     Animal.paginate(:page => pagina, :conditions => condiciones, :include => :raza, :joins => :raza)
   end
   
-  def aplica_geo(hash)
-    self.coordenadas = Point.from_lon_lat(hash["lon"].to_f, hash["lat"].to_f, 4326)
-    self
-  end
-  
   def self.todos
     { 1 => "Perro", 2 => "Gato" }
   end
   
   def self.situaciones
     { Animal.encontrado => "Encontré a un animalito en la calle", Animal.extraviado => "Mi mascota está perdida" }
+  end
+  
+  def self.busqueda_valida?(hash)
+    !((hash.has_key?(:perro) && hash.has_key?(:gato) ) ||
+      (!hash.has_key?(:perro) && !hash.has_key?(:gato)) || 
+      hash[:nombre].empty?)
+  end
+  
+  def aplica_geo(hash)
+    self.coordenadas = Point.from_lon_lat(hash["lon"].to_f, hash["lat"].to_f, 4326)
+    self
   end
   
   def situacion_humanize

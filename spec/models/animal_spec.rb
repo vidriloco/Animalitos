@@ -56,4 +56,11 @@ describe Animal do
     @animal.save
     @animal.estancia_temporal.should == 0
   end
+  
+  it "verifica los parámetros de la búsqueda" do
+    Animal.busqueda_valida?({:nombre => '', :situacion => Animal.extraviado}).should be_false
+    Animal.busqueda_valida?({:nombre => 'Alguien', :perro => 1, :gato => 1, :situacion => Animal.extraviado}).should be_false
+    Animal.busqueda_valida?({:nombre => 'Alguien', :perro => 1, :situacion => Animal.extraviado}).should be_true
+    
+  end
 end

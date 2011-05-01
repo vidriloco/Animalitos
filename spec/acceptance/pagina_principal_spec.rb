@@ -52,6 +52,12 @@ feature "Pagina Principal" do
 
   describe "Mi mascota está extraviada" do
     
+    scenario "si intento buscar sin dar un nombre de mascota y el tipo de mascota me dejará en la misma página principal" do
+      click_on("Buscar")
+      current_path.should == '/'
+    end
+    
+    
     describe "Si alguien ya la registró como encontrada" do
       
       background do
