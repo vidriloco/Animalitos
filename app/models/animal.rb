@@ -35,10 +35,8 @@ class Animal < ActiveRecord::Base
   end
   
   def self.busqueda_paginada(params, pagina=1)
-    condiciones= {:nombre => params[:nombre], :situacion => params[:situacion]}
-    
-    condiciones[:razas] = { :tipo => 1 } if params[:perro] 
-    condiciones[:razas] = { :tipo => 2 } if params[:gato] 
+    condiciones = ["animales.nombre ILIKE ? AND situacion = ? AND razas.tipo = ?", params[:nombre], params[:situacion]]
+    condiciones << params[:perro] ? 1 : 2
     
     Animal.paginate(:page => pagina, :conditions => condiciones, :include => :raza, :joins => :raza)
   end
