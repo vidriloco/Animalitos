@@ -6,6 +6,8 @@ Factory.define :animal do |t|
   t.estancia_temporal 2
   t.situacion 2
   t.coordenadas Point.from_lon_lat(19.323, 34.223, 4326)
+  t.sexo "M"
+  
 end
 
 Factory.define :animal_sin_coords, :class => Animal do |t|
@@ -14,6 +16,8 @@ Factory.define :animal_sin_coords, :class => Animal do |t|
   t.descripcion "Perrito blanco eléctrico"
   t.estancia_temporal 2
   t.situacion 2
+  t.sexo "M"
+  
 end
 
 Factory.define :pastor_con_foto, :class => Animal do |t|
@@ -24,6 +28,7 @@ Factory.define :pastor_con_foto, :class => Animal do |t|
   t.situacion 1
   t.coordenadas Point.from_lon_lat(19.323, 34.223, 4326)
   t.fotos { |fotos| [fotos.association(:foto_de_frente)] }
+  t.sexo "M"
   
   t.after_build { |animal| animal.pon_foto_principal(animal.fotos.first) }
 end
@@ -36,6 +41,7 @@ Factory.define :akita_con_foto, :class => Animal do |t|
   t.situacion 2
   t.coordenadas Point.from_lon_lat(19.323, -99.223, 4326)
   t.fotos { |fotos| [fotos.association(:foto_de_akita)] }
+  t.sexo "M"
   
   t.after_build { |animal| animal.pon_foto_principal(animal.fotos.first) }
 end
@@ -48,6 +54,7 @@ Factory.define :cooker_con_foto, :class => Animal do |t|
   t.situacion 2
   t.coordenadas Point.from_lon_lat(19.323, -99.223, 4326)
   t.fotos { |fotos| [fotos.association(:foto_de_lanudo)] }
+  t.sexo "M"
   
   t.after_build { |animal| animal.pon_foto_principal(animal.fotos.first) }
 end

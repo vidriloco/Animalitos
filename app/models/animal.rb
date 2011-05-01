@@ -4,7 +4,7 @@ class Animal < ActiveRecord::Base
   belongs_to :usuario
   belongs_to :raza
   
-  validates_presence_of :nombre, :raza, :descripcion, :situacion
+  validates_presence_of :nombre, :raza, :descripcion, :situacion, :sexo
   
   after_save :avisa_registrado
   before_save :verifica_consistencia_extraviado
