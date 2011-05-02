@@ -1,15 +1,25 @@
 <div class="encabezado">
-    <h1><%= despliega_resultado_de_busqueda(@parametros) || "Listado de amigos en apuros" %></h1>
+    <h1>Lista de amigos en apuros</h1>
+    
+    <h2 class="resultados"><%= despliega_resultado_de_busqueda(@parametros) %></h2>
 </div>
+
+<%= render 'fragmentos/busqueda_form' %>
 
 <div id="index-animales">
     <%= render 'animales' %>
 </div>
-
-<% if can?(:manage, Animal) && !@parametros %>
-    <div id="acciones">
-        <%= link_to 'Nuevo Animal', new_animal_path, :class => 'redondo-5 sombra-5' %>
-    </div>
+<% content_for :controles do %>
+    <% if can?(:manage, Animal) && !@parametros %>
+        <%= link_to 'Registrar nuevo', new_animal_path, :class => 'redondo-5 sombra-5' %>
+    <% end %>
+    
+    <%= link_to 'Búsqueda', '', :class => 'redondo-5 sombra-5 boton-busqueda' %>
+    
+    <% unless usuario_signed_in? %>
+        <%= link_to 'Atrás', root_path, :class => 'redondo-5 sombra-5' %>
+    <% end %>
+    
 <% end %>
 
 <br />

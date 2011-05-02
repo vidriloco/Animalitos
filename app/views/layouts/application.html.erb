@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Amigos en Apuros</title>
-  <%= stylesheet_link_tag 'app', 'elastic', 'scaffold' %>
+  <%= stylesheet_link_tag 'app', 'elastic', 'scaffold', 'slimbox2', 'slimbox2-rtl' %>
   <%= javascript_include_tag :defaults, :jquery_exts, :others %>
     
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
@@ -10,36 +10,23 @@
 </head>
 <body>
     
-     <div id="cargando" class="oculto sombra-5">
-        <%= image_tag 'spinner.gif' %>
-        <p>Espere</p>
-     </div>
+     <%= render 'layouts/cargando' %>
+     
      <!-- Begin Header -->
-     <div id="header" class="centrado-global unit on-2 columns">
-        <%= render 'fragmentos/header' %>
-		 </div>
-		 <br/>
-		 <!-- End Header -->
-		 
-		 
-		 <br />
-		 <!-- Begin Navigation -->
-     <div id="navigation" class="unit on-2 columns centrado-global">
-		      <div class="column fixed" style="width:45%">
-		        <div style="width: 100%">&nbsp;</div>
-		      </div>
-		      <div class="column fixed selector" style="width:55%">
-		        <%= render 'fragmentos/selector' %>
-		      </div>
-		 </div>
-		 <!-- End Navigation -->
+     <%= render 'layouts/header' %>
+ 		 <!-- End Header -->
 		 
 		 <!-- Begin Content Column -->
 		 <div id="content" class="centrado-global sombra-25">
        <p id="notice" class="flash centrado"><%= notice %></p>
        <p id="alert" class="flash centrado"><%= alert %></p>
        
-   		 
+       <div class="barra-aux">
+         <div id="acciones">
+            <%= yield :controles %>
+         </div>
+       </div>
+       
    		 <script>
    		    $('#notice').delay(2500).fadeOut('slow');
           $('#alert').delay(2500).fadeOut('slow');

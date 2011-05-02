@@ -54,13 +54,17 @@ p.nombre {
 	font-size: 50px;
 }
 
+#fotos .menu { 
+	background-color: #333;
+}
+
 .bloque {
 	text-align: left;
-	margin: 10px 0 30px 90px;
+	margin: 10px 0 0 90px;
 }
 
 .bloque p { 
-	color: #999999;  
+	color: #2D2D2D;  
 	text-align: left;
 	font-size: 15px
 }
@@ -69,6 +73,10 @@ p.nombre {
 	margin-left: 15px;
 	padding: 10px;
 	width: 85%;
+}
+
+.bloque div p {
+	font-size: 13px;
 }
 
 .bloque-bio { width: 300px }
@@ -100,9 +108,14 @@ p.nombre {
 	display:none;
 }
 
-#formulario-foto h2 {
-	margin-left: 30px;
+#formulario-foto .field {
+	margin: 5px 5px 5px 40px;
 }
+
+.menu-acciones .mensaje #notice { color:#CAF5D5 }
+
+#formulario-foto { background-color: #DADADA }
+
 
 .principal .control {
 	float: right;
@@ -283,7 +296,7 @@ h1.bienvenida-complemento {
 
 .barra-aux {
 	height: 50px;
-	background-color: #454545;
+	background-color: #37648F;
 }
 
 .barra-aux #acciones  {
@@ -293,4 +306,19 @@ h1.bienvenida-complemento {
 	float: right;
 }
 
-.barra-aux #acciones a:hover { background-color:#5782AE }
+.barra-aux #acciones a:hover { background-color:#997A4A }
+.barra-aux #acciones a.boton-busqueda:hover { background-color:#F9DA4A; color: black; }
+
+.menu-acciones { background-color: #454545 }
+
+.menu-acciones .mensaje { 
+	color: white;
+	font-weight: bold;
+}
+
+.menu-acciones .nueva-foto { display: none; }
+
+.extraviado-nombre { 
+	background-color: #FFF798;
+	font-style: italic;
+}

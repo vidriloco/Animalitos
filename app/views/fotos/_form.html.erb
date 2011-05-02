@@ -1,31 +1,24 @@
-<div class="content on-2 columns" style="width: 100%">
-    <div class="column fixed" style="width: 70%; text-align: left;">
-        <h2>Nueva Foto</h2>
-    </div>
-</div>
-
-<%= form_for([@animal, Foto.new], :html => {:multipart => true}, :remote => true)  do |f| %>
-
+<%= form_for([@animal, Foto.new], :html => {:multipart => true}, :remote => true)  do |f| %>   
     <div class="errors"></div>
 
-        
-    <div class="field">
-        <%= f.label :descripcion, 'Descripción' -%><br/ ><br />
-        <%= f.text_field 'descripcion', :size => 100 -%>
-    </div>
-    
     <div class="unit on-2 columns">
-        <div class="field column fixed" style="width: 60%">
-            <%= label_tag :archivo, 'Archivo' -%><br/ ><br/ >
-            <%= file_field_tag :archivo -%>
+        <div class="column fixed" style="width: 70%">
+            <%= f.label :descripcion, 'Descripción' -%><br/ ><br />
+            <%= f.text_field 'descripcion', :size => 60 -%>
         </div>
-        <div class="field column fixed">
+        
+        <div class="column fixed">
             <label>¿Foto principal?</label><br/><br/>
             <%= select_tag 'principal', options_for_select({"Si" => true, "No" => false}, false) -%>
         </div>
     </div>
     
-    <div id="acciones">
+    <div class="field">
+        <%= label_tag :archivo, 'Archivo' -%><br/ ><br/ >
+        <%= file_field_tag :archivo -%>
+    </div>
+        
+    <div id="acciones" style="text-align: center">
         <%= f.submit 'Subir', :class => "submit redondo-3" -%>
         <%= link_to 'Cancelar', '#', :class => "cancelar redondo-3 sombra-5" -%>
     </div>
@@ -37,5 +30,8 @@
        $('#vacio').fadeIn();
        $('#formulario-foto .errors').empty();
 	   $('#new_foto').resetForm();
+	   $('#acciones .mensaje .nueva-foto').hide();
+	   $('#acciones .mensaje .no-fotos').fadeIn();
+	   return false;
     });
 </script>

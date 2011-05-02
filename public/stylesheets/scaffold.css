@@ -97,17 +97,19 @@ div.field, div.actions {
 }
 
 #content { 
+ margin-top: 80px;
  color: #333;
  background: #F2F2E6;
- padding: 10px;
+ padding: 0 0 10px 0;
 }
+
+hr { width: 80% }
 
 #footer { 
  clear: both;
  color: #999;
  background: #202020;
- padding: 10px;	
-	height: 30px;
+ height: 30px;
 }
 
 .sombra-25 {
@@ -158,6 +160,12 @@ div.field, div.actions {
 	-webkit-border-radius: 3px;
 }
 
+.redondo-10-d {
+	border-radius: 0 10px 0 0;
+	-webkit-border-radius: 0 10px 0 0; 
+	-moz-border-radius: 0 10px 0 0;
+}
+
 li {
 	display: inline;
 	list-style: none;
@@ -176,7 +184,13 @@ li {
 
 .encabezado h1 { 
 	font-family: helvetica; 
-	font-size: 30px;
+	font-size: 28px;
+}
+
+.encabezado h2 {
+	text-align: left;
+	margin-left: 50px;
+	color: black;
 }
 
 input, textarea, select {  
@@ -271,4 +285,38 @@ label {
 	color: white;
 	font-size: 20px;
 	font-weight: bold;
+}
+
+.frente-header { 
+	width: 100%; 
+	background-color: black;
+	height: 100px;
+} 
+
+.frente-header, #area-slider .pager { position: relative }
+#area-pager, .frente-header .menu { position: absolute }
+
+.frente-header .menu {
+	top: 35px;
+	right: 30px;
+	width: 250px;
+	padding: 10px;
+	background-color: #1B1B1B;
+	font-size: 11px;
+}
+
+.frente-header .menu a {
+	margin-right: 8px;
+	color: white;
+	font-weight: bold;
+}
+
+.frente-header .menu a:hover {
+	color:#DFB07D;
+}
+
+.logo {
+	position: absolute;
+	left: 10px;
+	top: 10px;
 }

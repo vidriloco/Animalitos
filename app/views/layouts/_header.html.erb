@@ -1,0 +1,15 @@
+<div class="frente-header">
+
+     <%= image_tag('logo.png', :class => 'logo') %>
+
+     <div class="menu redondo-5 sombreado">
+       <% if usuario_signed_in? %>
+         <%= link_to 'Perfil', '/perfil', :class => 'redondo-5 perfil' %>
+         <%= link_to 'Cerrar Sesión', destroy_usuario_session_url %>
+       <% else %>
+         <%= link_to 'Registro', new_usuario_registration_path %>
+         <%= link_to 'Iniciar Sesión', new_usuario_session_path %>
+       <% end %>
+       <%= link_to 'Acerca de', acerca_de_path %>
+     </div>
+</div>

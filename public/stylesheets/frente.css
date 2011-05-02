@@ -1,52 +1,6 @@
 html { 
 	background-color: black; 
-	overflow-x: hidden; 
-}
-
-.frente-header { 
-	width: 100%; 
-	background-color: black;
-	height: 100px;
-} 
-
-.frente-header, #area-slider .pager { position: relative }
-#area-pager, .frente-header .menu { position: absolute }
-
-.frente-header .menu {
-	top: 35px;
-	right: 30px;
-	width: 250px;
-	padding: 10px;
-	background-color: #1B1B1B;
-	font-size: 11px;
-}
-
-.frente-header .menu a {
-	margin-right: 8px;
-	color: white;
-	font-weight: bold;
-}
-
-.frente-header .menu a:hover {
-	color:#DFB07D;
-}
-
-.redondo-5 {
-	border-radius: 5px;
-	-webkit-border-radius: 5px; 
-	-moz-border-radius: 5px;
-}
-
-.redondo-10 {
-	border-radius: 10px;
-	-webkit-border-radius: 10px; 
-	-moz-border-radius: 10px;
-}
-
-.redondo-10-d {
-	border-radius: 0 10px 0 0;
-	-webkit-border-radius: 0 10px 0 0; 
-	-moz-border-radius: 0 10px 0 0;
+	overflow: hidden; 
 }
 
 #area-pager {
@@ -133,6 +87,8 @@ html {
 	left: 0;
 	width: 370px;
 	max-width: 370px;
+	height: 100%;
+	max-height:100%;
 	padding: 10px 10px 0 0;
 }
 
@@ -199,11 +155,10 @@ html {
 .encontrada-adopcion {
 	background-color:  none;
 	position: absolute;
-	top: 513px;
+	top: 510px;
 	left: 30%;
 	width: 900px;
 	max-width: 900px;
-	overflow: none;
 }
 
 .encontrada-adopcion div .accion:hover { 
@@ -215,7 +170,7 @@ html {
 
 .encontrada-adopcion div p.caccion { margin-top: 37px }
 .encontrada-adopcion div .accion {
-	font-size: 24px;
+	font-size: 20px;
 	border: 2px solid #E2E2E2;
 	padding: 10px 20px;
 	background: rgba(35, 83, 153, 0.5);
@@ -236,12 +191,6 @@ html {
 	-moz-box-shadow: 0 0 5px #888;
 	-webkit-box-shadow: 0 0 5px#888;
 	box-shadow: 0 0 5px #888;
-}
-
-.logo {
-	position: absolute;
-	left: 10px;
-	top: 10px;
 }
 
 .acerca_de {

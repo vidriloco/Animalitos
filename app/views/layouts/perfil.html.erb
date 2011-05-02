@@ -7,15 +7,10 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-     <div id="cargando" class="oculto sombra-5">
-         <%= image_tag 'spinner.gif' %>
-         <p>Espere</p>
-      </div>
-      
+     <%= render 'layouts/cargando' %>
+
      <!-- Begin Header -->
-     <div id="header" class="centrado-global unit on-2 columns">
-        <%= render 'fragmentos/header' %>
-		 </div>
+     <%= render 'layouts/header' %>
 		 <!-- End Header -->
 		 <br/>
 		 

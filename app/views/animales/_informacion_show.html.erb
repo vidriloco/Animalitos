@@ -5,15 +5,14 @@
 <p>
   <b>Descripción</b>
 </p>
-<div class="sombra-5"><%= @animal.descripcion %></div>
+<div><p><%= @animal.descripcion %></p></div>
 
-<br/ >
 <p>
   <b><%= ubicacion_y_fecha_animalito(@animal) %></i> en</b>
 </p>
 <script>
       setAddressFromOn(new google.maps.LatLng(<%= @animal.coordenadas.lat %>, 
                                               <%= @animal.coordenadas.lon %>),
-                                              "direccion");
+                                              "direccion p");
 </script>
-<div id="direccion" class="sombra-5"></div>
+<div id="direccion"><p></p></div>

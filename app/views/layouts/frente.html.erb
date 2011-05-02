@@ -10,22 +10,10 @@
   
 </head>
 <body>
-     <div id="cargando" class="oculto sombra-5">
-         <%= image_tag 'spinner.gif' %>
-         <p>Espere</p>
-      </div>
+     <%= render 'layouts/cargando' %>
       
      <!-- Begin Header -->
-     <div class="frente-header">
-        
-          <%= image_tag('logo.png', :class => 'logo') %>
-       
-          <div class="menu redondo-5 sombreado">
-            <%= link_to 'Registro', new_usuario_registration_path %>
-            <%= link_to 'Iniciar Sesión', new_usuario_session_path %>
-            <%= link_to 'Acerca de', acerca_de_path %>
-          </div>
-		 </div>
+     <%= render 'layouts/header' %>
 		 <!-- End Header -->
 		 
 
