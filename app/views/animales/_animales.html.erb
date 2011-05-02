@@ -18,8 +18,8 @@
 <% else %>
     <div class="centrado">
         <% if @parametros %>
-            <p>Por ahora no hay registrado ningún <%= mascota_tipo(@parametros, :s) %> con ese nombre</p>
-            <% if @parametros["situacion"] == "2" %>
+            <p>Lo siento. No se encontraron animalitos con los datos proporcionados</p>
+            <% if !@parametros["extraviado"].blank? %>
                 <p>Te invitamos a registrar tú mascota como extraviada</p>
                 <br/>
                 <div id="acciones">

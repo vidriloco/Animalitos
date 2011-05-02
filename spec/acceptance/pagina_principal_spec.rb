@@ -7,10 +7,8 @@ feature "Pagina Principal" do
     visit '/'
     @usuario = Factory.build(:usuario)
     @usuario.confirm!
-    Factory(:beagle)
   end
   
-
   describe "Encontré a una mascota", :js => true do
     
     scenario "me manda a iniciar sesión si no estoy logeado antes de poder registrarla" do
@@ -19,6 +17,7 @@ feature "Pagina Principal" do
     end
         
     scenario "puedo registrarla desde la página principal si estoy logeado" do
+      Factory(:beagle)
       login_as @usuario
       
       click_on('Reporta')
@@ -65,7 +64,7 @@ feature "Pagina Principal" do
       
       background do
         @perrito = Factory(:animal)
-        @perrito_dos = Factory(:animal, :raza_id => @perrito.raza.id)
+        Factory(:animal, :raza => @perrito.raza)
       end
       
       scenario "debo verla listada en los resultados de búsqueda al buscarla desde la página principal" do
@@ -79,12 +78,10 @@ feature "Pagina Principal" do
         end
         
         fill_in("busqueda_nombre", :with => "Capitán")
-        check("busqueda_perro")
-        
         click_on("Buscar")
         
         current_path.should == '/busqueda'
-        page.should have_content('Resultados de perritos extraviados con nombre Capitán')
+        page.should have_content('Resultados de la búsqueda')
         page.should have_content('Capitán')
         page.should have_content('Siendo buscado')
         click_link('Siguiente')
@@ -97,14 +94,13 @@ feature "Pagina Principal" do
         login_as @usuario
                 
         fill_in("busqueda_nombre", :with => "Capitán")
-        check("busqueda_perro")
         
         click_on('Buscar')
         
         current_path.should == '/busqueda'
         
-        page.should have_content('Resultados de perritos extraviados con nombre Capitán')
-        page.should have_content('Por ahora no hay registrado ningún perrito con ese nombre')
+        page.should have_content('Resultados de la búsqueda')
+        page.should have_content('Lo siento. No se encontraron animalitos con los datos proporcionados')
         page.should have_content('Te invitamos a registrar tú mascota como extraviada')
         
         click_on('Registrar')
@@ -114,7 +110,6 @@ feature "Pagina Principal" do
       
       scenario "me manda a iniciar sesión si no estoy logeado antes de poder registrarla después de haberla buscado y no encontrado" do
         fill_in("busqueda_nombre", :with => "Capitán")
-        check("busqueda_perro")
         
         click_on('Buscar')
         
@@ -147,8 +142,7 @@ feature "Pagina Principal" do
       page.should have_content('¿Buscas una mascota?')
       page.should have_content('¿Encontraste un animalito en la calle?')
       find_field('busqueda_nombre')
-      find_field('busqueda_perro')
-      find_field('busqueda_gato')
+      find_field('busqueda_raza')
       find_button('Buscar')
       
       find_link('Encuentra')
@@ -187,13 +181,57 @@ feature "Pagina Principal" do
       current_path.should == acerca_de_path
     end
   end
-  
+
   describe "Quiero una mascota" do
     scenario "al dar click en el botón para encontrar mascotas puedo seleccionar una mascota de acuerdo a diferentes parámetros" do
       click_on('Encuentra')
       
       current_path.should == '/animales'
     end
+    
+    scenario "debo ver un conjuto de campos para poder realizar una busqueda avanzada", :js => true do
+      click_on('Encuentra')
+      
+      click_on('Búsqueda')
+      page.should have_content('Buscar amigos en apuros que tengan:')
+      page.should have_field('busqueda_nombre')
+      page.should have_field('busqueda_raza')
+      page.should have_field('busqueda_cruza')
+      page.should have_field('busqueda_sexo')
+      page.should have_field('busqueda_extraviado')
+      page.should have_field('busqueda_adopcion')
+      
+      find_button('Buscar')
+    end   
+    
+    scenario "al hacer una busqueda puede ser que no es encuentren resultados", :js => true do
+      click_on('Encuentra')
+      
+      click_on('Búsqueda')
+      
+      fill_in('busqueda_nombre', :with => 'Gregorio')
+      
+      click_on('Buscar')
+      
+      page.should have_content('Lo siento. No se encontraron animalitos con los datos proporcionados')
+    end
+    
+    scenario "al hacer una busqueda puede ser también que se encuentren resultados", :js => true do
+      @perrito = Factory(:pastor_con_foto)
+      
+      visit('/animales')
+      
+      click_on('Búsqueda')
+      fill_in('busqueda_nombre', :with => 'Laika')
+      check('busqueda_adopcion')
+      select('Pastor Alemán', :from => 'busqueda_raza')
+      
+      click_on('Buscar')
+      
+      page.should have_content('Laika')
+    end
+     
+     
   end
   
 end

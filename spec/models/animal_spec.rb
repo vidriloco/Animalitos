@@ -4,14 +4,14 @@ require 'spec_helper'
 describe Animal do
   
   before(:each) do
-    @animal = Factory(:animal, :sexo => "M")
+    @animal = Factory(:animal, :sexo => "M", :nombre => "Lanudo")
   end
   
   it "debe generar el mensaje para twitter correcto" do
     @animal.situacion=2
-    @animal.mensaje_tweet.should == "Perrito labrador extraviado."
+    @animal.mensaje_tweet.should == "Perrito beagle extraviado."
     @animal.situacion=1
-    @animal.mensaje_tweet.should == "Perrito labrador encontrado."
+    @animal.mensaje_tweet.should == "Perrito beagle encontrado."
   end
   
   it "debe avisar en twitter" do
@@ -43,11 +43,11 @@ describe Animal do
   end
   
   it "devuelve las mascotas que cumplen con los parametros de busqueda" do
-    Animal.busqueda_paginada({:nombre => "Capitán", :situacion => 2, :perro => 1}).should == [@animal]
+    Animal.busqueda_paginada({:nombre => "Lanudo", :situacion => 2, :perro => 1}).should == [@animal]
   end
   
   it "devuelve las mascotas que cumplen con los parametros de busqueda" do
-    Animal.busqueda_paginada({:nombre => "Capitán", :situacion => 2, :perro => 1}, 1).should == [@animal]
+    Animal.busqueda_paginada({:nombre => "Lanudo", :situacion => 2, :perro => 1}, 1).should == [@animal]
   end
   
   it "guarda un nuevo animal con estancia temporal cero si su situacion es extraviado" do
@@ -59,11 +59,53 @@ describe Animal do
   
   it "verifica los parámetros de la búsqueda" do
     Animal.busqueda_valida?({:nombre => '', :situacion => Animal.extraviado}).should be_false
-    Animal.busqueda_valida?({:nombre => 'Alguien', :perro => 1, :gato => 1, :situacion => Animal.extraviado}).should be_false
-    Animal.busqueda_valida?({:nombre => 'Alguien', :perro => 1, :situacion => Animal.extraviado}).should be_true
+    Animal.busqueda_valida?({:nombre => '', :situacion => Animal.extraviado, :raza => 2}).should be_false
+    Animal.busqueda_valida?({:nombre => 'Alguien', :situacion => Animal.extraviado, :raza => 2}).should be_true
+    Animal.busqueda_valida?({:ext => 1}).should be_true
   end
   
   it "devuelve los atributos básicos en un hash" do
     @animal.atributos_basicos.should == {"sexo" => "M", "perro" => "1"}
+  end
+  
+  describe "habiendo un animal adicional" do
+  
+    before(:each) do
+      @gato=Factory(:animal_gato, :nombre => "Lanudo")
+    end
+  
+    it "devuelve las mascotas que cumplen con tener un nombre dado y ser cruza" do
+      Animal.busqueda_paginada({:nombre => "Lanudo"}).should == [@animal, @gato]
+    end
+  
+    it "devuelve las mascotas que cumplen con estar extraviadas dado" do
+      Animal.busqueda_paginada({:extraviado => "on"}).should == [@animal]
+    end
+    
+    it "devuelve las mascotas que cumplen con ser machos cruza y aquellas que son hembras" do
+      Animal.busqueda_paginada({:sexo => "M", :cruza => "on"}).should == [@gato]
+      Animal.busqueda_paginada({:sexo => "H"}).should == []
+    end
+    
+    it "devuelve las mascotas que cumplen con ser una cruza" do
+      Animal.busqueda_paginada({:cruza => "on"}).should == [@gato]
+    end
+  
+    it "devuelve las mascotas que tienen una raza específica" do
+      Animal.busqueda_paginada({:raza => @animal.raza.tipo}).should == [@animal]
+      Animal.busqueda_paginada({:raza => @gato.raza.tipo, :cruza => "on"}).should == [@gato]
+    end
+  
+    it "devuelve las mascotas que tienen un nombre, están extraviados y se conoce su raza" do
+      Animal.busqueda_paginada({:nombre => "Lanudo", 
+                                          :extraviado => "on", 
+                                          :raza => @animal.raza.id}).should == [@animal]
+    end
+    
+    it "devuelve las mascotas que tienen un nombre, están en adopción y se conoce su raza" do
+      Animal.busqueda_paginada({:nombre => "Lanudo", 
+                                          :adopcion => "on", 
+                                          :raza => @gato.raza.id}).should == [@gato]
+    end
   end
 end

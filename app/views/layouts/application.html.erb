@@ -18,8 +18,7 @@
 		 
 		 <!-- Begin Content Column -->
 		 <div id="content" class="centrado-global sombra-25">
-       <p id="notice" class="flash centrado"><%= notice %></p>
-       <p id="alert" class="flash centrado"><%= alert %></p>
+       
        
        <div class="barra-aux">
          <div id="acciones">
@@ -27,10 +26,13 @@
          </div>
        </div>
        
+       <p id="notice" class="flash centrado"><%= notice %></p>
+       <p id="alert" class="flash centrado"><%= alert %></p>
+       
    		 <script>
-   		    $('#notice').delay(2500).fadeOut('slow');
-          $('#alert').delay(2500).fadeOut('slow');
-   		 </script>
+     		    $('#notice').delay(2500).fadeOut('slow');
+            $('#alert').delay(2500).fadeOut('slow');
+     	 </script>
        <%= yield %>
 		 
 		 </div>

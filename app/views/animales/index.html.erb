@@ -1,10 +1,15 @@
-<div class="encabezado">
-    <h1>Lista de amigos en apuros</h1>
-    
-    <h2 class="resultados"><%= despliega_resultado_de_busqueda(@parametros) %></h2>
+<br/>
+<div class="busqueda redondo-5 centrado sombra-5 oculto">
+    <%= render 'fragmentos/busqueda_form' %>
 </div>
 
-<%= render 'fragmentos/busqueda_form' %>
+<div class="encabezado">
+    <% if @parametros %>
+        <h1>Resultados de la búsqueda</h1>
+    <% else %>
+        <h1>Lista de amigos en apuros</h1>
+    <% end %>
+</div>
 
 <div id="index-animales">
     <%= render 'animales' %>
@@ -14,10 +19,10 @@
         <%= link_to 'Registrar nuevo', new_animal_path, :class => 'redondo-5 sombra-5' %>
     <% end %>
     
-    <%= link_to 'Búsqueda', '', :class => 'redondo-5 sombra-5 boton-busqueda' %>
+    <%= link_to 'Búsqueda', '', :class => 'redondo-5 sombra-5 boton-busqueda', :id => 'mostrar_busqueda' %>
     
     <% unless usuario_signed_in? %>
-        <%= link_to 'Atrás', root_path, :class => 'redondo-5 sombra-5' %>
+        <%= link_to 'Página Principal', root_path, :class => 'redondo-5 sombra-5' %>
     <% end %>
     
 <% end %>

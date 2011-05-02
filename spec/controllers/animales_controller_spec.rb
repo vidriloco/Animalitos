@@ -11,25 +11,26 @@ describe AnimalesController do
     
     before(:each) do
       @animal = Factory.stub(:animal, :nombre => 'Lanudo', :situacion => Animal.extraviado)
+      @params = {"nombre" => 'Lanudo', "raza" => @animal.raza.tipo, "extraviado" => "on"}
     end
     
     it "busca perros y los asigna a @animales con paginacion" do
-      Animal.should_receive(:busqueda_paginada).with({"nombre" => 'Lanudo', "perro" => 1, "situacion" => Animal.extraviado}, 1) { [@animal] }
+      Animal.should_receive(:busqueda_paginada).with(@params, 1) { [@animal] }
       
-      post :busqueda, :busqueda => {:nombre => 'Lanudo', :perro => 1, :situacion => Animal.extraviado}, :page => 1
+      post :busqueda, :busqueda => {:nombre => 'Lanudo', :raza => @animal.raza.tipo, :extraviado => "on"}, :page => 1
       assigns(:animales).should == [@animal]
     end
     
     it "busca perros y los asigna a @animales desde busqueda" do
-      Animal.should_receive(:busqueda_paginada).with({"nombre" => 'Lanudo', "perro" => 1, "situacion" => Animal.extraviado}, nil) { [@animal] }
+      Animal.should_receive(:busqueda_paginada).with(@params, nil) { [@animal] }
       
-      post :busqueda, :busqueda => {:nombre => 'Lanudo', :perro => 1, :situacion => Animal.extraviado}
+      post :busqueda, :busqueda => {:nombre => 'Lanudo', :raza => @animal.raza.tipo, :extraviado => "on"}
       assigns(:animales).should == [@animal]
     end
     
     it "asigna los parametros de busqueda a @parametros" do
-      post :busqueda, :busqueda => {:nombre => 'Lanudo', :perro => 1, :situacion => Animal.extraviado}
-      assigns(:parametros).should == {"nombre" => 'Lanudo', "perro" => 1, "situacion" => Animal.extraviado}
+      post :busqueda, :busqueda => @params
+      assigns(:parametros).should == {"nombre" => 'Lanudo', "raza" => @animal.raza.tipo, "extraviado" => "on"}
     end
     
     it "vuelve a desplegar pagina principal si parametros de busqueda están vacíos" do
@@ -37,10 +38,36 @@ describe AnimalesController do
       response.should redirect_to(root_path)
     end
     
+    it "despliega el template index si la busqueda es extendida" do
+      post :busqueda, :busqueda => @params.merge(:ext => 1)
+      response.should render_template("index")
+    end
+    
     it "despliega el template index" do
       Animal.stub(:busqueda_paginada) { [@animal] }
       
       post :busqueda, :busqueda => {:nombre => 'Lanudo', :perro => 1, :situacion => Animal.extraviado}
+      response.should render_template("index")
+    end
+  end
+  
+  describe "GET index" do
+    before(:each) do
+      @animal = Factory.stub(:animal, :nombre => 'Lanudo', :situacion => Animal.extraviado)
+      @params = {"nombre" => 'Lanudo', "raza" => 3, "extraviado" => "on", "sexo" => "H"}
+    end
+    
+    it "busca perros y los asigna a @animales con paginacion" do
+      Animal.should_receive(:paginate).with(:page => 1) { [@animal] }
+      
+      get :index, :page => 1
+      assigns(:animales).should == [@animal]
+    end
+    
+    it "despliega el template index" do
+      Animal.stub(:paginate) { [@animal] }
+      
+      get :index
       response.should render_template("index")
     end
   end

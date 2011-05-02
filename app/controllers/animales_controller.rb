@@ -6,7 +6,7 @@ class AnimalesController < ApplicationController
   # GET /animales
   # GET /animales.xml
   def index    
-    @animales = Animal.pagina_y_encuentra(params)
+    @animales = Animal.paginate(:page => params[:page])
     respond_to do |format|
       format.html
       format.js # index.js.erb   

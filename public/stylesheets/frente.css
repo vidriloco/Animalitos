@@ -83,7 +83,7 @@ html {
 .externa {
 	background-color: rgba(1,1,1, 0.6);
 	position: absolute;
-	top: 390px;
+	top: 370px;
 	left: 0;
 	width: 370px;
 	max-width: 370px;
@@ -98,10 +98,10 @@ html {
 	padding: 3px;
 }
 
-.extraviada .formulario label {
-	font-size: 12px;
-	font-weight: bold;
-	color: #BDDBE5;
+.extraviada .formulario input#busqueda_nombre:hover {
+	-moz-box-shadow: inset 0 0 5px 5px #AFADB1;
+	-webkit-box-shadow: inset 0 0 5px 5px #AFADB1;
+	box-shadow: inset 0 0 5px 5px #AFADB1;
 }
 
 .extraviada .formulario input#busqueda_submit {
@@ -111,37 +111,6 @@ html {
 	border: 1px solid #8DBEDC;
 	font-weight: bold;
 	font-size: 12px;
-}
-
-.extraviada .formulario input#busqueda_nombre {
-	background: rgba(255,255,255,0.1);
-	border: none;
-}
-
-.extraviada .formulario input#busqueda_nombre:hover {
-	-moz-box-shadow: inset 0 0 5px 5px #AFADB1;
-	-webkit-box-shadow: inset 0 0 5px 5px #AFADB1;
-	box-shadow: inset 0 0 5px 5px #AFADB1;
-}
-
-.extraviada .formulario div,
-.extraviada .formulario input#busqueda_nombre,
-.extraviada .formulario input#busqueda_submit {
-	margin-top: 10px;
-}
-.extraviada .formulario input#busqueda_submit:hover {
-	-moz-box-shadow: 0 0 5px white;
-	-webkit-box-shadow: 0 0 5px white;
-	box-shadow: 0 0 5px white;
-}
-
-.extraviada .formulario {
-	margin-left: auto;
-	margin-right: auto;
-	padding: 20px 20px 10px 20px;
-	width: 270px;
-	background: rgba(255,255,255,0.05);
-	text-align:left;
 }
 
 .extraviada p, .encontrada-adopcion p { 

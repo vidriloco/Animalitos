@@ -1,0 +1,57 @@
+<h3>Buscar amigos en apuros que tengan:</h3>
+
+<%= form_tag busqueda_url, :remote => true do %>
+
+    <%= hidden_field_tag 'busqueda[ext]', 1 %>
+    <div class="formulario redondo-10">
+        <span>
+            <%= label_tag 'Nombre'%>
+            <%= text_field_tag 'busqueda[nombre]', '', :size => 35, :class => 'redondo-5' %>
+        </span>
+        <span>
+            <%= label_tag 'Raza' %>
+            <%= select_tag 'busqueda[raza]', grouped_options_for_select(Raza.agrupadas), 
+                        {:include_blank => '', :class => 'redondo-5' } %>
+        </span>
+        <br/><br/>
+        <span>
+            <%= label_tag :busqueda_cruza, '¿Es cruza?' %>
+            <%= check_box_tag 'busqueda[cruza]', nil, false,  :class => 'campo sombra-interna-5' %>
+        </span>
+        <span>
+            <%= label_tag 'Sexo' %>
+            <%= select_tag 'busqueda[sexo]', options_for_select(Animal.sexos.invert), 
+                        {:include_blank => '', :class => 'redondo-5'}%>
+        </span>
+        <span>
+            <%= label_tag 'Extraviado' %>
+            <%= check_box_tag 'busqueda[extraviado]', nil, false, :class => 'campo sombra-interna-5' %>
+        </span>
+        <span>
+            <%= label_tag :busqueda_adopcion, 'En Adopción' %>
+            <%= check_box_tag 'busqueda[adopcion]', nil, false, :class => 'campo sombra-interna-5' %>
+        </span>
+    </div>
+    <br/>
+    <span id="acciones">
+        <%= submit_tag 'Buscar', :id => 'busqueda_submit', :class => 'submit redondo-3' %>   
+        <%= link_to 'Cancelar', '#', :id => 'esconder_busqueda', :class => 'redondo-5 sombra-5' %>
+    </span>
+    
+    <script>
+        $('#esconder_busqueda').bind('click', function() {
+    		$('.busqueda').fadeOut();
+            return false;
+    	});
+    	
+    	$('#mostrar_busqueda').bind('click', function() {
+    		$('.busqueda').fadeIn();
+            return false;
+    	});
+    	
+    	$('#busqueda_submit').bind('click', function() {
+    		$('.busqueda').hide();
+    	});
+    </script>
+    <br/><br/>
+<% end %>

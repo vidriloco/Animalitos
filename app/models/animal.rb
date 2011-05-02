@@ -17,29 +17,13 @@ class Animal < ActiveRecord::Base
   cattr_reader :extraviado
   @@extraviado = 2
   
-  
-  def self.pagina_y_encuentra(params)
-    conds = {:en_casa => false}
-    included = {}
+  # @@DEPRECATED
+  #def self.busqueda_paginada(params, pagina=1)
+  #  condiciones = ["animales.nombre ILIKE ? AND situacion = ? AND razas.tipo = ?", params[:nombre], params[:situacion]]
+  #  condiciones << params[:perro] ? 1 : 2
     
-    if params.key?(:en_casa)
-      conds[:en_casa] = params[:en_casa] == "1" ? true : false
-    end
-    
-    if params.key?(:raza) && params[:raza] != "0"
-      conds[:raza_id] = params[:raza] 
-      included = {:include => :raza, :joins => :raza}
-    end
-    
-    Animal.paginate(:all, {:conditions => conds, :page => params[:page]}.merge(included))
-  end
-  
-  def self.busqueda_paginada(params, pagina=1)
-    condiciones = ["animales.nombre ILIKE ? AND situacion = ? AND razas.tipo = ?", params[:nombre], params[:situacion]]
-    condiciones << params[:perro] ? 1 : 2
-    
-    Animal.paginate(:page => pagina, :conditions => condiciones, :include => :raza, :joins => :raza)
-  end
+  #  Animal.paginate(:page => pagina, :conditions => condiciones, :include => :raza, :joins => :raza)
+  #end
   
   def self.todos
     { 1 => "Perro", 2 => "Gato" }
@@ -51,12 +35,6 @@ class Animal < ActiveRecord::Base
   
   def self.situaciones
     { Animal.encontrado => "Encontré a un animalito en la calle", Animal.extraviado => "Mi mascota está perdida" }
-  end
-  
-  def self.busqueda_valida?(hash)
-    !((hash.has_key?(:perro) && hash.has_key?(:gato) ) ||
-      (!hash.has_key?(:perro) && !hash.has_key?(:gato)) || 
-      hash[:nombre].empty?)
   end
   
   def atributos_basicos
@@ -134,5 +112,47 @@ class Animal < ActiveRecord::Base
     rescue
       # doble tweet 
     end
+  end
+  
+  def self.busqueda_valida?(hash)
+    hash.has_key?(:ext) || !hash[:nombre].empty?
+  end
+  
+  def self.busqueda_paginada(params, pagina=1)
+    condiciones = [""]
+    extra = {}
+    
+    unless params[:nombre].blank?
+      condiciones[0] += "animales.nombre ILIKE ? AND "
+      condiciones << params[:nombre]
+    end
+    
+    if !params[:extraviado].blank? && !params[:adopcion].blank?
+      condiciones[0] += "animales.situacion IN (1,2) AND "
+    elsif !params[:extraviado].blank? || !params[:adopcion].blank?
+      condiciones[0] += "animales.situacion = #{Animal.extraviado} AND " unless params[:extraviado].blank?
+      condiciones[0] += "animales.situacion = #{Animal.encontrado} AND " unless params[:adopcion].blank?
+    end
+    
+    unless params[:sexo].blank?
+      condiciones[0] += "animales.sexo = ? AND "
+      condiciones << params[:sexo]
+    end
+    
+    unless params[:cruza].blank?
+      condiciones[0] += "animales.cruza = 't' AND "
+    #else
+    #  condiciones[0] += "animales.cruza = 'f' AND "
+    end
+    
+    unless params[:raza].blank?
+      condiciones[0] += "razas.id = ? AND "
+      condiciones << params[:raza]
+      extra.merge!(:include => :raza, :joins => :raza)
+    end
+    
+    # Eliminar última condición AND del query
+    condiciones[0]=condiciones.first[0..-6]
+    Animal.paginate(extra.merge(:page => pagina, :conditions => condiciones))
   end
 end
