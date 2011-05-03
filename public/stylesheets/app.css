@@ -29,8 +29,8 @@ div.centrado { margin-left: auto; margin-right: auto }
 
 #header .controles li a:hover { font-style: italic }
 
-#acciones form, #acciones input { display: inline-block }
-#acciones a, #acciones input {
+#acciones form, #acciones input.caso { display: inline-block }
+#acciones a, #acciones input.caso {
 	background-color:black;
 	color: white;
 	margin-left: 10px;
@@ -348,7 +348,12 @@ h1.bienvenida-complemento {
 	width: 70%;
 }
 .busqueda .formulario span {
-	margin-right: 67px;
+	margin-right: 23px;
+}
+
+.busqueda .formulario span.similar { 
+	background-color:#444;
+	padding: 8px;
 }
 
 .busqueda #acciones {
@@ -357,4 +362,4 @@ h1.bienvenida-complemento {
 
 .busqueda #acciones a:hover { background-color: #A9382D }
 
-#acciones input.cerrar-caso:hover { background-color: white; color: black; }
+#acciones input.caso:hover { background-color: white; color: black; }

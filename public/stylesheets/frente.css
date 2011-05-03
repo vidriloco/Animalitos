@@ -1,6 +1,6 @@
 html { 
 	background-color: black; 
-	overflow: hidden; 
+	overflow-x: hidden; 
 }
 
 #area-pager {

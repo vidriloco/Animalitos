@@ -23,13 +23,16 @@
             <%= select_tag 'busqueda[sexo]', options_for_select(Animal.sexos.invert), 
                         {:include_blank => '', :class => 'redondo-5'}%>
         </span>
-        <span>
+        <span class="similar redondo-5">
             <%= label_tag 'Extraviado' %>
             <%= check_box_tag 'busqueda[extraviado]', nil, false, :class => 'campo sombra-interna-5' %>
-        </span>
-        <span>
+            &nbsp;
             <%= label_tag :busqueda_adopcion, 'En Adopción' %>
             <%= check_box_tag 'busqueda[adopcion]', nil, false, :class => 'campo sombra-interna-5' %>
+        </span>
+        <span>
+            <%= label_tag :busqueda_caso_cerrado, '¿Excluir casos cerrados?' %>
+            <%= check_box_tag 'busqueda[caso_cerrado]', nil, false, :class => 'campo sombra-interna-5' %>
         </span>
     </div>
     <br/>

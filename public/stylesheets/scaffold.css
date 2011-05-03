@@ -333,14 +333,10 @@ label {
 }
 
 .formulario div,
+
 .formulario input#busqueda_nombre,
 .formulario input#busqueda_submit {
 	margin-top: 10px;
-}
-.formulario input#busqueda_submit:hover {
-	-moz-box-shadow: 0 0 5px white;
-	-webkit-box-shadow: 0 0 5px white;
-	box-shadow: 0 0 5px white;
 }
 
 .formulario {

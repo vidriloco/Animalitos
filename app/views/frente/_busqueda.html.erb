@@ -3,7 +3,8 @@
         <%= label_tag 'Nombre de tú mascota (Si tiene placa)'%>
         <%= text_field_tag 'busqueda[nombre]', '', :size => 35, :class => 'redondo-5' %>
         <%= hidden_field_tag 'busqueda[extraviado]', 1 %>
-        <%= label_tag 'Raza' %>
+        <%= hidden_field_tag 'busqueda[caso_cerrado]', 1 %>
+        <%= label_tag 'Raza (Opcional)' %>
         <br/>
         <%= select_tag 'busqueda[raza]', grouped_options_for_select(Raza.agrupadas), 
                     {:include_blank => '', :class => 'redondo-5' } %>

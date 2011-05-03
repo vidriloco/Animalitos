@@ -71,7 +71,7 @@ describe Animal do
   describe "habiendo un animal adicional" do
   
     before(:each) do
-      @gato=Factory(:animal_gato, :nombre => "Lanudo")
+      @gato=Factory(:animal_gato, :nombre => "Lanudo", :caso_cerrado => true)
     end
   
     it "devuelve las mascotas que cumplen con tener un nombre dado y ser cruza" do
@@ -89,6 +89,10 @@ describe Animal do
     
     it "devuelve las mascotas que cumplen con ser una cruza" do
       Animal.busqueda_paginada({:cruza => "on"}).should == [@gato]
+    end
+    
+    it "devuelve las mascotas cuyos casos esten concluidos" do
+      Animal.busqueda_paginada({:caso_cerrado => "on"}).should == [@animal]
     end
   
     it "devuelve las mascotas que tienen una raza específica" do

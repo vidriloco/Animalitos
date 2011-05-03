@@ -145,6 +145,10 @@ class Animal < ActiveRecord::Base
     #  condiciones[0] += "animales.cruza = 'f' AND "
     end
     
+    unless params[:caso_cerrado].blank?
+      condiciones[0] += "animales.caso_cerrado = 'f' AND "
+    end
+    
     unless params[:raza].blank?
       condiciones[0] += "razas.id = ? AND "
       condiciones << params[:raza]

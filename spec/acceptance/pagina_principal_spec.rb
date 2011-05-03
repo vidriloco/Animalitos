@@ -8,7 +8,7 @@ feature "Pagina Principal" do
     @usuario = Factory.build(:usuario)
     @usuario.confirm!
   end
-  
+
   describe "Encontré a una mascota", :js => true do
    
     scenario "me manda a iniciar sesión si no estoy logeado antes de poder registrarla" do
@@ -198,6 +198,7 @@ feature "Pagina Principal" do
   end
 
   describe "Quiero una mascota" do
+
     scenario "al dar click en el botón para encontrar mascotas puedo seleccionar una mascota de acuerdo a diferentes parámetros" do
       click_on('Encuentra')
       
@@ -232,8 +233,7 @@ feature "Pagina Principal" do
     end
     
     scenario "al hacer una busqueda puede ser también que se encuentren resultados", :js => true do
-      @perrito = Factory(:pastor_con_foto)
-      
+      Factory(:pastor_con_foto)
       visit('/animales')
       
       click_on('Búsqueda')
@@ -245,8 +245,17 @@ feature "Pagina Principal" do
       
       page.should have_content('Laika')
     end
-     
-     
+  
+    scenario "en la busqueda puedo excluir a los resultados que son casos cerrados", :js => true do
+      Factory(:pastor_con_foto, :caso_cerrado => true)
+      visit('/animales')
+      
+      click_on('Búsqueda')
+      check('busqueda_caso_cerrado')
+      
+      click_on('Buscar')
+      page.should have_content('Lo siento. No se encontraron animalitos con los datos proporcionados')
+    end
   end
  
 end
