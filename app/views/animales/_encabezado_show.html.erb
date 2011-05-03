@@ -13,11 +13,13 @@
         
         <br/><br/>
         <% unless can? :manage, @animal %>
-            <p><b>Datos de usuario contacto</b></p>
-            <p><i><%= @animal.usuario.nombre || "No tiene nombre registrado" %></i></p>
-            <p><i><%= @animal.usuario.email %></i></p>
-            <p><i><%= @animal.usuario.telefono_movil || "No ha registrado algún teléfono móvil" %></i></p>
-            <br/>
+            <% unless @animal.usuario.nil? %>
+                <p><b>Datos de usuario contacto</b></p>
+                <p><i><%= @animal.usuario.nombre || "No tiene nombre registrado" %></i></p>
+                <p><i><%= @animal.usuario.email %></i></p>
+                <p><i><%= @animal.usuario.telefono_movil || "No ha registrado algún teléfono móvil" %></i></p>
+                <br/>
+            <% end %>
         <% end %>
         
     </div>

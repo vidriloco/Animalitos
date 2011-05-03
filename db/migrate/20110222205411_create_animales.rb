@@ -8,7 +8,7 @@ class CreateAnimales < ActiveRecord::Migration
       t.integer :usuario_id
       t.point :coordenadas, :srid => 4326, :with_z => false      
       t.integer :estancia_temporal
-      t.boolean :en_casa, :default => :false
+      t.boolean :caso_cerrado, :default => :false
       t.datetime :fecha
       t.integer :foto_id
       t.integer :situacion

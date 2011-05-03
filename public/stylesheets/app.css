@@ -29,7 +29,8 @@ div.centrado { margin-left: auto; margin-right: auto }
 
 #header .controles li a:hover { font-style: italic }
 
-#acciones a {
+#acciones form, #acciones input { display: inline-block }
+#acciones a, #acciones input {
 	background-color:black;
 	color: white;
 	margin-left: 10px;
@@ -356,4 +357,4 @@ h1.bienvenida-complemento {
 
 .busqueda #acciones a:hover { background-color: #A9382D }
 
-#acciones a.cerrar-caso:hover { background-color: white; color: black; }
+#acciones input.cerrar-caso:hover { background-color: white; color: black; }

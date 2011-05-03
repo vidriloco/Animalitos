@@ -9,10 +9,21 @@
 </div>
 
 <% content_for :controles do %>
+
     <% if can? :manage, @animal %>
-        <%= link_to 'Modificar', edit_animal_path(@animal), :class => 'redondo-3 sombra-5' %>
+        <%= form_for @animal, :url => {:action => 'edo_caso_cambio', :id => @animal.id}, :html => {:method => :put} do |f| %>
+            <%= f.hidden_field :caso_cerrado, :value => !@animal.caso_cerrado %>
+            <% if @animal.caso_cerrado %>
+                <%= f.submit 'Re-abrir caso', :confirm => '¿Deseas volver a abrir este caso?', :class => 'redondo-3 sombra-5 abrir-caso' %>
+            <% else %>
+                <%= f.submit 'Cerrar caso', :confirm => '¿Deseas cerrar este caso?', :class => 'redondo-3 sombra-5 cerrar-caso' %>
+                <%= link_to 'Modificar', edit_animal_path(@animal), :class => 'redondo-3 sombra-5' %>
+            <% end %>
+        <% end %>
+        
+        <%= link_to 'Atrás', animales_path, :class => 'redondo-3 sombra-5' %>
+        
     <% end %>
-    <%= link_to 'Atrás', animales_path, :class => 'redondo-3 sombra-5' %>
 <% end %>
 
 <div id="map_canvas" class="centrado sombra-5" style="width:80%; height:250px;"></div>

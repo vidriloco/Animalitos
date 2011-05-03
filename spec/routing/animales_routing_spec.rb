@@ -39,5 +39,8 @@ describe AnimalesController do
       { :delete => "/animales/1" }.should route_to(:controller => "animales", :action => "destroy", :id => "1")
     end
   
+    it "reconoce y genera #edo_caso_cambio" do
+      { :put => "/animales/1/edo_caso_cambio" }.should route_to(:controller => "animales", :action => "edo_caso_cambio", :id => "1")
+    end
   end
 end

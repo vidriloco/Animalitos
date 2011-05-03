@@ -7,6 +7,7 @@ Factory.define :animal do |t|
   t.situacion 2
   t.coordenadas Point.from_lon_lat(19.323, 34.223, 4326)
   t.sexo "M"  
+  t.fecha Time.now
 end
 
 Factory.define :animal_gato, :class => Animal do |t|

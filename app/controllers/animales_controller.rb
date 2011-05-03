@@ -71,7 +71,7 @@ class AnimalesController < ApplicationController
   def update
     @animal = Animal.find(params[:id])
     @animal.aplica_geo(params[:coordenadas])
-
+    
     respond_to do |format|
       if @animal.update_attributes(params[:animal])
         format.html { redirect_to(@animal, :notice => 'Datos del animalito actualizados exitosamente') }
@@ -79,6 +79,16 @@ class AnimalesController < ApplicationController
         format.html { render :action => "edit" }
       end
     end
+  end
+  
+  def edo_caso_cambio
+    @animal = Animal.find(params[:id])
+    
+    @animal.update_attribute(:caso_cerrado, params[:animal][:caso_cerrado])
+    
+    mensaje = {}
+    mensaje.merge!(:notice => '¡Felicitaciones! Caso cerrado') if @animal.caso_cerrado
+    redirect_to(animal_url(@animal, mensaje))
   end
 
   # DELETE /animales/1

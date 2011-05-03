@@ -10,7 +10,7 @@ feature "Pagina Principal" do
   end
   
   describe "Encontré a una mascota", :js => true do
-    
+   
     scenario "me manda a iniciar sesión si no estoy logeado antes de poder registrarla" do
       click_on('Reporta')
       current_path.should == new_usuario_session_path
@@ -47,6 +47,21 @@ feature "Pagina Principal" do
       page.should have_content('Encontrado')
       sleep 5
       page.should have_content('San Antonio 1725, Narvarte, Benito Juárez, Mexico City, Distrito Federal, Mexico')
+    end
+  
+    scenario "habiéndola registrado previamente, puedo cerrar el caso y re-abrirlo también" do
+      @animal=Factory(:animal, :raza => Factory(:beagle), :usuario => @usuario)
+      login_as @usuario
+      
+      visit "/animales/#{@animal.id}"
+      page.should have_content('Caso no resuelto aún')
+      click_on('Cerrar caso')
+      page.driver.browser.switch_to.alert.accept
+      current_path.should == "/animales/#{@animal.id}"
+      page.should_not have_xpath('//a', :text => "Modificar") 
+      click_on('Re-abrir caso')
+      page.driver.browser.switch_to.alert.accept
+      current_path.should == "/animales/#{@animal.id}"
     end
     
     scenario "si tiene una PLACA con su NOMBRE debo poder ver una sugerencia de mascotas extravíadas ya registradas con ese nombre" 
@@ -233,5 +248,5 @@ feature "Pagina Principal" do
      
      
   end
-  
+ 
 end

@@ -138,4 +138,29 @@ describe AnimalesController do
     end
   end
 
+  describe "PUT edo_caso_cambio" do
+    
+    before(:each) do
+      @animal = Factory(:animal)
+      usuario = Factory(:usuario)
+      usuario.confirm! 
+      sign_in(usuario)
+    end
+    
+    it "cambia el estado del caso" do
+      Animal.stub(:find).with("43") { @animal }
+      
+      @animal.should_receive(:update_attribute).with(:caso_cerrado, "true")
+      put :edo_caso_cambio, :id => "43", :animal => {:caso_cerrado => "true"}
+      
+      assigns(:animal).should be(@animal)
+    end
+    
+    it "redespliega el template actual" do
+      Animal.stub(:find) { @animal }
+      put :edo_caso_cambio, :id => "43", :animal => {}
+      
+      response.should redirect_to(animal_url(@animal))
+    end
+  end
 end

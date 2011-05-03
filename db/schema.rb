@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20110224005133) do
     t.text     "descripcion"
     t.integer  "usuario_id"
     t.integer  "estancia_temporal"
-    t.boolean  "en_casa",                          :default => false
+    t.boolean  "caso_cerrado",                     :default => false
     t.datetime "fecha"
     t.integer  "foto_id"
     t.integer  "situacion"

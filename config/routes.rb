@@ -3,6 +3,7 @@ Froyito::Application.routes.draw do
   resources :frente, :only => [:index]
   
   resources :animales do
+    put 'edo_caso_cambio', :on => :member    
     resources :fotos, :only => [:index, :create]
   end
   
