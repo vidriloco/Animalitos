@@ -1,6 +1,11 @@
 /*
  Funciones para acciones relacionadas al mapa
 */
+$.extend({
+	estaPresente: function(dom) {
+		return $(dom).length;
+	}
+});
 
 function setAddressFromOn(coord, domElement) {
 	var geocoder = new google.maps.Geocoder();
@@ -81,7 +86,40 @@ function initialize() {
 }
 
 $(document).ready(function() {
-    initialize();  
+		var baseurl = location.protocol + '//' + location.host + location.pathname;
+		var params;
+		
+		if($.estaPresente('#froyito')) {
+			$('#froyito').attr('href', $.cookie("ultimo"));
+		}
+		
+		if($.estaPresente('.pagination a')) {
+			$('.pagination a').attr('data-remote', 'true');
+			
+			$('.pagination a').click(function() {
+				params = $.deparam.querystring(this.href);
+				
+				var new_url = $.param.fragment(baseurl, params, 2);
+				location.hash = $.param.fragment( new_url );
+				$.cookie("ultimo", baseurl+location.hash);
+				
+				return false;
+			});
+		}
+		
+		$(window).bind( 'hashchange', function(e) {
+			params = e.fragment; // pre-jQuery1.4: $.deparam.fragment(document.location.href);
+			$.getScript( $.param.querystring(baseurl, params) );
+		});
+		
+		if (location.hash) {
+		  $(window).trigger( 'hashchange' );
+		}
+		
+		
+		if($.estaPresente('#map_canvas')) {
+    	initialize();  
+		}
 
 		if($('#area-slider .mascota').length) {
 				$('#area-slider').cycle({
@@ -99,7 +137,8 @@ $(document).ready(function() {
 				});
 		}
 		
-		$('.pagination a').attr('data-remote', 'true');
+		
+		
 		
 		if($('span#bio-show').length) {
 			$('span#bio-show').bind('click', function() {

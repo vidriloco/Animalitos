@@ -78,11 +78,11 @@ feature "Pagina Principal" do
     describe "Si alguien ya la registró como encontrada" do
       
       background do
-        @perrito = Factory(:animal)
-        Factory(:animal, :raza => @perrito.raza)
+        @perrito = Factory(:animal, :nombre => "capitán")
+        @perrito_dos = Factory(:animal, :raza => @perrito.raza)
       end
       
-      scenario "debo verla listada en los resultados de búsqueda al buscarla desde la página principal" do
+      scenario "debo verla listada en los resultados de búsqueda al buscarla desde la página principal", :js => true do
         #PAGINACION A 1
         
         class Animal
@@ -97,10 +97,20 @@ feature "Pagina Principal" do
         
         current_path.should == '/busqueda'
         page.should have_content('Resultados de la búsqueda')
-        page.should have_content('Capitán')
+        find_link('capitán')
         page.should have_content('Siendo buscado')
         click_link('Siguiente')
-        page.should have_content('Capitán')
+        sleep 5
+        click_link('Capitán')
+        
+        # Probar History. 
+        # Guarda la lista de URLs visitadas previas, lo cuál es un error
+        # Ocurre solamente en pruebas
+        #current_path.should == "/animales/#{@perrito_dos.id}"
+        #click_on('Atrás')
+        #current_path.should == '/animales#page=2'
+        #sleep 4
+        #find_link('Capitán')
       end
     end
     

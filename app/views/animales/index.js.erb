@@ -1,1 +1,19 @@
 $('#index-animales').html("<%= escape_javascript render('animales') %>");
+$('.pagination a').attr('data-remote', 'true');
+
+var baseurl = location.protocol + '//' + location.host + location.pathname;
+var params;
+
+if($.estaPresente('.pagination a')) {
+	$('.pagination a').attr('data-remote', 'true');
+	
+	$('.pagination a').click(function() {
+		params = $.deparam.querystring(this.href);
+		
+		var new_url = $.param.fragment(baseurl, params, 2);
+		location.hash = $.param.fragment( new_url );
+		$.cookie("ultimo", baseurl+location.hash);
+		
+		return false;
+	});
+}

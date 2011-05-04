@@ -10,6 +10,6 @@
 <%= render :partial => 'fotos/tamanos/frente', :locals => {:foto => animal.foto_principal, :animal => animal} %>
 
 <div class="sombra-5 redondo-3">
-    <p class="nombre"><%= animal.nombre %></p>
+    <p class="nombre"><%= link_to animal.nombre, animal_url(animal) %></p>
     <p class="estado"><%= animal.estancia_humanize %></p>
 </div>
