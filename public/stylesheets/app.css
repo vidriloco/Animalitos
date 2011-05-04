@@ -352,3 +352,14 @@ h1.bienvenida-complemento {
 .busqueda #acciones a:hover { background-color: #A9382D }
 
 #acciones input.caso:hover { background-color: white; color: black; }
+
+.bio-control span { 
+	text-decoration: underline;
+	font-weight: bold;
+	color: black;
+	cursor: pointer;
+}
+
+.usuario div {
+	float: right;
+}

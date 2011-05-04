@@ -7,20 +7,24 @@
     </div>
 </div>
 <div class="usuario column">
-    <div id="acciones" style="text-align:right">
+    <div style="text-align:right; width: 80%">
         
         <%= render 'redes_sociales' %>
         
         <br/><br/>
         <% unless @animal.usuario.nil? %>
             <p><b>Datos de usuario contacto</b></p>
-            <p><i><%= @animal.usuario.nombre || "No tiene nombre registrado" %></i></p>
+            <p class="bio-control"><i><%= nombre_y_control_bio(@animal) %></i></p>
+            <p id="bio" class="oculto"><%= @animal.usuario.bio %></p>
             <p><i><%= @animal.usuario.email %></i></p>
-            <p><i><%= @animal.usuario.telefono_movil || "No ha registrado algún teléfono móvil" %></i></p>
+            <p><i><%= @animal.usuario.telefono_movil.blank? ? "Sin celular registrado" : @animal.usuario.telefono_movil %></i></p>
+            <p><i><%= @animal.usuario.cuenta_en_twitter.blank? ? "Sin Twitter registrado" : @animal.usuario.cuenta_en_twitter %></i></p>
             <br/>
         <% end %>
         <% if can? :manage, @animal %>
-            <%= link_to 'Actualizar mis datos', '/perfil', :class => 'redondo-3 sombra-5' %>
+            <div id="acciones">
+                <%= link_to 'Actualizar mis datos', '/perfil', :class => 'redondo-3 sombra-5' %>
+            </div>
         <% end %>
     </div>
     

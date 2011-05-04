@@ -30,4 +30,9 @@ module AnimalesHelper
       "#{numero} #{numero == 1 ? 'reportada' : 'reportadas'} como #{ numero == 1 ? 'extraviada' : 'extraviadas' }"
     end
   end
+  
+  def nombre_y_control_bio(animal)
+    return "No tiene nombre registrado" if @animal.usuario.nombre.blank?
+    "#{@animal.usuario.nombre} (<span id='bio-show'>Ver Bio</span><span id='bio-hide' class='oculto'>Ocultar Bio</span>)".html_safe
+  end
 end

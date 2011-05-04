@@ -34,10 +34,6 @@ $(document).bind('ajaxStart', function(){
 	$('#cargando').fadeOut();
 });
 
-$(document).ready(function() {
-	$('.pagination a').attr('data-remote', 'true');
-});
-
 var marker;
 var map;
 
@@ -102,6 +98,29 @@ $(document).ready(function() {
 					}
 				});
 		}
+		
+		$('.pagination a').attr('data-remote', 'true');
+		
+		if($('span#bio-show').length) {
+			$('span#bio-show').bind('click', function() {
+				if($('#bio').hasClass('oculto')) {
+					$('#bio').removeClass('oculto');
+					$(this).addClass('oculto');
+					$('span#bio-hide').removeClass('oculto');
+				} 
+			});
+		}
+		
+		if($('span#bio-hide').length) {
+			$('span#bio-hide').bind('click', function() {
+				if(!$('#bio').hasClass('oculto')) {
+					$('#bio').addClass('oculto');
+					$(this).addClass('oculto');
+					$('span#bio-show').removeClass('oculto');
+				} 
+			});
+		}
+		
 });
 
 
