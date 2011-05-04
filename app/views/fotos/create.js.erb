@@ -2,7 +2,7 @@
 	<% if @foto.errors.empty? %>
 		<% if @animal && es_foto_principal_de?(@animal, @foto) %>
 			$('.animales').children(".foto-principal").removeClass('foto-principal');
-			$('.foto-principal').html("<%= escape_javascript render('fotos/tamanos/thumb') %>");
+			$('.foto-principal').html("<%= escape_javascript render(:partial => 'fotos/tamanos/thumb', :locals => {:animal => @animal}) %>");
 		<% end %>
 		$('#formulario-foto').fadeOut();
 		$('.animales').append("<%= escape_javascript render(:partial => 'fotos/animal_foto', :locals => {:foto => @foto}) %>");

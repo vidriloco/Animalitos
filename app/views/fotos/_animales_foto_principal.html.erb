@@ -1,5 +1,5 @@
 <div class="marco redondo-10 sombra-5 foto-principal" style="width: 175px; height: 175px">
-    <%= render 'fotos/tamanos/thumb' %>
+    <%= render :partial => 'fotos/tamanos/thumb', :locals => {:animal => @animal} %>
 </div>
 <br/>
 <div id="acciones">

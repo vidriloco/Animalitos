@@ -6,6 +6,6 @@
     <% end %>
     <p class="estado izq"><%= @animal.estancia_humanize %></p>
     <p class="cruza izq">
-        <%=  @animal.caso_cerrado ? 'Caso cerrado' : 'Caso no resuelto aún' %>
+        <%=  estado_del_caso(@animal) %>
     </p>
 </div>

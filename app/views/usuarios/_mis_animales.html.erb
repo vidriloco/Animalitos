@@ -1,0 +1,26 @@
+<div class='usuarios-encabezado'>
+    <h2>Mis animalitos (<%= @animales.size %>)</h2>
+</div>
+    
+<% if @animales.blank? %>
+    <div id="acciones">
+        <p>No tienes animales registrados por el momento</p>
+        <br/>
+        <%= link_to 'Registrar nuevo', new_animal_path, :class => 'redondo-5 sombra-5' %>
+    </div>
+<% else %>
+    <div class="animales">
+        <% @animales.each do |a| %>
+            <div class="animalito" id="<%= a.id %>">
+                <div class="foto animal sombra-5">
+                <%= render :partial => 'fotos/tamanos/thumb', :locals => {:animal => a} %>
+                </div>
+                <div class="detalles">
+                    <b><%= a.nombre %></b> : <%= estado_del_caso(a) %>
+                    <br/>
+                    <%= link_to 'Ver', animal_path(a) %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+<% end %>

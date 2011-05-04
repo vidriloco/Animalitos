@@ -1,0 +1,17 @@
+<div class='usuarios-encabezado'>
+    <h2>Lista de usuarios</h2>
+</div>
+
+<% @usuarios.each do |usuario| %>
+    <div id='<%= usuario.id %>' class="<%= usuario.id.odd? ? 'non' : 'par' %> usuario unit on-4 columns">
+        <div class='info column fixed'><%= "#{usuario.nombre}" || "Sin nombre registrado" %></div>
+        <div class='info column fixed'><%= usuario.email %></div>
+        <div class='info column fixed'><%= usuario.telefono_movil || usuario.cuenta_en_twitter %></div>
+        <div id='acciones' class='column fixed'>
+            <% if usuario != @usuario %>
+                <%= render :partial => 'controles_admin', :locals => {:usuario => usuario} %>
+            <% end %>
+        </div>
+    
+    </div>
+<% end %>

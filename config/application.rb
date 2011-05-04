@@ -35,7 +35,7 @@ module Froyito
     config.i18n.default_locale = :es
 
     config.action_view.javascript_expansions[:defaults] = %w(jquery.min jquery.cycle.all.min rails application)
-    config.action_view.javascript_expansions[:jquery_exts] = %w(jquery.form jquery.remotipart)
+    config.action_view.javascript_expansions[:jquery_exts] = %w(jquery.form jquery.remotipart jquery.charcounter)
     config.action_view.javascript_expansions[:others] = %w(slimbox2)
 
     # Configure the default encoding used in templates for Ruby 1.9.

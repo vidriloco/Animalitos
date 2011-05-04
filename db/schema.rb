@@ -48,9 +48,10 @@ ActiveRecord::Schema.define(:version => 20110224005133) do
 
   create_table "usuarios", :force => true do |t|
     t.string   "nombre"
-    t.text     "descripcion"
+    t.string   "bio",                  :limit => 140
     t.boolean  "es_admin"
     t.integer  "telefono_movil",       :limit => 8
+    t.string   "cuenta_en_twitter"
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
     t.string   "reset_password_token"

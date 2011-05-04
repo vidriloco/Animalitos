@@ -36,6 +36,8 @@ class UsuariosController < ApplicationController
   end
   
   def perfil
+    @usuario = current_usuario
+    @animales = @usuario.animales
     render :layout => 'perfil'
   end
   

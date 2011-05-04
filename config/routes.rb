@@ -9,13 +9,13 @@ Froyito::Application.routes.draw do
   
   resources :fotos, :only => [:index, :destroy, :update]
 
-  devise_for :usuarios, :path_names => { :sign_in => 'iniciar_sesion' }
+  devise_for :usuarios, :path_names => { :sign_in => 'iniciar_sesion' } 
 
   resources :razas, :except => [:show]
    
-  resources :usuarios, :only => [:destroy, :perfil]
+  resources :usuarios, :only => [:edit, :update, :destroy, :perfil]
   
-
+  match '/perfil' => 'usuarios#perfil', :as => 'usuario_root'
   match '/ayudame/:id' => "animales#show"
   match '/busqueda', :to => 'animales#busqueda', :via => "post"
   match '/busqueda', :to => 'animales#busqueda', :via => "get"

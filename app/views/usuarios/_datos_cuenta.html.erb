@@ -1,0 +1,37 @@
+<div id="acciones">
+    
+    <% if @usuario.nombre.blank? && @usuario.telefono_movil.blank? && @usuario.cuenta_en_twitter.blank? %>
+        <script>
+            $('#alert').html('<p>No has registrado aún algunos datos de contacto que pueden ayudar a un animalito a encontrar casa</p>');
+        </script>
+    <% end %>
+    
+    <div class="acerca_de">
+        <div class="parrafo unit on-2 columns">
+            <div class="column fixed" style="width: 60%">
+                <p><b>Bio:</b></p>
+                <p class="indentar"><%= @usuario.bio %></p>
+                <p><b>Registrado desde:&nbsp;&nbsp;</b><%= I18n.localize(@usuario.created_at, :format => "%B %Y") %></p>
+            </div>
+            <div class="column fixed">
+                <p><b>Medios de contacto:</b></p>
+                <p class="indentar"><i>Teléfono celular:&nbsp;&nbsp;</i><%= @usuario.telefono_movil.blank? ? "No registrado aún" : @usuario.telefono_movil %></p>
+                <p class="indentar"><i>Twitter:&nbsp;&nbsp;</i><%= @usuario.cuenta_en_twitter.blank? ? "No registrado aún" : @usuario.cuenta_en_twitter %></p>
+                <p class="indentar"><i>Correo electrónico:&nbsp;&nbsp;</i><%= @usuario.email %></p>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <p>Actualiza ó modifica datos de tú perfil
+        <span id="acciones">
+            <%= link_to 'Ir', edit_usuario_registration_url, :class => 'redondo-3 sombra-5 ' %>
+        </span>
+        &nbsp;&nbsp;&nbsp;
+      ¿No estás satisfecho con éste sitio?
+        <span><%= link_to "Cancelar cuenta", registration_path(@usuario), 
+                                      :confirm => "¿Estás seguro?", 
+                                      :method => :delete,
+                                      :class => 'redondo-3 sombra-5 desactivar' %>
+        </span>
+    </p>
+</div>

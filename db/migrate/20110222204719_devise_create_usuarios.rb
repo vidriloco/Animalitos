@@ -3,9 +3,10 @@ class DeviseCreateUsuarios < ActiveRecord::Migration
     create_table(:usuarios) do |t|
       
       t.string :nombre
-      t.text :descripcion
+      t.string :bio, :limit => 140
       t.boolean :es_admin
       t.integer :telefono_movil, :limit => 8
+      t.string :cuenta_en_twitter
       
       t.database_authenticatable :null => false
       t.recoverable

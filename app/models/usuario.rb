@@ -5,11 +5,12 @@ class Usuario < ActiveRecord::Base
          :recoverable, :rememberable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :nombre, :telefono_movil, :es_admin
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :nombre, :telefono_movil, :cuenta_en_twitter, :bio, :es_admin
   
-  validates_presence_of :email, :nombre, :password, :password_confirmation
+  validates_presence_of :email, :nombre
+  validates_presence_of :password, :password_confirmation, :on => :create
   validates_uniqueness_of :email
-  
+  validates_format_of :cuenta_en_twitter, :with => /^@([A-Za-z0-9_]+)/, :unless => Proc.new { |usuario| usuario.cuenta_en_twitter.blank?  }
   has_many :animales, :dependent => :destroy
   
   def es_admin?

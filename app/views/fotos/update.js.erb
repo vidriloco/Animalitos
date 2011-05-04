@@ -5,5 +5,5 @@
 	$('.animales #foto_<%= @foto.id %> .controles-foto .switch').css({opacity: 0});
 	$('.animales #foto_<%= @foto_id_previa %> .controles-foto .switch').css({opacity: 100});
 	
-	$('.foto-principal .thumb').replaceWith("<%= escape_javascript render('fotos/tamanos/thumb') %>");
+	$('.foto-principal .thumb').replaceWith("<%= escape_javascript render(:partial => 'fotos/tamanos/thumb', :locals => {:animal => @animal}) %>");
 <% end %>

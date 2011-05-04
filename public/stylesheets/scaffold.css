@@ -347,3 +347,41 @@ label {
 	background: rgba(255,255,255,0.05);
 	text-align:left;
 }
+
+.acerca_de {
+	background-color: #CBC5C8;
+	padding: 14px;
+}
+
+.acerca_de h1 { font-family: Palatino }
+
+.acerca_de .parrafo {
+	text-align:left;
+	margin-left: 20px;
+	background-color: #AD9A94;
+	padding: 20px;
+}
+
+.acerca_de .parrafo p { 
+	font-family: Georgia, Serif;
+	font-size: 14px;
+}
+
+.acerca_de .parrafo p.indentar { 
+	margin-left: 15px;
+}
+
+.acerca_de .parrafo p a{
+	font-weight: bold;
+	text-decoration: underline;
+	color:#3B65D0; 
+}
+
+.charcounter { 
+	font-family: Georgia, Serif;
+	position: absolute;
+	right: 300px;
+	top: 545px;
+	font-style: italic;
+	font-size: 13px;
+}

@@ -29,7 +29,7 @@ div.centrado { margin-left: auto; margin-right: auto }
 
 #header .controles li a:hover { font-style: italic }
 
-#acciones form, #acciones input.caso { display: inline-block }
+#acciones form { display: inline-block }
 #acciones a, #acciones input.caso {
 	background-color:black;
 	color: white;
@@ -205,17 +205,6 @@ p.nombre {
 
 .sesion {
 	margin: 20px 10px 20px 10px;
-}
-
-.todos-usuarios {
-	height: auto;
-	background-color: white;
-	margin-top: 30px;
-}
-
-.todos-usuarios #acciones {
-	margin-top: 20px;
-	padding: 20px;
 }
 
 .admin .usuario .info {

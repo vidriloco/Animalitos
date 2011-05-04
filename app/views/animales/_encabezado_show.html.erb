@@ -12,16 +12,16 @@
         <%= render 'redes_sociales' %>
         
         <br/><br/>
-        <% unless can? :manage, @animal %>
-            <% unless @animal.usuario.nil? %>
-                <p><b>Datos de usuario contacto</b></p>
-                <p><i><%= @animal.usuario.nombre || "No tiene nombre registrado" %></i></p>
-                <p><i><%= @animal.usuario.email %></i></p>
-                <p><i><%= @animal.usuario.telefono_movil || "No ha registrado algún teléfono móvil" %></i></p>
-                <br/>
-            <% end %>
+        <% unless @animal.usuario.nil? %>
+            <p><b>Datos de usuario contacto</b></p>
+            <p><i><%= @animal.usuario.nombre || "No tiene nombre registrado" %></i></p>
+            <p><i><%= @animal.usuario.email %></i></p>
+            <p><i><%= @animal.usuario.telefono_movil || "No ha registrado algún teléfono móvil" %></i></p>
+            <br/>
         <% end %>
-        
+        <% if can? :manage, @animal %>
+            <%= link_to 'Actualizar mis datos', '/perfil', :class => 'redondo-3 sombra-5' %>
+        <% end %>
     </div>
     
 </div>

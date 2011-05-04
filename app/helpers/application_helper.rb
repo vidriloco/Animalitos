@@ -1,3 +1,4 @@
+# encoding: utf-8
 module ApplicationHelper
   def info_de coleccion, objeto_nombre
     objeto_nombre = objeto_nombre.to_s
@@ -31,5 +32,9 @@ module ApplicationHelper
        situacion_h =animal.situacion_humanize.chop+"a"
     end
     "#{situacion_h || animal.situacion_humanize} hace #{ time_ago_in_words(animal.fecha) }"
+  end
+  
+  def estado_del_caso(animal)
+    animal.caso_cerrado ? 'Caso cerrado' : 'Caso no resuelto aún'
   end
 end
