@@ -33,7 +33,7 @@ class RazasController < ApplicationController
 
     respond_to do |format|
       if @raza.save
-        format.html { redirect_to(@raza, :notice => 'Raza was successfully created.') }
+        format.html { redirect_to(razas_url, :notice => 'Raza creada exitosamente.') }
       else
         format.html { render :action => "new" }
       end
@@ -47,7 +47,7 @@ class RazasController < ApplicationController
 
     respond_to do |format|
       if @raza.update_attributes(params[:raza])
-        format.html { redirect_to(@raza, :notice => 'Raza was successfully updated.') }
+        format.html { redirect_to(@raza, :notice => 'Raza actualizada correctamente.') }
       else
         format.html { render :action => "edit" }
       end

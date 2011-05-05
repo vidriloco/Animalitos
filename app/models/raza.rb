@@ -1,8 +1,7 @@
 class Raza < ActiveRecord::Base
   has_many :animales, :dependent => :destroy
-  
-  validates_uniqueness_of :nombre
-  validates_presence_of :tipo
+
+  validates_presence_of :tipo, :nombre
   
   
   def self.agrupadas

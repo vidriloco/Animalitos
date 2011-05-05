@@ -6,6 +6,9 @@ class CreateRazas < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    execute "ALTER TABLE razas ADD CONSTRAINT razas_unique_tipo
+              UNIQUE(nombre, tipo)"
   end
 
   def self.down

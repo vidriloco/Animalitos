@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(:version => 20110224005133) do
     t.datetime "updated_at"
   end
 
+  add_index "razas", ["nombre", "tipo"], :name => "razas_unique_tipo", :unique => true
+
   create_table "usuarios", :force => true do |t|
     t.string   "nombre"
     t.string   "bio",                  :limit => 140
