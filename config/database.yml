@@ -34,8 +34,8 @@ test-remote:
 production:
   adapter: postgresql
   database: froyito_production
-  username: spalatijn
-  password: spalatijn
+  username: froyo
+  password: helado
   encoding: utf8
   pool: 5
   timeout: 5000
