@@ -21,6 +21,7 @@ begin # perros
   Raza.create!(:tipo => 1, :nombre => "Husky Siberiano")
   Raza.create!(:tipo => 1, :nombre => "Doberman")
   Raza.create!(:tipo => 1, :nombre => "Rottweiler")
+  Raza.create!(:tipo => 1, :nombre => "Otro")
 rescue
   p "Hubo errores en el proceso de inserción de datos de Raza (perros)"
 end
@@ -39,6 +40,7 @@ begin # gatos
   Raza.create!(:tipo => 2, :nombre => "Cornish Rex")
   Raza.create!(:tipo => 2, :nombre => "Curl Americano")
   Raza.create!(:tipo => 2, :nombre => "Chartreux")
+  Raza.create!(:tipo => 2, :nombre => "Otro")
 rescue
   p "Hubo errores en el proceso de inserción de datos de Raza (gatos)"
 end
