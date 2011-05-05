@@ -50,11 +50,11 @@
   </div>
   
   <div class="field unit on-2 columns two-fields">
-      <div class="fixed column" style="width:60%">
-        <%= f.label :fecha %><br/><br/>
-        <%= f.date_select :fecha %>
+      <div class="fixed column" style="width:70%">
+        <%= f.label :fecha, 'Fecha y hora (Hora del Centro)' %><br/><br/>
+        <%= f.datetime_select :fecha %>
       </div>
-      <div class="fixed column" style="width:40%">
+      <div class="fixed column" style="width:20%">
           <%= f.label :estancia_temporal, 'Estancia temporal' %><br/><br/>
           <%= f.select :estancia_temporal, options_for_select(Animal.estancias.invert, @animal.estancia_temporal), 
                       {:include_blank => ''}, :class => 'campo' %>
