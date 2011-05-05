@@ -15,9 +15,9 @@ class FotosController < ApplicationController
   def create    
     @foto = Foto.new(params[:foto].merge(:animal_id => params[:animal_id]))
     
-    if @foto.asocia_carrierwave(params[:archivo])  && params[:principal] == "true"
+    if @foto.asocia_carrierwave(params[:archivo])
       @animal = Animal.find(params[:animal_id])
-      @animal.update_attribute(:foto_id, @foto.id)
+      @animal.update_attribute(:foto_id, @foto.id) if params[:principal] == "true"
     end
   end
   
