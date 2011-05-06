@@ -26,7 +26,7 @@ module Froyito
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
     if Rails.env == "production"
-      config.action_mailer.default_url_options = {:host => "quanta.mine.nu:3002"}
+      config.action_mailer.default_url_options = {:host => "www.amigosenapuros.com"}
     else
       config.action_mailer.default_url_options = {:host => "127.0.0.1:3002"}
     end
