@@ -7,11 +7,16 @@ describe Animal do
     @animal = Factory(:animal, :sexo => "M", :nombre => "Lanudo")
   end
   
-  it "debe generar el mensaje para twitter correcto" do
+  it "debe generar el mensaje para twitter correcto si no es cruza y es macho" do
     @animal.situacion=2
     @animal.mensaje_tweet.should == "Perrito beagle extraviado."
     @animal.situacion=1
     @animal.mensaje_tweet.should == "Perrito beagle encontrado."
+  end
+  
+  it "debe generar el mensaje para twitter correcto si es una cruza" do
+    animal = Factory.build(:animal, :sexo => "H", :cruza => true)
+    animal.mensaje_tweet.should == "Perrita beagle cruza extraviada."    
   end
   
   it "debe avisar en twitter" do

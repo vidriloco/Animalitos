@@ -95,11 +95,19 @@ class Animal < ActiveRecord::Base
   
   def mensaje_tweet
     mascota = (tipo_de_mascota == "Perro") ? "Perrito" : "Gatito"
-    "#{mascota} #{self.raza.nombre.downcase} #{self.situacion_humanize.downcase}."
+    situacion = self.situacion_humanize
+    
+    if self.es_hembra?
+      mascota.gsub!('o', 'a')
+      situacion = situacion.chop+"a"
+    end
+    cruza = self.cruza ? ' cruza' : ''
+    
+    "#{mascota} #{self.raza.nombre.downcase}#{cruza} #{situacion.downcase}."
   end
   
   def tiny_urled
-    Net::HTTP.get_response(URI.parse("http://tinyurl.com/api-create.php?url=http://www.amigosenapuros/ayudame/#{self.id}")).body
+    Net::HTTP.get_response(URI.parse("http://tinyurl.com/api-create.php?url=http://www.amigosenapuros.com/ayudame/#{self.id}")).body
   end
   
   def verifica_consistencia_extraviado
