@@ -20,7 +20,11 @@ $(document).ready(function() {
 	var params;
 	
 	if($.estaPresente('#froyito')) {
-		$('#froyito').attr('href', $.cookie("ultimo"));
+		var a = document.createElement('a');
+		a.href= document.referrer;
+		if(a.pathname == '/animales') {
+			$('#froyito').attr('href', $.cookie("ultimo"));
+		}
 	}
 	
 	paginacionAjaxHistory('.pagination a');
