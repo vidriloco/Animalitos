@@ -1,6 +1,6 @@
 <h3>Buscar amigos en apuros que tengan:</h3>
 
-<%= form_tag busqueda_url, :remote => true do %>
+<%= form_tag busqueda_url, :remote => true, :id => 'busqueda-forma' do %>
 
     <%= hidden_field_tag 'busqueda[ext]', 1 %>
     <div class="formulario redondo-10">
@@ -41,20 +41,5 @@
         <%= link_to 'Cancelar', '#', :id => 'esconder_busqueda', :class => 'redondo-5 sombra-5' %>
     </span>
     
-    <script>
-        $('#esconder_busqueda').bind('click', function() {
-    		$('.busqueda').fadeOut();
-            return false;
-    	});
-    	
-    	$('#mostrar_busqueda').bind('click', function() {
-    		$('.busqueda').fadeIn();
-            return false;
-    	});
-    	
-    	$('#busqueda_submit').bind('click', function() {
-    		$('.busqueda').hide();
-    	});
-    </script>
     <br/><br/>
 <% end %>

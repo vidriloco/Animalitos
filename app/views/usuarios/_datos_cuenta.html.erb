@@ -1,5 +1,4 @@
-<div id="acciones">
-    
+<div id="acciones">    
     <% if @usuario.nombre.blank? && @usuario.telefono_movil.blank? && @usuario.cuenta_en_twitter.blank? %>
         <script>
             $('#alert').html('<p>No has registrado aún algunos datos de contacto que pueden ayudar a un animalito a encontrar casa</p>');
@@ -23,9 +22,8 @@
     </div>
     <br/>
     <p>Actualiza ó modifica datos de tú perfil
-        <span id="acciones">
-            <%= link_to 'Ir', edit_usuario_registration_url, :class => 'redondo-3 sombra-5 ' %>
-        </span>
+        <%= link_to 'Ir', edit_usuario_registration_url, :class => 'redondo-3 sombra-5 ' %>
+        
         &nbsp;&nbsp;&nbsp;
       ¿No estás satisfecho con este sitio?
         <span><%= link_to "Cancelar cuenta", registration_path(@usuario), 

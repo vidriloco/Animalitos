@@ -1,4 +1,5 @@
-
+<%= link_to 'Inicio',  '/', :class => 'inicio redondo-3', :style => "color: white" %>
+<br/>
 <div class="todos-usuarios centrado-global sombra-25" style="width: 76.6em">
     
     <div class='usuarios-encabezado'>
@@ -8,11 +9,6 @@
     <p id="notice" class="flash centrado"><%= notice %></p>
     <p id="alert" class="flash centrado"><%= alert %></p>
     
-    <script>
-        $('#notice').delay(3500).fadeOut('slow');
-        $('#alert').delay(3500).fadeOut('slow');
-    </script>
-                        
     <%= render 'usuarios/datos_cuenta' %>
 </div>
 

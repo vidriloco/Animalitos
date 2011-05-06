@@ -142,28 +142,53 @@ p.nombre {
 	margin-top: 0px;
 }
 
-.controles-foto .del {
-	bottom: 55px;
+#galeria .foto {
+	width: 130px;
+	height: 130px;
+}
+
+#galeria .foto .control { 
+	padding: 10px;
+	height: 15px;
+	width: 110px;
 	background: black;
 	background: rgba(0,0,0, 0.7);
-	padding: 5px 42px 5px 42px;
-}
-
-.controles-foto .switch {
-	bottom: 142px;
-	background: black;
-	background: rgba(0,0,0, 0.5);
-	padding: 5px 40px 5px 41px;
-}
-
-.controles-foto a {
 	position: relative;
-	color: white;
-	font-weight: bold;
+	left:-15px;
 	text-align: center;
-	font-size: 10px;
-	left: -25px;
 }
+
+.opacity-on {
+	-khtml-opacity:100; 
+	-moz-opacity:100; 
+	-ms-filter:"alpha(opacity=100)"; 
+	filter:alpha(opacity=100); 
+	opacity:100;
+}
+
+.opacity-off {
+	-khtml-opacity:0; 
+	-moz-opacity:0; 
+	-ms-filter:"alpha(opacity=0)"; 
+	filter:alpha(opacity=0); 
+	opacity:0;
+}
+
+#galeria .foto .control { font-weight: bold }
+
+#galeria .foto .control a { color:white; font-size: 10px; }
+
+#galeria .foto .escondido { visibility: hidden }
+
+#galeria .foto .principal {
+	top: -135px;
+}
+
+#galeria .foto .eliminar {
+	top: -73px;
+}
+
+
 
 .animales { width: 85% }
 
@@ -297,7 +322,7 @@ h1.bienvenida-complemento {
 }
 
 .barra-aux #acciones a:hover { background-color:#997A4A }
-.barra-aux #acciones a.boton-busqueda:hover { background-color:#F9DA4A; color: black; }
+.barra-aux #acciones a.boton-busqueda:hover { background-color:#A5CEEC; color: black; }
 
 .menu-acciones { background-color: #454545 }
 

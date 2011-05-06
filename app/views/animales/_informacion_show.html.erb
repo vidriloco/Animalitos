@@ -10,9 +10,10 @@
 <p>
   <b><%= ubicacion_y_fecha_animalito(@animal) %></i> en</b>
 </p>
-<script>
-      setAddressFromOn(new google.maps.LatLng(<%= @animal.coordenadas.lat %>, 
-                                              <%= @animal.coordenadas.lon %>),
-                                              "direccion p");
-</script>
-<div id="direccion"><p></p></div>
+
+<div class="oculto" id="coordenadas-direccion">
+    <div class="lat"><%= @animal.coordenadas.lat %></div>
+    <div class="lon"><%= @animal.coordenadas.lon %></div>
+</div>
+
+<div id="direccion-en-mapa"><p></p></div>

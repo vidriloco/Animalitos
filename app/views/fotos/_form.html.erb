@@ -20,18 +20,6 @@
         
     <div id="acciones" style="text-align: center">
         <%= f.submit 'Subir', :class => "submit redondo-3" -%>
-        <%= link_to 'Cancelar', '#', :class => "cancelar redondo-3 sombra-5" -%>
+        <%= link_to 'Cancelar', '#', :class => "redondo-3 sombra-5", :id => 'cancelar-registro-foto' -%>
     </div>
 <% end %>
-
-<script>
-    $('.cancelar').bind('click', function() {
-       $('#formulario-foto').fadeOut();
-       $('#vacio').fadeIn();
-       $('#formulario-foto .errors').empty();
-	   $('#new_foto').resetForm();
-	   $('#acciones .mensaje .nueva-foto').hide();
-	   $('#acciones .mensaje .no-fotos').fadeIn();
-	   return false;
-    });
-</script>

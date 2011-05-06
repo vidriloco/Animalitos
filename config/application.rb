@@ -35,9 +35,10 @@ module Froyito
     config.i18n.default_locale = :es
     config.time_zone = 'Central Time (US & Canada)'  
     
-    config.action_view.javascript_expansions[:defaults] = %w(jquery.min jquery.cycle.all.min rails application)
-    config.action_view.javascript_expansions[:jquery_exts] = %w(jquery.form jquery.remotipart jquery.charcounter jquery.ba-bbq.min jquery.cookie)
-    config.action_view.javascript_expansions[:others] = %w(slimbox2)
+    config.action_view.javascript_expansions[:defaults] = %w(jquery.min rails base)
+    config.action_view.javascript_expansions[:frente_aplicacion] = %w(jquery.cycle.all.min selecciones-frente)
+    config.action_view.javascript_expansions[:exts] = %w( jquery.form jquery.remotipart jquery.charcounter jquery.ba-bbq.min jquery.cookie slimbox2)
+    config.action_view.javascript_expansions[:aplicacion] = %w(paginacion-historia selecciones-aplicacion)
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"

@@ -3,11 +3,5 @@
 </div>
 <br/>
 <div id="acciones">
-    <%= link_to 'Ver más fotos', '#', :class => 'redondo-3 sombra-5 foto-muestra control' %> 
-    <script>
-        $('.foto-muestra').bind('click', function() {
-    	    $('#fotos').fadeIn();
-    	    return false;
-        });
-    </script>               
+    <%= link_to 'Ver más fotos', '#', :class => 'redondo-3 sombra-5 control', :id => 'ver-mas-fotos' %>             
 </div>

@@ -1,7 +1,5 @@
-<p>Bienvenido <%= @resource.nombre %>!</p>
+<p>¡Bienvenido a Animales en Apuros!</p>
 
-<p>Puedes confirmar tú cuenta siguiendo la liga que aparece abajo:</p>
+<p><i><%= @resource.nombre %></i> puedes confirmar tú cuenta siguiendo la liga que aparece abajo:</p>
 
-<p>
-    <%= link_to 'Confirmar cuenta', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>
-</p>
+<%= link_to 'Confirmar cuenta', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>

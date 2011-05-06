@@ -10,7 +10,7 @@ class Animal < ActiveRecord::Base
   before_save :verifica_consistencia_extraviado
   
   cattr_reader :per_page
-  @@per_page = 1
+  @@per_page = 9
   
   cattr_reader :encontrado
   @@encontrado = 1

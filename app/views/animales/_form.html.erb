@@ -62,15 +62,14 @@
   </div>
 
   <div class="field">
-      <%= f.label :coordenadas %><br /><br/>
-      <div class="geografia-contenido round-with-5">
-          <span id="geografia_direccion"></span>
-      </div>
+      <%= f.label :coordenadas, 'Ubicación' %><br /><br/>
+      <div id="direccion-en-mapa" class="round-with-5"><p></p></div>
 
       <%= hidden_field_tag 'coordenadas[lat]', @animal.coordenadas.nil? ? "19.4" : @animal.coordenadas.lat %>
       <%= hidden_field_tag 'coordenadas[lon]', @animal.coordenadas.nil? ? "-99.15" : @animal.coordenadas.lon %>
   </div>
 
+  <div id="mapa-editable"></div>
   <div id="map_canvas" class="centrado" style="width:70%; height:250px;"></div>
 
   <%= f.hidden_field :usuario_id, :value => current_usuario.id %>

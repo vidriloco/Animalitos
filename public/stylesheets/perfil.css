@@ -14,6 +14,8 @@
 
 .todos-usuarios .animales .animalito {
 	width: 250px;
+	display: inline-block;
+	margin-bottom: 15px;
 }
 
 .todos-usuarios .animales .detalles {
@@ -33,3 +35,29 @@
 	background-color: rgba(77, 160, 227, 0.3);
 	border: 2px solid #B4D3E3;
 }
+
+.inicio,
+.inicio:hover {
+	font-size: 14px; 
+	color: white;
+	box-shadow: inset 0 1px 3px white, inset 0 -5px 15px #126282, 0 2px 1px white;
+  -o-box-shadow: inset 0 1px 3px white, inset 0 -5px 15px #126282, 0 2px 1px white;
+  -webkit-box-shadow: inset 0 1px 3px white, inset 0 -5px 15px #126282, 0 2px 1px white;
+  -moz-box-shadow: inset 0 1px 3px white, inset 0 -5px 15px #126282, 0 2px 1px white;
+}
+.inicio {
+	color: #A6E2FF;
+	font-weight: bold;
+	width: auto;   	  
+	border: none;
+	background-color: #46819C;
+  box-shadow: inset 0 1px 3px #42549A, inset 0 -5px 15px #126282, 0 2px 1px #A6E2FF;
+  -o-box-shadow: inset 0 1px 3px #42549A, inset 0 -5px 15px #126282, 0 2px 1px #A6E2FF;
+  -webkit-box-shadow: inset 0 1px 3px #42549A, inset 0 -5px 15px #126282, 0 2px 1px #A6E2FF;
+  -moz-box-shadow: inset 0 1px 3px #42549A, inset 0 -5px 15px #126282, 0 2px 1px #A6E2FF;
+  padding: 5px 30px;
+	right: 135px; 
+	top: 120px; 
+	position: absolute
+}
+

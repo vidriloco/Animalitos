@@ -1,7 +1,11 @@
-<%= link_to 'Principal', foto_url(foto), 
-                        :method => :put,
-                        :remote => true, 
-                        :confirm => "¿Establecer como foto principal?", :class => 'switch' %>
-<%= link_to 'Eliminar', foto_url(foto), 
-                        :method => :delete, 
-                        :remote => true, :confirm => "¿Eliminar foto?", :class => 'del' %>
+<div class="control principal <%= es_foto_principal_de?(@animal, foto) ? 'escondido' : '' %> opacity-off">
+    <%= link_to 'Hacer principal', foto_url(foto), 
+                            :method => :put,
+                            :remote => true, 
+                            :confirm => "¿Establecer como foto principal?" %>
+</div>
+<div class="control eliminar opacity-off">
+    <%= link_to 'Eliminar', foto_url(foto), 
+                            :method => :delete, 
+                            :remote => true, :confirm => "¿Eliminar foto?" %>
+</div>
