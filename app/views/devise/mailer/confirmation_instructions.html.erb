@@ -1,5 +1,7 @@
 <p>¡Bienvenido a Amigos en Apuros!</p>
 
-<p><i><%= @resource.nombre %></i> puedes confirmar tú cuenta siguiendo la liga que aparece abajo:</p>
+<p><i><%= @resource.nombre %></i>, antes de que puedas registrar a algún amigo en apuros, es necesario que por favor confirmes tú cuenta. Esto es para asegurar en lo posible que los demás usuarios puedan contactarte a través de un correo electrónico válido</p>
+
+<p>Puedes confirmar tú cuenta siguiendo la liga que aparece abajo:</p>
 
 <%= link_to 'Confirmar cuenta', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>
