@@ -83,13 +83,19 @@ html {
 .externa {
 	background-color: rgba(1,1,1, 0.6);
 	position: absolute;
-	top: 370px;
+	top: 375px;
 	left: 0;
 	width: 370px;
 	max-width: 370px;
 	height: 100%;
 	max-height:100%;
 	padding: 10px 10px 0 0;
+}
+
+@-moz-document url-prefix() {
+	.externa {
+		top: 355px;
+	}
 }
 
 .extraviada {
@@ -124,7 +130,7 @@ html {
 .encontrada-adopcion {
 	background-color:  none;
 	position: absolute;
-	top: 510px;
+	top: 500px;
 	left: 30%;
 	width: 900px;
 	max-width: 900px;
