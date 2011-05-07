@@ -85,7 +85,6 @@ $(document).ready(function() {
     $('#alert').delay(2700).fadeOut('slow');
 
 		if($.estaPresente('#map_canvas')) {
-			
 			mapa = geo.inicializaMapa('map_canvas', {
 				backgroundColor: 'black',
 				zoomControlOptions: { style: google.maps.ZoomControlStyle.SMALL }

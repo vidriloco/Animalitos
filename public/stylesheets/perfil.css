@@ -29,7 +29,10 @@
 	text-decoration: none;
 }
 
-.acerca_de { background-color: white }
+.acerca_de { 
+	background-color: white;
+	margin-top: 30px
+}
 .acerca_de .parrafo { 
 	background-color:#4DA0E3;
 	background-color: rgba(77, 160, 227, 0.3);
