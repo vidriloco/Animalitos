@@ -16,7 +16,11 @@ class CreateAnimales < ActiveRecord::Migration
       t.binary :sexo
       t.timestamps
     end
+    
+    execute "CREATE INDEX coords_index ON animales USING GIST(coordenadas);"
+    
   end
+
 
   def self.down
     drop_table :animales

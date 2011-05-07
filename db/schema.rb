@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(:version => 20110224005133) do
     t.point    "coordenadas",       :limit => nil,                    :srid => 4326
   end
 
+  add_index "animales", ["coordenadas"], :name => "coords_index", :spatial => true
+
   create_table "fotos", :force => true do |t|
     t.text     "descripcion"
     t.string   "mime_type"
