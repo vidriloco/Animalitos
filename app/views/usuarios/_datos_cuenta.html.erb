@@ -9,7 +9,7 @@
     <div class="parrafo unit on-2 columns">
         <div class="column fixed" style="width: 60%">
             <p><b>Bio:</b></p>
-            <p class="indentar"><%= @usuario.bio %></p>
+            <p class="indentar"><%= @usuario.bio.blank? ? "No hay nada escrito en tú bio" : @usuario.bio %></p>
             <p><b>Registrado desde:&nbsp;&nbsp;</b><%= I18n.localize(@usuario.created_at, :format => "%B %Y") %></p>
         </div>
         <div class="column fixed">
