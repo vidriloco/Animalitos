@@ -22,7 +22,7 @@ $(document).ready(function() {
 	if($.estaPresente('#froyito')) {
 		var a = document.createElement('a');
 		a.href= document.referrer;
-		if(a.pathname == '/animales') {
+		if(a.pathname == '/animales' && $.cookie("ultimo") != "") {
 			$('#froyito').attr('href', $.cookie("ultimo"));
 		}
 	}
