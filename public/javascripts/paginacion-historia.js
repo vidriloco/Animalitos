@@ -9,7 +9,6 @@ var paginacionAjaxHistory = function(dom) {
 			var new_url = $.param.fragment(baseurl, params, 2);
 			location.hash = $.param.fragment( new_url );
 			$.cookie("ultimo", baseurl+location.hash);
-			
 			return false;
 		});
 	}
@@ -22,8 +21,11 @@ $(document).ready(function() {
 	if($.estaPresente('#froyito')) {
 		var a = document.createElement('a');
 		a.href= document.referrer;
-		if(a.pathname == '/animales' && $.cookie("ultimo") != "") {
+		if((a.pathname == '/animales' || a.pathname == '/animales/') && $.cookie("ultimo") != "") {
 			$('#froyito').attr('href', $.cookie("ultimo"));
+			$('#froyito').click(function() {
+				$.cookie("ultimo", "");
+			});
 		}
 	}
 	
