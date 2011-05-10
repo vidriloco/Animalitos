@@ -21,10 +21,10 @@ $(document).ready(function() {
 	if($.estaPresente('#froyito')) {
 		var a = document.createElement('a');
 		a.href= document.referrer;
-		if((a.pathname == '/animales' || a.pathname == '/animales/') && $.cookie("ultimo") != "") {
+		if((a.pathname == '/animales' || a.pathname == '/animales/') && $.cookie("ultimo") != null) {
 			$('#froyito').attr('href', $.cookie("ultimo"));
 			$('#froyito').click(function() {
-				$.cookie("ultimo", "");
+				$.cookie("ultimo", null);
 			});
 		}
 	}
