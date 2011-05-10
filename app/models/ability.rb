@@ -7,7 +7,7 @@ class Ability
     usuario ||= Usuario.new # guest user (not logged in)
     if usuario.es_admin?
       can :manage, :all
-    elsif usuario.current_sign_in_at?
+    else
       can :manage, Animal, :usuario_id => usuario.id
     end
     
