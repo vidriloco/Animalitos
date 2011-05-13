@@ -6,7 +6,7 @@ class Animal < ActiveRecord::Base
   
   validates_presence_of :nombre, :raza, :descripcion, :situacion, :sexo
   
-  after_save :avisa_registrado
+  after_save :avisa_registrado, :on => :create
   before_save :verifica_consistencia_extraviado
   
   cattr_reader :per_page
@@ -116,7 +116,8 @@ class Animal < ActiveRecord::Base
   
   def avisa_registrado
     begin
-      Twitter.update(mensaje_tweet + " Ayúdalo en #{tiny_urled}") if Rails.env!="test"
+      p "ANUNCIO ANUNCIO CAMBIO CAMBIO #{tiny_urled}"
+      Twitter.update(mensaje_tweet + " Ayúdalo en #{tiny_urled}") if Rails.env=="production"
     rescue
       # doble tweet 
     end
