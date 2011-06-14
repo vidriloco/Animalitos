@@ -116,7 +116,7 @@ class Animal < ActiveRecord::Base
   
   def avisa_registrado
     begin
-      p "ANUNCIO ANUNCIO CAMBIO CAMBIO #{tiny_urled}"
+      #p "ANUNCIO ANUNCIO CAMBIO CAMBIO #{tiny_urled}"
       Twitter.update(mensaje_tweet + " Ayúdalo en #{tiny_urled}") if Rails.env=="production"
     rescue
       # doble tweet 

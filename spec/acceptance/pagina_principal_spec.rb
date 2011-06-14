@@ -5,8 +5,7 @@ include Warden::Test::Helpers
 feature "Pagina Principal" do
   background do
     visit '/'
-    @usuario = Factory.build(:usuario)
-    @usuario.confirm!
+    @usuario = Factory(:usuario)
   end
 
   describe "Encontré a una mascota", :js => true do
@@ -46,7 +45,7 @@ feature "Pagina Principal" do
       page.should have_content('Cruza')
       page.should have_content('Encontrado')
       sleep 5
-      page.should have_content('San Antonio 1725, Narvarte, Benito Juárez, Mexico City, Distrito Federal, Mexico')
+      page.should have_content('San Antonio')
     end
   
     scenario "habiéndola registrado previamente, puedo cerrar el caso y re-abrirlo también" do
@@ -152,9 +151,11 @@ feature "Pagina Principal" do
     
     background do
       ahora = Time.now
-      Factory(:pastor_con_foto, :fecha => ahora.months_ago(1))
-      Factory(:akita_con_foto, :fecha => ahora.months_ago(1))
-      @dulcinea=Factory(:cooker_con_foto, :fecha => ahora)
+      Delorean.time_travel_to("1 month ago") do
+        Factory(:pastor_con_foto, :fecha => Time.now)
+        Factory(:akita_con_foto, :fecha => Time.now)
+      end
+      @dulcinea=Factory(:cooker_con_foto, :fecha => Time.now)
     end
    
     scenario "debo ver en ella diversos contenidos" do
@@ -180,10 +181,10 @@ feature "Pagina Principal" do
       page.should have_content('Extraviado hace menos de 1 minuto')
       sleep 15
       page.should have_content('Mokita')
-      page.should have_content('Extraviado hace 30 días')
+      page.should have_content('Extraviado hace cerca de 1 mes')
       sleep 15
       page.should have_content('Laika')
-      page.should have_content('Encontrado hace 30 días')
+      page.should have_content('Encontrado hace cerca de 1 mes')
       
     end  
  

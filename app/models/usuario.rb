@@ -1,8 +1,7 @@
 class Usuario < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :confirmable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :nombre, :telefono_movil, :cuenta_en_twitter, :bio, :es_admin
@@ -17,9 +16,9 @@ class Usuario < ActiveRecord::Base
     es_admin
   end
   
-  def unconfirm!
-    confirmed_at = nil
-    confirmation_token = nil
-    save(:validate => false)
-  end
+  #def unconfirm!
+  #  confirmed_at = nil
+  #  confirmation_token = nil
+  #  save(:validate => false)
+  #end
 end

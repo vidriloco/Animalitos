@@ -11,10 +11,6 @@ describe RazasController do
       { :get => "/razas/new" }.should route_to(:controller => "razas", :action => "new")
     end
 
-    it "recognizes and generates #show" do
-      { :get => "/razas/1" }.should route_to(:controller => "razas", :action => "show", :id => "1")
-    end
-
     it "recognizes and generates #edit" do
       { :get => "/razas/1/edit" }.should route_to(:controller => "razas", :action => "edit", :id => "1")
     end

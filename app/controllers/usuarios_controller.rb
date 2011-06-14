@@ -18,7 +18,7 @@ class UsuariosController < ApplicationController
   end
   
   def activar
-    @usuario.confirm!
+    #@usuario.confirm!
     #Notificador.activacion(@usuario).deliver
     
     respond_to do |format|
@@ -27,7 +27,7 @@ class UsuariosController < ApplicationController
   end
   
   def desactivar
-    @usuario.unconfirm!
+    #@usuario.unconfirm!
     #Notificador.desactivacion(@usuario).deliver    
     
     respond_to do |format|

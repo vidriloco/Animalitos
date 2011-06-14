@@ -4,8 +4,7 @@ include Warden::Test::Helpers
 
 feature "Perfil" do
   background do
-    @usuario = Factory.build(:usuario)
-    @usuario.confirm!
+    @usuario = Factory(:usuario)
     login_as @usuario
   end
   

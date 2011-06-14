@@ -2,24 +2,37 @@
 require 'spec_helper'
 
 describe ApplicationHelper do
-  it "debe desplegar un mensaje sobre un animalito encontrado y su geografia" do
-    @ani = Factory.build(:animal, :situacion => Animal.encontrado, :fecha => Time.now.months_ago(1) )
-    ubicacion_y_fecha_animalito(@ani).should == "Encontrado hace 30 días"
-  end
   
-  it "debe desplegar un mensaje para un animalito extraviado y su geografia" do
-    @ani = Factory.build(:animal, :situacion => Animal.extraviado, :fecha => Time.now.months_ago(1) )
-    ubicacion_y_fecha_animalito(@ani).should == "Extraviado hace 30 días"
-  end
+  describe "habiendo sido registrados hace un mes" do
   
-  it "debe desplegar un mensaje sobre una animalita encontrada y su geografia" do
-     @ani = Factory.build(:animal, :situacion => Animal.encontrado, :sexo => "H", :fecha => Time.now.months_ago(1) )
-     ubicacion_y_fecha_animalito(@ani).should == "Encontrada hace 30 días"
-   end
+    it "debe desplegar un mensaje sobre un animalito encontrado y su geografia" do
+      Delorean.time_travel_to("1 month ago") do
+        @ani = Factory.build(:animal, :situacion => Animal.encontrado, :fecha => Time.now )
+      end
+      ubicacion_y_fecha_animalito(@ani).should == "Encontrado hace cerca de 1 mes"
+    end
   
-  it "debe desplegar un mensaje para una animalita extraviada y su geografia" do
-    @ani = Factory.build(:animal, :situacion => Animal.extraviado, :sexo => "H", :fecha => Time.now.months_ago(1) )
-    ubicacion_y_fecha_animalito(@ani).should == "Extraviada hace 30 días"
+    it "debe desplegar un mensaje para un animalito extraviado y su geografia" do
+      Delorean.time_travel_to("1 month ago") do
+        @ani = Factory.build(:animal, :situacion => Animal.extraviado, :fecha => Time.now )
+      end
+      ubicacion_y_fecha_animalito(@ani).should == "Extraviado hace cerca de 1 mes"
+    end
+  
+    it "debe desplegar un mensaje sobre una animalita encontrada y su geografia" do
+      Delorean.time_travel_to("1 month ago") do  
+        @ani = Factory.build(:animal, :situacion => Animal.encontrado, :sexo => "H", :fecha => Time.now )
+       end
+       ubicacion_y_fecha_animalito(@ani).should == "Encontrada hace cerca de 1 mes"
+     end
+  
+    it "debe desplegar un mensaje para una animalita extraviada y su geografia" do
+      Delorean.time_travel_to("1 month ago") do
+        @ani = Factory.build(:animal, :situacion => Animal.extraviado, :sexo => "H", :fecha => Time.now )
+      end
+      ubicacion_y_fecha_animalito(@ani).should == "Extraviada hace cerca de 1 mes"
+    end
+  
   end
   
   it "debe desplegar un mensaje para casos cerrados" do

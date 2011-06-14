@@ -91,7 +91,7 @@ describe AnimalesController do
     before(:each) do
       @animal = Factory.stub(:animal)
       usuario = Factory(:usuario)
-      usuario.confirm! 
+      #usuario.confirm! 
       sign_in(usuario)
     end
     
@@ -143,7 +143,7 @@ describe AnimalesController do
     before(:each) do
       @animal = Factory(:animal)
       usuario = Factory(:usuario)
-      usuario.confirm! 
+      #usuario.confirm! 
       sign_in(usuario)
     end
     

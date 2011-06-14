@@ -7,7 +7,7 @@ describe UsuariosController do
     
     before(:each) do
       @usuario = Factory(:usuario)
-      @usuario.confirm! 
+      #@usuario.confirm! 
       sign_in(@usuario)
       @akita=Factory(:akita_con_foto, :usuario => @usuario)
       Factory(:pastor_con_foto)

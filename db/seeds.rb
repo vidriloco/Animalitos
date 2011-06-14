@@ -46,7 +46,7 @@ rescue
 end
 
 u=Usuario.create!(:nombre => "Administrador", :es_admin => true, :password => "katwijk", :password_confirmation => "katwijk", :email => "vidriloco@gmail.com")
-u.confirm!
+#u.confirm!
 
 
 

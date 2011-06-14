@@ -9,20 +9,18 @@ describe RazasController do
   def mock_raza(stubs={})
     @mock_raza ||= mock_model(Raza, stubs).as_null_object
   end
+  
+  before(:each) do
+    usuario = Factory(:usuario)
+    #usuario.confirm! 
+    sign_in(usuario)
+  end
 
   describe "GET index" do
     it "assigns all razas as @razas" do
       Raza.stub(:all) { [mock_raza] }
       get :index
       assigns(:razas).should eq([mock_raza])
-    end
-  end
-
-  describe "GET show" do
-    it "assigns the requested raza as @raza" do
-      Raza.stub(:find).with("37") { mock_raza }
-      get :show, :id => "37"
-      assigns(:raza).should be(mock_raza)
     end
   end
 
@@ -50,10 +48,10 @@ describe RazasController do
         assigns(:raza).should be(mock_raza)
       end
 
-      it "redirects to the created raza" do
+      it "redirects to the list of razas" do
         Raza.stub(:new) { mock_raza(:save => true) }
         post :create, :raza => {}
-        response.should redirect_to(raza_url(mock_raza))
+        response.should redirect_to(razas_url)
       end
     end
 
