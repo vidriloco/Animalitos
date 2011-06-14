@@ -24,10 +24,10 @@ es:
       send_instructions: 'Recibirás un correo con instrucciones sobre como confirmar tu cuenta'
       confirmed: 'Tu cuenta fue confirmada con éxito. Estás dentro.'
     registrations:
-      signed_up: 'Tu cuenta fue dada de alta correctamente. Un correo de confirmación será enviado a tu e-mail.'
+      signed_up: 'Tu cuenta fue dada de alta correctamente.'
       signed_up_constrained: 'Tu cuenta fue dada de alta correctamente y será aprobada por el administrador del sitio.'
       updated: 'Actualizaste tu cuenta exitosamente.'
-      destroyed: 'Bye! Tú cuenta fue cancelada con éxito.'
+      destroyed: '¡Hasta pronto! Tú cuenta fue cancelada con éxito.'
     unlocks:
       send_instructions: 'Recibiras un correo con instrucciones sobre como desbloquear tu cuenta en unos minutos.'
       unlocked: 'Tu cuenta fue desbloqueada exitosamente. Estás dentro.'
